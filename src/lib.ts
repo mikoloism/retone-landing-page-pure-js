@@ -1,3 +1,5 @@
+export { default as anime } from 'animejs';
+
 export const $ = document.querySelector;
 export const $$ = document.querySelectorAll;
 
