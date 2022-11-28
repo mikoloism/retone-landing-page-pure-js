@@ -5,7 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Retone Landing Page</title>
-
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -13,19 +12,20 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
-		<link rel="stylesheet" href="/static/styles/style.css" />
+		<link rel="stylesheet" href="/styles/style.css" />
 	</head>
 	<body>
-		<header class="header"></header>
-		<main class="main fs__wrapper">
-			<section class="fs__section"></section>
-			<section class="fs__section"></section>
-			<section class="fs__section"></section>
-			<section class="fs__section"></section>
-		</main>
-		<footer class="footer"></footer>
-
-		<script type="text/javascript" src="/static/scripts/lib.js"></script>
-		<script type="text/javascript" src="/static/scripts/main.js"></script>
+		<div id="app"></div>
+		<!--
+			<header class="header"></header>
+			<main class="main fs__wrapper">
+				<section class="fs__section"></section>
+				<section class="fs__section"></section>
+				<section class="fs__section"></section>
+				<section class="fs__section"></section>
+			</main>
+			<footer class="footer"></footer>
+		-->
+		<script type="module" src="/src/main.ts"></script>
 	</body>
 </html>

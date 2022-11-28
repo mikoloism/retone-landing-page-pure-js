@@ -1,0 +1,8 @@
+{
+	"tabWidth": 4,
+	"useTabs": true,
+	"quoteProps": "as-needed",
+	"singleQuote": false,
+	"printWidth": 100,
+	"embeddedLanguageFormatting": "auto"
+}
