@@ -1,0 +1,29 @@
+@mixin use-desktop {
+	@at-root {
+		@media (min-width: 1280px) {
+			& {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin use-laptop {
+	@at-root {
+		@media (min-width: 1024px) {
+			& {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin use-tablet {
+	@at-root {
+		@media (min-width: 640px) {
+			& {
+				@content;
+			}
+		}
+	}
+}
