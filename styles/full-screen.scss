@@ -1,0 +1,12 @@
+.fs {
+	&__wrapper {
+		width: 100%;
+	}
+
+	&__section {
+		position: relative;
+		width: 100%;
+		height: viewHeight(100);
+		overflow: hidden;
+	}
+}
