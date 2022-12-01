@@ -1,0 +1,87 @@
+:root {
+	--angle1: 0deg;
+	--angle2: 90deg;
+	--angle3: 90deg;
+	--angle4: 90deg;
+}
+
+.museum {
+	&__wrapper {
+		width: 1920px;
+		height: 1080px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		overflow: hidden;
+	}
+
+	&__inner {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transform-origin: center 66.66%;
+		overflow: hidden;
+	}
+
+	&__background img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	// &__doors {}
+
+	&__door {
+		& {
+		}
+
+		&--1 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transform-origin: center center;
+			perspective-origin: center center;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle1))
+				translateZ(-2000px);
+			transform-style: preserve-3d;
+		}
+
+		&--2 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transform-origin: center center;
+			perspective-origin: center center;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle2))
+				translateZ(-2000px);
+			transform-style: preserve-3d;
+		}
+
+		&--3 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transform-origin: center center;
+			perspective-origin: center center;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle3))
+				translateZ(-2000px);
+			transform-style: preserve-3d;
+		}
+
+		&--4 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transform-origin: center center;
+			perspective-origin: center center;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle4))
+				translateZ(-2000px);
+			transform-style: preserve-3d;
+		}
+	}
+}
