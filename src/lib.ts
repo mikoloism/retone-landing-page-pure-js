@@ -1,6 +1,6 @@
 export { default as anime } from 'animejs';
 
-export const $ = document.querySelector;
+export const $: (s: any) => HTMLElement = document.querySelector;
 export const $$ = document.querySelectorAll;
 
 export function $var(name: string, value: any, element: HTMLElement): string {
