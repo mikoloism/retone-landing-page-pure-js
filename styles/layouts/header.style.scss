@@ -1,0 +1,116 @@
+@import "../utils/_breakpoints.scss";
+
+.header {
+	position: fixed;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 88px;
+	background: rgba(80, 80, 80, 0.4);
+	backdrop-filter: blur(8px);
+	z-index: 999;
+
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	place-content: center;
+	place-items: center;
+
+	top: -100%;
+	opacity: 0;
+	transition: 0.9s cubic-bezier(0.23, 1, 0.32, 1) all;
+
+	&--visible {
+		top: 0;
+		opacity: 1;
+	}
+
+	&__brand,
+	&__hamburger,
+	&__navigation {
+		grid-row: 2 / 3;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__brand {
+		grid-column: 2 / 4;
+		@include use-desktop {
+			grid-column: 1 / 3;
+		}
+	}
+
+	&__hamburger {
+		grid-column: 10 / 12;
+	}
+
+	&__navigation {
+		display: none;
+	}
+}
+
+.brand {
+	display: grid;
+	place-content: center;
+	place-items: center;
+	&__logo {
+		fill: white;
+	}
+}
+
+.hamburger {
+	border: 0;
+	outline: 0;
+	stroke: 0;
+	box-shadow: 0;
+	background: transparent;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	place-content: center;
+	place-items: center;
+
+	&__text,
+	&__icon,
+	&__bar {
+		display: inline-block;
+	}
+
+	&__text {
+		width: calc(100% - 40px);
+	}
+
+	&__icon {
+		display: inline-flex;
+		flex-direction: column;
+		place-content: space-between;
+		place-items: center;
+		height: 30px;
+		width: 40px;
+	}
+
+	&__bar {
+		width: 50px;
+		background: black;
+		height: 3px;
+		border-radius: 999px;
+	}
+}
+
+.navigation {
+	&__list {
+		list-style: none;
+	}
+
+	&__item {
+	}
+
+	&__link {
+		color: white;
+		text-decoration: none;
+	}
+
+	&__text {
+	}
+}
