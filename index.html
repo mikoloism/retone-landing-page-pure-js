@@ -14,7 +14,7 @@
 		/>
 		<link rel="stylesheet" href="/styles/style.scss" />
 	</head>
-	<body style="background-color: dimgray">
+	<body>
 		<div id="app">
 			<header class="header header--visible">
 				<div class="header__brand brand">
@@ -70,244 +70,79 @@
 					</ul>
 				</nav>
 			</header>
-			<div class="main fs__wrapper W1">
-				<div
-					id="S1"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
+			<div class="main fs__wrapper">
+				<div data-full-section="1" class="fs__section section--hero">
 					<video
-						style="
-							height: 100%;
-							position: absolute;
-							top: 50%;
-							left: 50%;
-							translate: -50% -50%;
-							z-index: 1;
-						"
 						src="/assets/retone.mp4"
-						preload=""
-						autobuffer=""
-						autoplay=""
-						playsinline=""
-						muted=""
-						loop=""
+						preload
+						autobuffer
+						autoplay
+						playsinline
+						muted
+						loop
 					></video>
 				</div>
 
-				<div
-					id="S6"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
-					<img
-						src="/assets/images/retone-HERO.png"
-						alt="retone-HERO"
-						style="
-							height: 100%;
-							position: absolute;
-							top: 50%;
-							left: 50%;
-							transform: translate(-50%, -50%);
-						"
-					/>
+				<div data-full-section="2" class="fs__section section--cover">
+					<img src="/assets/images/retone-HERO.png" alt="retone | model hero" />
 				</div>
-				<div
-					id="S2"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
-					<div
-						class="W2"
-						id="W2"
-						style="
-							width: 2580px;
-							height: 1080px;
-							position: absolute;
-							top: 50%;
-							left: 50%;
-							transform: translate(-50%, -50%) scale(0.939815);
-							overflow: hidden;
-						"
-					>
-						<div
-							class="C0"
-							id="C0"
-							style="
-								width: 100%;
-								height: 100%;
-								position: absolute;
-								top: 50%;
-								left: 50%;
-								transform: translate(-50%, -50%);
-								transform-origin: center 66.66%;
-								overflow: hidden;
-							"
-						>
-							<div>
-								<img
-									src="/assets/images/BG1.png"
-									style="
-										position: absolute;
-										top: 50%;
-										left: 50%;
-										transform: translate(-50%, -50%);
-									"
-								/>
+
+				<div data-full-section="3" class="fs__section section--museum museum">
+					<div id="museum" class="museum__wrapper">
+						<div id="museum-scene" class="museum__inner">
+							<div class="museum__backgroun">
+								<img src="/assets/images/BG1.png" />
 							</div>
-							<div>
+
+							<div class="museum__doors">
 								<img
-									class="D1"
+									id="museum-door-1"
+									class="museum__door museum__door--1"
 									src="/assets/images/D11.png"
-									style="
-										position: absolute;
-										top: 0px;
-										left: 0px;
-										transform-origin: center center;
-										perspective-origin: center center;
-										transform-style: preserve-3d;
-										transform: perspective(2000px) translateZ(2000px)
-											rotateY(var(--angle1)) translateZ(-2000px);
-									"
 								/>
+
 								<img
-									class="D2"
+									id="museum-door-2"
+									class="museum__door museum__door--2"
 									src="/assets/images/D21.png"
-									style="
-										position: absolute;
-										top: 0px;
-										left: 0px;
-										transform-origin: center center;
-										perspective-origin: center center;
-										transform-style: preserve-3d;
-										transform: perspective(2000px) translateZ(2000px)
-											rotateY(var(--angle2)) translateZ(-2000px);
-									"
 								/>
+
 								<img
-									class="D3"
+									id="museum-door-3"
+									class="museum__door museum__door--3"
 									src="/assets/images/D31.png"
-									style="
-										position: absolute;
-										top: 0px;
-										left: 0px;
-										transform-origin: center center;
-										perspective-origin: center center;
-										transform-style: preserve-3d;
-										transform: perspective(2000px) translateZ(2000px)
-											rotateY(var(--angle3)) translateZ(-2000px);
-									"
 								/>
+
 								<img
-									class="D4"
+									id="museum-door-4"
+									class="museum__door museum__door--4"
 									src="/assets/images/D41.png"
-									style="
-										position: absolute;
-										top: 0px;
-										left: 0px;
-										transform-origin: center center;
-										perspective-origin: center center;
-										transform-style: preserve-3d;
-										transform: perspective(2000px) translateZ(2000px)
-											rotateY(var(--angle4)) translateZ(-2000px);
-									"
 								/>
 							</div>
 						</div>
 					</div>
+					<button type="button" id="museum-skip-button" class="museum__skip">
+						<span>skip</span>
+					</button>
 				</div>
-				<div
-					id="S3"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
+
+				<div data-full-section="4" class="fs__section section--explode">
 					<video
 						id="explode"
 						poster="explode.png"
-						style="
-							height: 100%;
-							position: absolute;
-							top: 50%;
-							left: 50%;
-							transform: translate(-50%, -50%);
-						"
 						src="explode.mp4"
-						preload=""
-						autobuffer=""
-						playsinline=""
-						muted=""
+						preload
+						autobuffer
+						playsinline
+						muted
 					></video>
 				</div>
-				<div
-					id="S4"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
-					<video
-						id="tagline"
-						style="
-							height: 100%;
-							position: absolute;
-							top: 50%;
-							left: 50%;
-							translate: -50% -50%;
-						"
-						src="tagline.mp4"
-						preload=""
-						autobuffer=""
-						playsinline=""
-					></video>
-					<div
-						onclick="Play()"
-						id="player"
-						style="
-							width: 200px;
-							height: 200px;
-							border-radius: 50%;
-							z-index: 2;
-							position: absolute;
-							background-color: rgba(10, 15, 17, 0.4);
-							display: flex;
-							flex-direction: column;
-							align-items: center;
-							justify-content: center;
-							top: 50%;
-							left: 50%;
-							color: white;
-						"
-					>
-						Play
-					</div>
+
+				<div data-full-section="5" class="fs__section section--tagline">
+					<video id="tagline" src="tagline.mp4" preload autobuffer playsinline></video>
 				</div>
-				<div
-					id="S5"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
+
+				<div data-full-section="6" class="fs__section section--solutions">
 					<div
 						style="
 							width: 80%;
@@ -332,27 +167,15 @@
 						</p>
 					</div>
 				</div>
-				<div
-					id="S7"
-					style="
-						width: 100%;
-						height: calc(var(--view-height, 1vh) * 100);
-						overflow: hidden;
-						position: relative;
-					"
-				>
+
+				<div data-full-section="7" class="fs__section">
 					<p style="position: absolute; top: 0">Last Section Start</p>
 					<p style="position: absolute; bottom: 0">Last Section End</p>
 				</div>
-				<div
-					id="S8"
-					style="width: 100%; height: 10rem; overflow: hidden; position: relative"
-				>
-					<p style="position: absolute; top: 0">Footer Start</p>
-					<p style="position: absolute; bottom: 0">Footer End</p>
-				</div>
 			</div>
-			<footer class="footer"></footer>
+			<footer class="footer">
+				<span>Hello</span>
+			</footer>
 		</div>
 
 		<script type="module" src="/src/main.ts"></script>
