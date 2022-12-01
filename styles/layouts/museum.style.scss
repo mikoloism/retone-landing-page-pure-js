@@ -7,12 +7,12 @@
 
 .museum {
 	&__wrapper {
-		width: 1920px;
+		width: 2580px;
 		height: 1080px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(0.939815);
 		overflow: hidden;
 	}
 
@@ -22,7 +22,7 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(1);
 		transform-origin: center 66.66%;
 		overflow: hidden;
 	}
@@ -38,50 +38,34 @@
 
 	&__door {
 		& {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transform-origin: center center;
+			perspective-origin: center center;
+			transform-style: preserve-3d;
 		}
 
 		&--1 {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			transform-origin: center center;
-			perspective-origin: center center;
-			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle1))
-				translateZ(-2000px);
-			transform-style: preserve-3d;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle1)) translateZ(-2000px);
 		}
 
 		&--2 {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			transform-origin: center center;
-			perspective-origin: center center;
-			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle2))
-				translateZ(-2000px);
-			transform-style: preserve-3d;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle2)) translateZ(-2000px);
 		}
 
 		&--3 {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			transform-origin: center center;
-			perspective-origin: center center;
-			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle3))
-				translateZ(-2000px);
-			transform-style: preserve-3d;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle3)) translateZ(-2000px);
 		}
 
 		&--4 {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			transform-origin: center center;
-			perspective-origin: center center;
-			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle4))
-				translateZ(-2000px);
-			transform-style: preserve-3d;
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle4)) translateZ(-2000px);
 		}
+	}
+
+	&__skip {
+		position: absolute;
+		bottom: 0;
+		width: 64px;
 	}
 }
