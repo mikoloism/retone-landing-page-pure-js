@@ -1,0 +1,3 @@
+@function viewHeight($height) {
+	@return #{unquote("calc(var(--view-height, 1vh) * #{$height})")};
+}
