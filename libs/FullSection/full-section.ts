@@ -31,9 +31,19 @@ export namespace FullSection {
 
 	export function init(animations: AnimationList) {
 		animationList = animations;
+		attachEventsListener();
+	}
+
+	export function attachEventsListener() {
 		window.addEventListener("wheel", handleOnMouseWheel, false);
 		window.addEventListener("touchstart", handleOnTouchStart, false);
 		window.addEventListener("touchend", handleOnTouchEnd, false);
+	}
+
+	export function detachEventsListener() {
+		window.removeEventListener("wheel", handleOnMouseWheel, false);
+		window.removeEventListener("touchstart", handleOnTouchStart, false);
+		window.removeEventListener("touchend", handleOnTouchEnd, false);
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
