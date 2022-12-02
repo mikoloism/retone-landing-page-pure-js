@@ -1,3 +1,4 @@
+import anime from 'animejs';
 import { Header } from './header';
 import * as FullSection from '../libs/FullSection/full-section';
 
@@ -26,7 +27,9 @@ const $_var = ProxyFactory(
 	'--angle4'
 );
 
-const tagline = document.getElementById('tagline')!;
+// const withViewHeight = (viewHeight: number) => `calc(var(--view-height, 1vh) * -${viewHeight})`;
+
+// const tagline = document.getElementById('tagline')!;
 const explode = document.getElementById('explode')! as HTMLVideoElement;
 const carouselAnimations: FullSection.AnimationList = [
 	{
@@ -200,8 +203,24 @@ const carouselAnimations: FullSection.AnimationList = [
 		duration: 1000,
 		translateY: [
 			'calc(var(--view-height, 1vh) * -600)',
-			'calc((var(--view-height, 1vh) * -600) - 10rem)',
+			'calc(var(--view-height, 1vh) * -700)',
 		],
+	},
+	{
+		targets: '.fs__wrapper',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		top: ['0px', '-450px'],
+
+		begin(a) {
+			anime({
+				targets: '.footer',
+				easing: 'linear',
+				duration: 400,
+				autoplay: true,
+				direction: a.direction,
+			});
+		},
 	},
 ];
 
