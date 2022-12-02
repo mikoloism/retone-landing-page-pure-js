@@ -147,8 +147,8 @@
 		height: calc(100% - 95px);
 	}
 }
-
-.navigation {
+// TODO : extract to `navigation layouts`;
+.sidebar .navigation {
 	&,
 	&__list,
 	&__item,
