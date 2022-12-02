@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<div id="app">
-			<header class="header header--visible">
+			<header id="header" class="header header--visible">
 				<div class="header__brand brand">
 					<svg
 						width="132"
@@ -47,30 +47,137 @@
 						></path>
 					</svg>
 				</div>
-				<button type="menu" class="header__hamburger hamburger">
-					<span class="hamburger__text">Menu</span>
+				<button type="menu" id="hamburger" class="header__hamburger hamburger">
 					<span class="hamburger__icon">
 						<span class="hamburger__bar"></span>
 						<span class="hamburger__bar"></span>
 						<span class="hamburger__bar"></span>
 					</span>
 				</button>
-				<nav class="header__navigation navigation">
+			</header>
+			<nav id="sidebar" class="header__navigation navigation">
+				<div class="navigation__inner">
+					<header class="navigation__header">
+						<strong class="navigation__title">Retone Hero</strong>
+						<svg xmlns="http://www.w3.org/2000" xmlns:xlink="http://www.w3.org/1999">
+							<use xlink:href="#mdi-times" href="#mdi-times" />
+						</svg>
+					</header>
 					<ul class="navigation__list">
 						<li class="navigation__item">
 							<a href="/" class="navigation__link">
-								<span class="navigation__text">Return to Home</span>
+								<span class="navigation__text">Retone Hero</span>
 							</a>
 						</li>
 						<li class="navigation__item">
-							<a href="/anatomy" class="navigation__link"></a>
+							<a href="/anatomy" class="navigation__link">
+								<span class="navigation__text">Retone Hero Plus</span>
+							</a>
 						</li>
 						<li class="navigation__item">
-							<a href="/about" class="navigation__link"></a>
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">About Retone</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Solutions</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Blog</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Contacts</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Ordering</span>
+							</a>
+						</li>
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Solutions</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Blog</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Contacts</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Ordering</span>
+							</a>
+						</li>
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Solutions</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Blog</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Contacts</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Ordering</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Solutions</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Blog</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Contacts</span>
+							</a>
+						</li>
+
+						<li class="navigation__item">
+							<a href="/about" class="navigation__link">
+								<span class="navigation__text">Ordering</span>
+							</a>
 						</li>
 					</ul>
-				</nav>
-			</header>
+				</div>
+
+				<div id="navigation-close" class="navigation__close"></div>
+			</nav>
 			<div class="main fs__wrapper">
 				<div data-full-section="1" class="fs__section section--hero">
 					<video

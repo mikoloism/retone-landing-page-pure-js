@@ -1,3 +1,4 @@
+import { Header } from './header';
 import * as FullSection from '../libs/FullSection/full-section';
 
 let proxyTarget = {
@@ -141,6 +142,7 @@ const carouselAnimations: FullSection.AnimationList = [
 
 (function startup() {
 	FullSection.init(carouselAnimations);
+	Header.init();
 
 	window.addEventListener('resize', computeViewHeight);
 	window.addEventListener('scroll', computeViewHeight);
