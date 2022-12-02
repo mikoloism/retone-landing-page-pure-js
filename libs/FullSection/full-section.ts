@@ -1,120 +1,122 @@
 import { anime } from "../../src/lib";
 
-export class Range {
-	private static readonly MINIMUM: number = 0 as const;
-	private static MAXIMUM: number = 1 as const;
+export namespace FullSection {
+	export class Range {
+		private static readonly MINIMUM: number = 0 as const;
+		private static MAXIMUM: number = 1 as const;
 
-	public static includes(length: number): boolean {
-		return length < Range.getMaximum() && length > Range.getMinimum();
+		public static includes(length: number): boolean {
+			return length < Range.getMaximum() && length > Range.getMinimum();
+		}
+
+		public static getMinimum(): number {
+			return Range.MINIMUM;
+		}
+
+		public static getMaximum(): number {
+			return Range.MAXIMUM;
+		}
+
+		public static updateMaximum(value: number): void {
+			Range.MAXIMUM = value;
+		}
 	}
 
-	public static getMinimum(): number {
-		return Range.MINIMUM;
+	const TOUCH_THRESHOLD = 5;
+	var isTransitionEnd = true;
+	var currentAnimationIndex: number = 0;
+	var currentAnimation: anime.AnimeInstance;
+
+	var animationList: AnimationList = [];
+
+	export function init(animations: AnimationList) {
+		animationList = animations;
+		window.addEventListener("wheel", handleOnMouseWheel, false);
+		window.addEventListener("touchstart", handleOnTouchStart, false);
+		window.addEventListener("touchend", handleOnTouchEnd, false);
 	}
 
-	public static getMaximum(): number {
-		return Range.MAXIMUM;
+	function handleOnMouseWheel(event: WheelEvent): void {
+		triggerSwipe(event.deltaY);
 	}
 
-	public static updateMaximum(value: number): void {
-		Range.MAXIMUM = value;
+	var touchStartPoint: Point;
+
+	function handleOnTouchStart(event: TouchEvent): void {
+		touchStartPoint = {
+			x: event.touches[0].clientX,
+			y: event.touches[0].clientY,
+		};
 	}
-}
 
-const TOUCH_THRESHOLD = 5;
-var isTransitionEnd = true;
-var currentAnimationIndex: number = 0;
-var currentAnimation: anime.AnimeInstance;
+	function handleOnTouchEnd(event: TouchEvent): void {
+		const touchEndPoint: Point = {
+			x: event.changedTouches[0].clientX,
+			y: event.changedTouches[0].clientY,
+		};
 
-var animationList: AnimationList = [];
+		if (!shouldHandleTouches(touchStartPoint, touchEndPoint)) return;
 
-export function init(animations: AnimationList) {
-	animationList = animations;
-	window.addEventListener("wheel", handleOnMouseWheel, false);
-	window.addEventListener("touchstart", handleOnTouchStart, false);
-	window.addEventListener("touchend", handleOnTouchEnd, false);
-}
+		const distanceY = touchStartPoint.y - touchEndPoint.y;
+		const distanceX = touchStartPoint.x - touchEndPoint.x;
 
-function handleOnMouseWheel(event: WheelEvent): void {
-	triggerSwipe(event.deltaY);
-}
+		triggerSwipe(distanceY - distanceX);
+	}
 
-var touchStartPoint: Point;
+	function shouldHandleTouches(startPoint: Point, endPoint: Point): boolean {
+		const distance = Math.sqrt(
+			Math.pow(startPoint.x - endPoint.x, 2) + Math.pow(startPoint.y - endPoint.y, 2)
+		);
 
-function handleOnTouchStart(event: TouchEvent): void {
-	touchStartPoint = {
-		x: event.touches[0].clientX,
-		y: event.touches[0].clientY,
-	};
-}
+		return distance > TOUCH_THRESHOLD;
+	}
 
-function handleOnTouchEnd(event: TouchEvent): void {
-	const touchEndPoint: Point = {
-		x: event.changedTouches[0].clientX,
-		y: event.changedTouches[0].clientY,
-	};
+	function triggerSwipe(direction: number): void {
+		if (!canTriggerSwipe()) return;
 
-	if (!shouldHandleTouches(touchStartPoint, touchEndPoint)) return;
+		if (direction > 0) {
+			if (currentAnimationIndex > animationList.length) return;
 
-	const distanceY = touchStartPoint.y - touchEndPoint.y;
-	const distanceX = touchStartPoint.x - touchEndPoint.x;
+			currentAnimation = anime(animationList[currentAnimationIndex]);
+			isTransitionEnd = false;
+			currentAnimation.play();
+			currentAnimation.finished.then(() => {
+				isTransitionEnd = true;
+			});
+			currentAnimationIndex += 1;
+		} else if (direction < 0) {
+			if (currentAnimationIndex < 0) return;
 
-	triggerSwipe(distanceY - distanceX);
-}
+			currentAnimationIndex -= 1;
+			currentAnimation = anime(withReverseAnime(animationList[currentAnimationIndex]));
+			isTransitionEnd = false;
+			currentAnimation.play();
+			currentAnimation.finished.then(() => {
+				isTransitionEnd = true;
+			});
+		}
+	}
 
-function shouldHandleTouches(startPoint: Point, endPoint: Point): boolean {
-	const distance = Math.sqrt(
-		Math.pow(startPoint.x - endPoint.x, 2) + Math.pow(startPoint.y - endPoint.y, 2)
-	);
+	function canTriggerSwipe(): boolean {
+		return isTransitionEnd === true;
+	}
 
-	return distance > TOUCH_THRESHOLD;
-}
+	function withReverseAnime(animationObject: AnimationObject): anime.AnimeParams {
+		return { ...animationObject, direction: "reverse" };
+	}
 
-function triggerSwipe(direction: number): void {
-	if (!canTriggerSwipe()) return;
-
-	if (direction > 0) {
-		if (currentAnimationIndex > animationList.length) return;
-
+	export function updateIndex(currentIndex: number): void {
+		currentAnimationIndex = currentIndex;
 		currentAnimation = anime(animationList[currentAnimationIndex]);
 		isTransitionEnd = false;
 		currentAnimation.play();
 		currentAnimation.finished.then(() => {
 			isTransitionEnd = true;
-		});
-		currentAnimationIndex += 1;
-	} else if (direction < 0) {
-		if (currentAnimationIndex < 0) return;
-
-		currentAnimationIndex -= 1;
-		currentAnimation = anime(withReverseAnime(animationList[currentAnimationIndex]));
-		isTransitionEnd = false;
-		currentAnimation.play();
-		currentAnimation.finished.then(() => {
-			isTransitionEnd = true;
+			currentAnimationIndex += 1;
 		});
 	}
-}
 
-function canTriggerSwipe(): boolean {
-	return isTransitionEnd === true;
+	type Point = { x: number; y: number };
+	export type AnimationObject = anime.AnimeParams;
+	export type AnimationList = Array<AnimationObject>;
 }
-
-function withReverseAnime(animationObject: AnimationObject): anime.AnimeParams {
-	return { ...animationObject, direction: "reverse" };
-}
-
-export function updateIndex(currentIndex: number): void {
-	currentAnimationIndex = currentIndex;
-	currentAnimation = anime(animationList[currentAnimationIndex]);
-	isTransitionEnd = false;
-	currentAnimation.play();
-	currentAnimation.finished.then(() => {
-		isTransitionEnd = true;
-		currentAnimationIndex += 1;
-	});
-}
-
-type Point = { x: number; y: number };
-export type AnimationObject = anime.AnimeParams;
-export type AnimationList = Array<AnimationObject>;

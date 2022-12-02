@@ -1,4 +1,5 @@
 import anime from 'animejs';
+import { FullSection } from '../libs/FullSection/full-section';
 import { Header } from './header';
 import * as FullSection from '../libs/FullSection/full-section';
 
