@@ -1,86 +1,129 @@
 @import "../utils/_breakpoints.scss";
 
 .footer {
-	position: absolute;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 100%;
-	height: 500px;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgb(223 222 220/1);
-	color: rgb(80 80 80/1);
-	transition: 0.7s ease all;
-	z-index: 2;
-
-	// transform: scale(0.8);
-
-	&--visible {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
-.navigation {
-	&--footer {
-		// TODO : remove absolute;
-		position: absolute;
-		top: 50px;
-		// TODO : remove left;
-		left: 0;
-		bottom: 0;
+	& {
 		display: flex;
-		// FIXME : use min width and flex;
+		width: 100%;
+		height: 500px;
+
+		padding-top: 50px;
+
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		transition: 0.7s ease all;
+		background-color: rgb(223 222 220/1);
+		color: rgb(80 80 80/1);
+		overflow: hidden;
+		overflow-y: scroll;
+		z-index: 2;
+
+		scroll-behavior: smooth;
+		scroll-snap-type: y mandatory;
+	}
+
+	&__information,
+	&__navigation,
+	&__socials {
+		display: inline-block;
+		height: calc(100% + 50px);
+		padding-top: 50px;
+		scroll-snap-align: end;
+
+		@include use-tablet {
+			height: 100%;
+			padding-top: 0;
+		}
+	}
+
+	&__information {
 		width: 100%;
 
-		@include use-laptop {
-			left: 50%;
+		@include use-tablet {
 			width: 50%;
 		}
-		height: calc(100% - 50px);
 	}
 
-	&--footer &__list {
-		font-size: 1rem !important;
-		list-style: none;
-		margin: 0;
+	&__navigation,
+	&__socials {
+		width: 100%;
+
+		@include use-tablet {
+			width: 25%;
+		}
+	}
+}
+.footer .information {
+	background-color: blue;
+}
+
+.footer .socials {
+	background: gray;
+}
+
+// TODO : extract to `navigation layouts`;
+.footer .navigation {
+	&,
+	&__list,
+	&__item,
+	&__link,
+	&__text {
 		padding: 0;
+		margin: 0;
+	}
+
+	&,
+	&__list {
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
-		place-content: center;
 		place-items: center;
-		justify-content: center;
-		gap: 0px;
-		background-color: inherit;
-
-		height: 100%;
-		width: 100%;
-		padding: 16px 64px;
+		place-content: center;
 	}
 
-	&--footer &__item {
-		display: flex;
-		place-content: center;
-		place-items: center;
-		height: 42px;
-	}
-
-	&--footer &__link {
-		display: flex;
-		place-items: center;
+	&__list {
+		list-style: none;
 		width: 100%;
 		height: 100%;
-		transition: 0.3s ease all;
-
-		&:hover {
-			color: gold;
-		}
 	}
 
-	&--footer &__text {
-		font-size: 1.2rem;
+	&__item {
+		display: flex;
+		width: 100%;
+		height: 3.7rem;
+
+		font-size: 1.785rem;
+		line-height: 0.5rem;
+		letter-spacing: -0.075rem;
+
+		place-items: center;
+		place-content: center;
+	}
+
+	&__link {
+		display: flex;
+		width: 100%;
+		height: 100%;
+
+		padding: 1rem 0;
+
+		place-items: center;
+		place-content: flex-start;
+
+		color: inherit;
+		user-select: none;
+		touch-action: auto;
+		pointer-events: fill;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	&__text {
+		display: inline-block;
 	}
 }
