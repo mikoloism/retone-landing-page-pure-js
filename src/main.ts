@@ -169,7 +169,13 @@ const carouselAnimations: FullSection.AnimationList = [
 	function computeViewHeight() {
 		const $document = document.documentElement;
 		const realScreenHeight = isBrowserSafari() ? $document.clientHeight : window.innerHeight;
+		const realScreenWidth = isBrowserSafari() ? $document.clientWidth : window.innerWidth;
+		const realViewSize = Math.sqrt(realScreenHeight * realScreenWidth);
+
 		$document.style.setProperty('--view-height', `${realScreenHeight * 0.01}px`);
+		$document.style.setProperty('--view-width', `${realScreenWidth * 0.01}px`);
+		$document.style.setProperty('--view-size', `${realViewSize * 0.01}px`);
+
 		document.getElementById('museum')!.style.transform = `translate(-50%, -50%) scale(${
 			realScreenHeight / 1080
 		})`;

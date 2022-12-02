@@ -1,3 +1,7 @@
 @function viewHeight($height) {
 	@return #{unquote("calc(var(--view-height, 1vh) * #{$height})")};
 }
+
+@function viewSize($font-size) {
+	@return #{unquote("calc(var(--view-size, 1rem) * #{$font-size})")};
+}
