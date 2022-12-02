@@ -1,6 +1,6 @@
-@mixin use-desktop {
+@mixin use-desktop($min-width: 1280px) {
 	@at-root {
-		@media (min-width: 1280px) {
+		@media (min-width: $min-width) {
 			& {
 				@content;
 			}
@@ -8,9 +8,9 @@
 	}
 }
 
-@mixin use-laptop {
+@mixin use-laptop($min-width: 1024px) {
 	@at-root {
-		@media (min-width: 1024px) {
+		@media (min-width: $min-width) {
 			& {
 				@content;
 			}
@@ -18,9 +18,19 @@
 	}
 }
 
-@mixin use-tablet {
+@mixin use-tablet($min-width: 640px) {
 	@at-root {
-		@media (min-width: 640px) {
+		@media (min-width: $min-width) {
+			& {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin use-breakpoint($min-width: 425px) {
+	@at-root {
+		@media (min-width: $min-width) {
 			& {
 				@content;
 			}
