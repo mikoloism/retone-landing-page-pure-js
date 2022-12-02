@@ -1,7 +1,7 @@
 import anime from 'animejs';
 import { FullSection } from '../libs/FullSection/full-section';
 import { Header } from './header';
-import * as FullSection from '../libs/FullSection/full-section';
+import { ViewSize } from './view-size';
 
 function ProxyFactory(element: HTMLElement, ...variablesNames: Array<string>): object {
 	let variablesMap = {};
@@ -213,13 +213,13 @@ const carouselAnimations: FullSection.AnimationList = [
 		duration: 1000,
 		top: ['0px', '-450px'],
 
-		begin(a) {
+		begin(anim) {
 			anime({
 				targets: '.footer',
 				easing: 'linear',
 				duration: 400,
 				autoplay: true,
-				direction: a.direction,
+				direction: anim.direction,
 			});
 		},
 	},
@@ -229,42 +229,10 @@ const carouselAnimations: FullSection.AnimationList = [
 	FullSection.init(carouselAnimations);
 	Header.init();
 
-	window.addEventListener('resize', computeViewHeight);
-	window.addEventListener('scroll', computeViewHeight);
-	document.addEventListener('readystatechange', computeViewHeight);
-
-	function isBrowserSafari() {
-		const userAgent = window.navigator.userAgent;
-
-		if (
-			userAgent.includes('Firefox') ||
-			userAgent.includes('SamsungBrowser') ||
-			userAgent.includes('Opera') ||
-			userAgent.includes('OPR') ||
-			userAgent.includes('Trident') ||
-			userAgent.includes('Edge') ||
-			userAgent.includes('Edg') ||
-			userAgent.includes('Chrome')
-		)
-			return false;
-
-		if (userAgent.includes('Safari')) return true;
-
-		return false;
-	}
-
-	function computeViewHeight() {
-		const $document = document.documentElement;
-		const realScreenHeight = isBrowserSafari() ? $document.clientHeight : window.innerHeight;
-		const realScreenWidth = isBrowserSafari() ? $document.clientWidth : window.innerWidth;
-		const realViewSize = Math.sqrt(realScreenHeight * realScreenWidth);
-
-		$document.style.setProperty('--view-height', `${realScreenHeight * 0.01}px`);
-		$document.style.setProperty('--view-width', `${realScreenWidth * 0.01}px`);
-		$document.style.setProperty('--view-size', `${realViewSize * 0.01}px`);
-
+	ViewSize.onUpdateScreen(({ realScreenHeight }) => {
 		document.getElementById('museum')!.style.transform = `translate(-50%, -50%) scale(${
 			realScreenHeight / 1080
 		})`;
-	}
+	});
+	ViewSize.init();
 })();
