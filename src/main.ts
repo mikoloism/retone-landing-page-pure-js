@@ -1,4 +1,4 @@
-import * as FullSection from './full-section';
+import * as FullSection from '../libs/FullSection/full-section';
 
 let proxyTarget = {
 	'--angle1': '0deg',

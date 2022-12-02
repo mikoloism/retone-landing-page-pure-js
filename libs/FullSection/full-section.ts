@@ -1,4 +1,4 @@
-import { anime } from './lib';
+import { anime } from "../../src/lib";
 
 export class Range {
 	private static readonly MINIMUM: number = 0 as const;
@@ -30,9 +30,9 @@ var animationList: AnimationList = [];
 
 export function init(animations: AnimationList) {
 	animationList = animations;
-	window.addEventListener('wheel', handleOnMouseWheel, false);
-	window.addEventListener('touchstart', handleOnTouchStart, false);
-	window.addEventListener('touchend', handleOnTouchEnd, false);
+	window.addEventListener("wheel", handleOnMouseWheel, false);
+	window.addEventListener("touchstart", handleOnTouchStart, false);
+	window.addEventListener("touchend", handleOnTouchEnd, false);
 }
 
 function handleOnMouseWheel(event: WheelEvent): void {
@@ -101,7 +101,18 @@ function canTriggerSwipe(): boolean {
 }
 
 function withReverseAnime(animationObject: AnimationObject): anime.AnimeParams {
-	return { ...animationObject, direction: 'reverse' };
+	return { ...animationObject, direction: "reverse" };
+}
+
+export function updateIndex(currentIndex: number): void {
+	currentAnimationIndex = currentIndex;
+	currentAnimation = anime(animationList[currentAnimationIndex]);
+	isTransitionEnd = false;
+	currentAnimation.play();
+	currentAnimation.finished.then(() => {
+		isTransitionEnd = true;
+		currentAnimationIndex += 1;
+	});
 }
 
 type Point = { x: number; y: number };
