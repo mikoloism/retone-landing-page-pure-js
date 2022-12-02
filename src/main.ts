@@ -45,10 +45,24 @@ const carouselAnimations: FullSection.AnimationList = [
 		],
 	},
 
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [1, 2.8] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [1, 2.8],
+	},
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [0, 1] },
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [1, 0] },
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [2.8, 1] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [2.8, 1],
+	},
 
 	{
 		targets: $_var,
@@ -58,10 +72,24 @@ const carouselAnimations: FullSection.AnimationList = [
 		'--angle2': ['90deg', '0deg'],
 	},
 
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [1, 2.8] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [1, 2.8],
+	},
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [0, 1] },
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [1, 0] },
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [2.8, 1] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [2.8, 1],
+	},
 
 	{
 		targets: $_var,
@@ -71,10 +99,24 @@ const carouselAnimations: FullSection.AnimationList = [
 		'--angle3': ['90deg', '0deg'],
 	},
 
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [1, 2.8] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [1, 2.8],
+	},
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [0, 1] },
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [1, 0] },
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [2.8, 1] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [2.8, 1],
+	},
 
 	{
 		targets: $_var,
@@ -84,10 +126,24 @@ const carouselAnimations: FullSection.AnimationList = [
 		'--angle4': ['90deg', '0deg'],
 	},
 
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [1, 2.8] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [1, 2.8],
+	},
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [0, 1] },
 	// { targets: ".T1", easing: "easeInOutQuad", duration: 60, opacity: [1, 0] },
-	{ targets: '.C0', easing: 'easeInOutQuad', duration: 1000, scale: [2.8, 1] },
+	{
+		targets: '#museum-scene',
+		easing: 'easeInOutQuad',
+		duration: 1000,
+		translateY: ['-50%', '-50%'],
+		translateX: ['-50%', '-50%'],
+		scale: [2.8, 1],
+	},
 	{
 		targets: '.fs__wrapper',
 		easing: 'easeInOutQuad',
