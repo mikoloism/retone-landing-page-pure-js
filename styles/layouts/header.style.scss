@@ -67,6 +67,11 @@
 		background: transparent;
 		padding: 0;
 		margin: 0;
+
+		user-select: none;
+		touch-action: auto;
+		pointer-events: fill;
+		cursor: pointer;
 	}
 
 	& {
