@@ -1,21 +1,30 @@
 import { Header } from './header';
 import * as FullSection from '../libs/FullSection/full-section';
 
-let proxyTarget = {
-	'--angle1': '0deg',
-	'--angle2': '90deg',
-	'--angle3': '90deg',
-	'--angle4': '90deg',
-};
+function ProxyFactory(element: HTMLElement, ...variablesNames: Array<string>): object {
+	let variablesMap = {};
 
-var $_var = new Proxy(proxyTarget, {
-	set: (_targetObject: any, property: string, value: any) => {
-		document.documentElement.style.setProperty(property, value);
-		return true;
-	},
-});
+	variablesNames.forEach((variableName: string) => {
+		Object.assign(variablesMap, {
+			[variableName]: getComputedStyle(element).getPropertyValue(variableName),
+		});
+	});
 
-const withViewHeight = (viewHeight: number) => `calc(var(--view-height, 1vh) * -${viewHeight})`;
+	return new Proxy(variablesMap, {
+		set(_targetObject: any, property: string, newValue: any) {
+			element.style.setProperty(property, String(newValue));
+			return true;
+		},
+	});
+}
+
+const $_var = ProxyFactory(
+	document.documentElement,
+	'--angle1',
+	'--angle2',
+	'--angle3',
+	'--angle4'
+);
 
 const tagline = document.getElementById('tagline')!;
 const explode = document.getElementById('explode')! as HTMLVideoElement;
