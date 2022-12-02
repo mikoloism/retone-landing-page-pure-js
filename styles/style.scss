@@ -2,9 +2,9 @@
 
 @import "./utils/_functions.scss";
 
-@import "./_setup.scss";
+@import "./base/_setup.scss";
 @import "../libs/FullSection/full-screen.scss";
-@import "./landing-page.scss";
+@import "./layouts/landing-page.scss";
 @import "./layouts/header.style.scss";
 @import "./layouts/footer.style.scss";
 @import "./layouts/museum.style.scss";
