@@ -1,6 +1,8 @@
 import { anime } from "../../src/lib";
 
 export namespace FullSection {
+	const FS_WRAPPER = "#fs-wrapper";
+
 	export class Range {
 		private static readonly MINIMUM: number = 0 as const;
 		private static MAXIMUM: number = 1 as const;
@@ -35,15 +37,19 @@ export namespace FullSection {
 	}
 
 	export function attachEventsListener() {
-		window.addEventListener("wheel", handleOnMouseWheel, false);
-		window.addEventListener("touchstart", handleOnTouchStart, false);
-		window.addEventListener("touchend", handleOnTouchEnd, false);
+		const $fsWrapper = document.querySelector<HTMLDivElement>(FS_WRAPPER)!;
+
+		$fsWrapper.addEventListener("wheel", handleOnMouseWheel, false);
+		$fsWrapper.addEventListener("touchstart", handleOnTouchStart, false);
+		$fsWrapper.addEventListener("touchend", handleOnTouchEnd, false);
 	}
 
 	export function detachEventsListener() {
-		window.removeEventListener("wheel", handleOnMouseWheel, false);
-		window.removeEventListener("touchstart", handleOnTouchStart, false);
-		window.removeEventListener("touchend", handleOnTouchEnd, false);
+		const $fsWrapper = document.querySelector<HTMLDivElement>(FS_WRAPPER)!;
+
+		$fsWrapper.removeEventListener("wheel", handleOnMouseWheel, false);
+		$fsWrapper.removeEventListener("touchstart", handleOnTouchStart, false);
+		$fsWrapper.removeEventListener("touchend", handleOnTouchEnd, false);
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
