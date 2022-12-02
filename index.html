@@ -60,129 +60,75 @@
 					</svg>
 				</button>
 			</header>
-			<nav id="sidebar" class="header__navigation navigation">
-				<div class="navigation__inner">
-					<header class="navigation__header">
-						<strong class="navigation__title">Retone Hero</strong>
-						<svg xmlns="http://www.w3.org/2000" xmlns:xlink="http://www.w3.org/1999">
-							<use xlink:href="#mdi-times" href="#mdi-times" />
-						</svg>
+
+			<aside id="sidebar" class="sidebar">
+				<!-- TODO : replace by <button> -->
+				<div id="sidebar-close" class="sidebar__close"></div>
+
+				<div class="sidebar__inner">
+					<header class="sidebar__header">
+						<strong class="sidebar__title">Retone Hero</strong>
+
+						<button type="button" class="sidebar__close">
+							<svg
+								xmlns="http://www.w3.org/2000"
+								xmlns:xlink="http://www.w3.org/1999"
+								class="sidebar__icon"
+							>
+								<use
+									xlink:href="/assets/mdi-sprites.svg#mdi-close"
+									href="/assets/mdi-sprites.svg#mdi-close"
+								/>
+							</svg>
+						</button>
 					</header>
-					<ul class="navigation__list">
-						<li class="navigation__item">
-							<a href="/" class="navigation__link">
-								<span class="navigation__text">Retone Hero</span>
-							</a>
-						</li>
-						<li class="navigation__item">
-							<a href="/anatomy" class="navigation__link">
-								<span class="navigation__text">Retone Hero Plus</span>
-							</a>
-						</li>
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">About Retone</span>
-							</a>
-						</li>
 
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Solutions</span>
-							</a>
-						</li>
+					<nav class="sidebar__navigation navigation">
+						<ul class="navigation__list">
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Retone Hero</span>
+								</a>
+							</li>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Retone Hero Plus</span>
+								</a>
+							</li>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">About Retone</span>
+								</a>
+							</li>
 
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Blog</span>
-							</a>
-						</li>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Solutions</span>
+								</a>
+							</li>
 
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Contacts</span>
-							</a>
-						</li>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Blog</span>
+								</a>
+							</li>
 
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Ordering</span>
-							</a>
-						</li>
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Solutions</span>
-							</a>
-						</li>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Contacts</span>
+								</a>
+							</li>
 
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Blog</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Contacts</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Ordering</span>
-							</a>
-						</li>
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Solutions</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Blog</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Contacts</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Ordering</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Solutions</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Blog</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Contacts</span>
-							</a>
-						</li>
-
-						<li class="navigation__item">
-							<a href="/about" class="navigation__link">
-								<span class="navigation__text">Ordering</span>
-							</a>
-						</li>
-					</ul>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Ordering</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
+			</aside>
 
-				<div id="navigation-close" class="navigation__close"></div>
-			</nav>
 			<div class="main fs__wrapper">
 				<div data-full-section="1" class="fs__section section--hero">
 					<video
