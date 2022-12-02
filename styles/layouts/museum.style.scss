@@ -62,10 +62,4 @@
 			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle4)) translateZ(-2000px);
 		}
 	}
-
-	&__skip {
-		position: absolute;
-		bottom: 0;
-		width: 64px;
-	}
 }
