@@ -28,6 +28,8 @@ export namespace FullSection {
 	var isTransitionEnd = true;
 	var currentAnimationIndex: number = 0;
 	var currentAnimation: anime.AnimeInstance;
+	var beforeSwipeHandler: SwipeCallback | undefined;
+	var afterSwipeHandler: SwipeCallback | undefined;
 
 	var animationList: AnimationList = [];
 
@@ -37,19 +39,15 @@ export namespace FullSection {
 	}
 
 	export function attachEventsListener() {
-		const $fsWrapper = document.querySelector<HTMLDivElement>(FS_WRAPPER)!;
-
-		$fsWrapper.addEventListener("wheel", handleOnMouseWheel, false);
-		$fsWrapper.addEventListener("touchstart", handleOnTouchStart, false);
-		$fsWrapper.addEventListener("touchend", handleOnTouchEnd, false);
+		window.addEventListener("wheel", handleOnMouseWheel, false);
+		window.addEventListener("touchstart", handleOnTouchStart, false);
+		window.addEventListener("touchend", handleOnTouchEnd, false);
 	}
 
 	export function detachEventsListener() {
-		const $fsWrapper = document.querySelector<HTMLDivElement>(FS_WRAPPER)!;
-
-		$fsWrapper.removeEventListener("wheel", handleOnMouseWheel, false);
-		$fsWrapper.removeEventListener("touchstart", handleOnTouchStart, false);
-		$fsWrapper.removeEventListener("touchend", handleOnTouchEnd, false);
+		window.removeEventListener("wheel", handleOnMouseWheel, false);
+		window.removeEventListener("touchstart", handleOnTouchStart, false);
+		window.removeEventListener("touchend", handleOnTouchEnd, false);
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
@@ -89,6 +87,7 @@ export namespace FullSection {
 
 	function triggerSwipe(direction: number): void {
 		if (!canTriggerSwipe()) return;
+		beforeSwipeHandler?.call(null, { currentAnimationIndex, direction });
 
 		if (direction > 0) {
 			if (currentAnimationIndex > animationList.length) return;
@@ -111,6 +110,8 @@ export namespace FullSection {
 				isTransitionEnd = true;
 			});
 		}
+
+		afterSwipeHandler?.call(null, { currentAnimationIndex, direction });
 	}
 
 	function canTriggerSwipe(): boolean {
@@ -132,6 +133,15 @@ export namespace FullSection {
 		});
 	}
 
+	export function afterSwipe(fn: SwipeCallback): void {
+		afterSwipeHandler = fn;
+	}
+
+	export function beforeSwipe(fn: SwipeCallback): void {
+		beforeSwipeHandler = fn;
+	}
+
+	type SwipeCallback = (props: { direction: number; currentAnimationIndex: number }) => void;
 	type Point = { x: number; y: number };
 	export type AnimationObject = anime.AnimeParams;
 	export type AnimationList = Array<AnimationObject>;
