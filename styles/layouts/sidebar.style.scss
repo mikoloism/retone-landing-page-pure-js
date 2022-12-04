@@ -1,17 +1,10 @@
 @import "../utils/_breakpoints.scss";
 
 .sidebar {
-	--padding-sides: 45px;
-
-	@include use-tablet {
-		--padding-sides: 90px;
-	}
-
 	&,
 	&__close,
 	&__inner,
 	&__header,
-	&__title,
 	&__icon,
 	&__navigation {
 		padding: 0;
@@ -38,7 +31,6 @@
 		place-items: center;
 		place-content: center;
 
-		transition: 0.5s all ease;
 		z-index: 9999;
 		overflow: hidden;
 
@@ -49,7 +41,7 @@
 	}
 
 	&--visible {
-		right: 0;
+		animation: sidebar-push-in 0.7s 0.4s ease both;
 	}
 
 	&__close {
@@ -77,80 +69,32 @@
 
 		flex-wrap: wrap;
 		flex-direction: column;
-
-		transition: 0.3s ease all;
-		transition-delay: 0.3s;
-		transform: translateX(110%);
+		opacity: 0;
 	}
 
 	&--visible &__inner {
-		transform: none;
+		opacity: 1;
 	}
 
 	&__header {
 		display: inline-flex;
 		width: 100%;
-		height: 94px;
-
-		border-bottom: 1px solid currentColor;
+		height: 64px;
 
 		flex-wrap: wrap;
 		flex-direction: row;
 
 		place-items: center;
-		place-content: center;
-
-		background: rgba(black, 30%);
+		place-content: flex-end;
 
 		overflow: hidden;
 	}
 
-	&__header &__title {
-		display: inline-flex;
-		width: 70%;
-		height: 100%;
-
-		padding: 0 var(--padding-sides);
-
-		place-items: center;
-		place-content: flex-start;
-
-		font-weight: 700;
-		font-size: viewHeight(3.5);
-		color: inherit;
-		background: transparent;
-	}
-
-	&__header &__close {
-		& {
-			border: 0;
-			outline: 0;
-			stroke: none;
-			box-shadow: none;
-			background: transparent;
-		}
-
-		display: inline-flex;
-
-		width: 30%;
-		height: 100%;
-
-		place-items: center;
-		place-content: center;
-	}
-
-	&__header &__icon {
-		display: inline-block;
-		width: 36px;
-		height: 36px;
-		margin-top: -10px;
-		stroke: inherit;
-	}
-
 	&__navigation {
-		height: calc(100% - 95px);
+		height: calc(100% - 66px);
 	}
 }
+
 // TODO : extract to `navigation layouts`;
 .sidebar .navigation {
 	&,
@@ -179,6 +123,7 @@
 
 		overflow: hidden;
 		overflow-y: auto;
+		padding-bottom: 64px;
 	}
 
 	&__item {
@@ -214,6 +159,18 @@
 
 	&__text {
 		display: inline-block;
-		padding-left: var(--padding-sides);
+		padding-left: viewHeight(4);
+	}
+}
+
+@keyframes sidebar-push-in {
+	from,
+	0% {
+		right: -110vw;
+	}
+
+	to,
+	100% {
+		right: 0;
 	}
 }
