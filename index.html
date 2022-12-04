@@ -41,6 +41,7 @@
 						></path>
 					</svg>
 				</div>
+
 				<button
 					type="menu"
 					id="hamburger-open"
@@ -131,6 +132,7 @@
 			<div id="fs-wrapper" class="main fs__wrapper">
 				<div data-full-section="1" class="fs__section section--hero">
 					<video
+						id="hero-video"
 						src="/assets/retone.mp4"
 						preload
 						autobuffer
@@ -193,9 +195,23 @@
 					></video>
 				</div>
 
-				<div data-full-section="5" class="fs__section section--tagline">
+				<div data-full-section="5" class="fs__section section--tagline tagline">
+					<button type="button" id="tagline-play" class="tagline__play">
+						<span class="tagline__text">play</span>
+						<svg
+							xmlns="http://www.w3.org/2000"
+							xmlns:xlink="http://www.w3.org/1999"
+							class="tagline__icon"
+						>
+							<use
+								xlink:href="/assets/mdi-sprites.svg#mdi-play-circle-fill"
+								href="/assets/mdi-sprites.svg#mdi-play-circle-fill"
+							/>
+						</svg>
+					</button>
 					<video
-						id="tagline"
+						id="tagline-video"
+						class="tagline__video"
 						poster="/assets/images/explode.png"
 						src="/assets/tagline.mp4"
 						preload
