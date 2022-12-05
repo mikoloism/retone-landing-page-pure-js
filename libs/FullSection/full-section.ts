@@ -1,8 +1,6 @@
 import { anime } from "../../src/lib";
 
 export namespace FullSection {
-	const FS_WRAPPER = "#fs-wrapper";
-
 	export class Range {
 		private static readonly MINIMUM: number = 0 as const;
 		private static MAXIMUM: number = 1 as const;
