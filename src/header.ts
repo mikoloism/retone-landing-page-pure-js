@@ -7,15 +7,18 @@ export namespace Header {
 	}
 	const SIDEBAR_VISIBLE: string = 'sidebar--visible';
 	const TOUCH_THRESHOLD = 5;
+	var isObserverActive: boolean = true;
 
 	var heroSectionObserver: IntersectionObserver;
 
 	export function init() {
-		heroSectionObserver = new IntersectionObserver(handleHeroSectionObserve, {
-			root: document.documentElement,
-			rootMargin: '0px',
-			threshold: 1.0,
-		});
+		if (isObserverActive) {
+			heroSectionObserver = new IntersectionObserver(handleHeroSectionObserve, {
+				root: document.documentElement,
+				rootMargin: '0px',
+				threshold: 1.0,
+			});
+		}
 
 		const $hamburgerOpen = document.querySelector<HTMLButtonElement>('#hamburger-open')!;
 		const $hamburgerClose = document.querySelector<HTMLButtonElement>('#hamburger-close')!;
@@ -35,7 +38,7 @@ export namespace Header {
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
-		heroSectionObserver.observe(document.querySelector('.section--hero')!);
+		isObserverActive && heroSectionObserver.observe(document.querySelector('.section--hero')!);
 
 		triggerSwipe(event.deltaY);
 	}
@@ -124,6 +127,10 @@ export namespace Header {
 		window.removeEventListener('wheel', handleOnMouseWheel, false);
 		window.removeEventListener('touchstart', handleOnTouchStart, false);
 		window.removeEventListener('touchend', handleOnTouchEnd, false);
+	}
+
+	export function disableObserver() {
+		isObserverActive = false;
 	}
 
 	type Point = { x: number; y: number };
