@@ -4,7 +4,11 @@
 	& {
 		display: flex;
 		width: 100%;
-		height: 500px;
+		height: calc(50vh + 50px);
+
+		@include use-tablet {
+			height: 500px;
+		}
 
 		padding-top: 50px;
 
@@ -16,15 +20,26 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 
-		transition: 0.7s ease all;
 		background-color: rgb(223 222 220/1);
 		color: rgb(80 80 80/1);
 		overflow: hidden;
-		overflow-y: scroll;
 		z-index: 2;
 
 		scroll-behavior: smooth;
 		scroll-snap-type: y mandatory;
+	}
+
+	&__inner {
+		display: inline-block;
+		width: 100%;
+		height: calc(50vh + 50px);
+
+		@include use-tablet {
+			display: flex;
+			height: 500px;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
 	}
 
 	&__information,
@@ -39,6 +54,13 @@
 			height: 100%;
 			padding-top: 0;
 		}
+	}
+
+	&__information,
+	&__socials {
+		display: inline-flex;
+		place-items: center;
+		place-content: center;
 	}
 
 	&__information {
@@ -59,7 +81,7 @@
 	}
 }
 .footer .information {
-	background-color: blue;
+	background-color: gray;
 }
 
 .footer .socials {
