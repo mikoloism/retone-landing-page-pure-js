@@ -308,8 +308,20 @@ const additionalCarouselAnimations: FullSection.AnimationList = [
 ];
 
 (function startup() {
-	FullSection.init(carouselAnimations);
-	Header.init();
+	const $taglinePlay = document.querySelector<HTMLButtonElement>('#tagline-play')!;
+	const $taglineVideo = document.querySelector<HTMLVideoElement>('#tagline-video')!;
+
+	$taglinePlay.addEventListener('click', () => {
+		$taglineVideo?.play();
+	});
+
+	$taglineVideo.onplay = () => {
+		$taglinePlay.style.opacity = '0';
+	};
+
+	$taglineVideo.onpause = () => {
+		$taglinePlay.style.opacity = '1';
+	};
 
 	ViewSize.onUpdateScreen(({ realScreenHeight, realScreenWidth }) => {
 		document.getElementById('museum')!.style.transform = `translate(-50%, -50%) scale(${
@@ -321,4 +333,6 @@ const additionalCarouselAnimations: FullSection.AnimationList = [
 		}
 	});
 	ViewSize.init();
+	FullSection.init(carouselAnimations);
+	Header.init();
 })();
