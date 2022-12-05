@@ -107,21 +107,6 @@
 	}
 
 	&__play {
-		display: flex;
-		width: 200px;
-		height: 150px;
-
-		flex-direction: column;
-		row-gap: 24px;
-		place-items: center;
-
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		z-index: 9;
-
 		& {
 			outline: 0;
 			border: 0;
@@ -130,19 +115,43 @@
 			cursor: pointer;
 			background: transparent;
 		}
+		& {
+			display: flex;
+			width: 200px;
+			height: 200px;
+
+			flex-direction: column;
+			row-gap: 24px;
+			place-items: center;
+			place-content: center;
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			z-index: 9;
+
+			border-radius: 999px;
+			background: rgba(0, 0, 0, 0.2);
+			box-shadow: 0 0 0 5px rgba(0, 0, 0, 1);
+			backdrop-filter: blur(8px);
+		}
 	}
 
 	&__text {
 		display: inline-block;
 		width: 55px;
 		font-size: 2.5rem;
+		margin-left: -20px;
+		color: black;
 	}
 
 	&__icon {
 		width: 45px;
 		height: 45px;
-		margin-right: -10px;
-		fill: white;
+		margin-left: -10px;
+		fill: black;
 	}
 
 	&__video {
@@ -152,6 +161,7 @@
 
 .main {
 	position: relative;
+	top: var(--fs-wrapper-top);
 	background-color: dimgrey;
 	z-index: 10;
 }
