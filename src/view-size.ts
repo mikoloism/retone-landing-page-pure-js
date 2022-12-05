@@ -40,7 +40,7 @@ export namespace ViewSize {
 		$document.style.setProperty('--view-height', `${realScreenHeight * 0.01}px`);
 		$document.style.setProperty('--view-width', `${realScreenWidth * 0.01}px`);
 		$document.style.setProperty('--view-size', `${realViewSize * 0.01}px`);
-		handleOnUpdate({ realScreenHeight, realScreenWidth });
+		handleOnUpdate?.call(null, { realScreenHeight, realScreenWidth });
 	}
 
 	type OnUpdateScreenCallback = (props: {
