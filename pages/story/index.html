@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Retone Story Page</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+			integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link href="https://fonts.cdnfonts.com/css/helvetica-2" rel="stylesheet" />
+		<link rel="stylesheet" href="/styles/pages/story.scss" />
+	</head>
+	<body>
+		<div id="app">
+			<header id="header" class="header header--visible">
+				<div class="header__brand brand">
+					<a href="/" class="brand__link">Retone Home</a>
+					<svg class="brand__logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M112.663 0C107.428 0 103.172 4.23202 103.172 9.43852V14.5615C103.172 19.768 107.428 24 112.663 24C116.247 24 119.467 22.0232 121.118 18.8492L118.515 17.5406C117.395 19.7401 115.155 21.1044 112.663 21.1044C109.051 21.1044 106.112 18.181 106.112 14.5893V9.43852C106.112 5.84687 109.051 2.92343 112.663 2.92343C116.275 2.92343 119.215 5.84687 119.215 9.43852V10.4965H108.995V13.3921H122.126V9.43852C122.154 4.23202 117.899 0 112.663 0Z"
+						></path>
+						<path
+							d="M0 9.7725V23.5544H2.91177V9.7725C2.91177 6.18085 5.85154 3.25742 9.46326 3.25742V0.333984C4.25567 0.333984 0 4.566 0 9.7725Z"
+						></path>
+						<path
+							d="M66.0188 0C60.7833 0 56.5276 4.23202 56.5276 9.43852V14.5615C56.5276 19.768 60.7833 24 66.0188 24C71.2544 24 75.5101 19.768 75.5101 14.5615V9.43852C75.4821 4.23202 71.2264 0 66.0188 0ZM72.5703 14.5336C72.5703 18.1253 69.6306 21.0487 66.0188 21.0487C62.4071 21.0487 59.4674 18.1253 59.4674 14.5336V9.43852C59.4674 5.84687 62.4071 2.92343 66.0188 2.92343C69.6306 2.92343 72.5703 5.84687 72.5703 9.43852V14.5336Z"
+						></path>
+						<path
+							d="M89.3414 0C84.1058 0 79.8501 4.23202 79.8501 9.43852V23.5545H82.7619V9.43852C82.7619 5.84687 85.7016 2.92343 89.3134 2.92343C92.9251 2.92343 95.8648 5.84687 95.8648 9.43852V23.5545H98.7766V9.43852C98.8046 4.23202 94.5769 0 89.3414 0Z"
+						></path>
+						<path
+							d="M45.2166 21.0764C41.6049 21.0764 38.6651 18.153 38.6651 14.5613V13.3919H47.4284V10.4964H38.6371V1.78174H35.7253V14.5335C35.7253 19.74 39.981 23.972 45.2166 23.972C48.8003 23.972 52.0481 21.9952 53.6719 18.7933L51.0681 17.4848C49.9482 19.6843 47.6804 21.0764 45.2166 21.0764Z"
+						></path>
+						<path
+							d="M21.8661 0C16.6305 0 12.4028 4.23202 12.4028 9.43852V14.5615C12.4028 19.768 16.6585 24 21.8941 24C25.4778 24 28.6976 22.0232 30.3494 18.8492L27.7176 17.5128C26.5977 19.7123 24.3579 21.0766 21.8661 21.0766C18.2544 21.0766 15.3146 18.1531 15.3146 14.5615V9.43852C15.3146 5.84687 18.2544 2.92343 21.8661 2.92343C25.4778 2.92343 28.4176 5.84687 28.4176 9.43852V10.4965H18.2264V13.3921H31.3573V9.43852C31.3573 4.23202 27.1017 0 21.8661 0Z"
+						></path>
+					</svg>
+				</div>
+
+				<button
+					type="menu"
+					id="hamburger-open"
+					class="header__hamburger hamburger hamburger--open hamburger--visible"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000"
+						xmlns:xlink="http://www.w3.org/1999"
+						class="hamburger__icon"
+					>
+						<use
+							xlink:href="/assets/mdi-sprites.svg#mdi-menu"
+							href="/assets/mdi-sprites.svg#mdi-menu"
+						/>
+					</svg>
+				</button>
+				<button
+					type="menu"
+					id="hamburger-close"
+					class="header__hamburger hamburger hamburger--close"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000"
+						xmlns:xlink="http://www.w3.org/1999"
+						class="hamburger__icon"
+					>
+						<use
+							xlink:href="/assets/mdi-sprites.svg#mdi-close"
+							href="/assets/mdi-sprites.svg#mdi-close"
+						/>
+					</svg>
+				</button>
+			</header>
+
+			<aside id="sidebar" class="sidebar">
+				<!-- TODO : replace by <button> -->
+				<div id="sidebar-close" class="sidebar__close"></div>
+
+				<div class="sidebar__inner">
+					<header class="sidebar__header"></header>
+
+					<nav class="sidebar__navigation navigation">
+						<ul class="navigation__list">
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Retone Hero</span>
+								</a>
+							</li>
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Retone Hero Plus</span>
+								</a>
+							</li>
+							<li class="navigation__item">
+								<a href="/pages/about/index.html" class="navigation__link">
+									<span class="navigation__text">About Retone</span>
+								</a>
+							</li>
+
+							<li class="navigation__item">
+								<a href="/pages/solutions/index.html" class="navigation__link">
+									<span class="navigation__text">Solutions</span>
+								</a>
+							</li>
+
+							<li class="navigation__item">
+								<a href="/pages/story/index.html" class="navigation__link">
+									<span class="navigation__text">Retone Hero Story</span>
+								</a>
+							</li>
+
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Blog</span>
+								</a>
+							</li>
+
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Contacts</span>
+								</a>
+							</li>
+
+							<li class="navigation__item">
+								<a href="/" class="navigation__link">
+									<span class="navigation__text">Ordering</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</aside>
+
+			<div class="page">
+				<header class="page__header">
+					<h1 class="page__title">The Journey of Retone</h1>
+					<h2>
+						The Merger of Nature&apos;s enchantment and Artificial Intelligence&apos;s
+						precision
+					</h2>
+				</header>
+				<div class="page__wrapper">
+					<div id="fs-wrapper" class="main fs__wrapper">
+						<div data-full-section="1" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part I (1)</h2>
+								<p class="section__paragraph">
+									From inception to creation, Retone has traversed a long road.
+									Our intention was to draw attention to and portray the
+									importance of a door&apos;s role in interior design. As such,
+									doors should be considered a decorative and original part in
+									this design aspect, rather than their oft seen role of filling
+									the framework of our shelters. Retone&apos;s vision was to
+									create doors with maximum endurance and strength in its
+									perfection of beauty, elegance and harmony.
+								</p>
+								<p class="section__paragraph">
+									A variety of choices was at our disposal to visualize those
+									goals. Our catalyst, was interpreting the level of strength and
+									durability that could be envisioned for the safety that our
+									doors would furnish for Retone&apos;s clients.
+								</p>
+								<p class="section__paragraph">
+									What was the summit that could be achieved beyond current,
+									global, door safety? Our decision was to anchor our ideal at the
+									eye of vision and bellow the ceiling on the existing level of
+									endurance. Due to Retone&apos;s idealistic vortex, it was
+									pertinent for Retone to give birth to a new brain child; a door
+									that would be embellished with elite aesthetical values while
+									remaining true to its purpose as a shield and protection against
+									the intrusions of man and nature on our protective structural
+									cocoon.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="2" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part II (2)</h2>
+								<p class="section__paragraph">
+									Typically, and conventionally, the relationship between a door’s
+									durability and its aesthetics may appear insignificant. 
+									However, Retone’s conceptualization and vision of a door,
+									differs in this regard.  Retone has a holistic approach in its
+									design and creation whereby, all a door’s elements amalgamate,
+									allowing integral interrelation and definition. Our goal was
+									designing a product where a sense of glory and endurance would
+									be instilled into the end user and his community while
+									reflecting subtle artistic values.  These ideals should not
+									distract or detract from the goal of a door’s role in safety,
+									nor from the end user’s peace of mind.  The time to return to
+									the drafting table and innovate was at our proverbial door step.
+									Our mission? To create the deepest, most accessible emotions of
+									our audience with the simplest and most familiar game plan while
+									passing through the “heart of nature”, the origin and abode of
+									man. In addition to the sense of originality that nature
+									imparts, natural surroundings also shout out: safe haven; a
+									sentiment unfound in synthetics. It is not only ancient, but
+									timeless.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="3" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part III (3)</h2>
+								<p class="section__paragraph">
+									With our feet firmly grounded on mother earth’s ground, in a
+									symbiosis with her, her enchantments and inspiration; our goals
+									were crystal clear. Retone’s doors would achieve the highest
+									standard of elegance lent to us by shaking mother earth’s hands
+									with modern know how, resulting in captivating enchantment, and
+									still achieving the goal of respecting and saving mother nature,
+									for our future generations because our doors have been created
+									with recycling and sustainability in mind. We have all your
+									nature preservation concerns, covered.
+								</p>
+								<p class="section__paragraph">
+									Armed with our polished considerations and intentions; what was
+									to follow was an entourage of criteria that would naturally lead
+									to a philosophy; a philosophy that was required to create
+									Retone’s identity. This identity was shaping itself by
+									reassessing and redefining the concept of a door, and had hit a
+									distinct perspective, in sight of a fusion of scientific,
+									artistic, philosophical, moral, and technological strands of
+									creation. The ensuing approach articulated all our values, our
+									vision as well as our policies in a coherent and systematic way
+									and would lead us to the general atmosphere of all constituents
+									of commissioning a project; from design to product line.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="4" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part IV (4)</h2>
+								<p class="section__paragraph">
+									Conceptualizing products’ blueprints where the hallmark of
+									taste, blends seamlessly with a summit of functional ease, we
+									assumed an obligation of facilitating maximum coordination
+									between varying and multitudinous facets of product design. An
+									Artist’s vision and intuition, natural material discernment and
+									its refinement, product concept modeling as well as an
+									engineer’s computations of product structure and form; all
+									­­­called for the guidance and consensus of a host of masters in
+									respective disciplines of art and industry.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="5" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part V (5)</h2>
+								<p class="section__paragraph">
+									Our approach to product design called for an adherence to
+									minimalist, aesthetic principles and the elimination of optical,
+									excessiveness. Brand identity in addition, also called for
+									golden ratios and grid structures as requisites of mathematical
+									and geometrically precise design, depicting the modern era.
+								</p>
+								<p class="section__paragraph">
+									Converging minimalist thinking with the precision of an
+									engineer’s skill, delivered simple, clean and flawless products;
+									pertinent aesthetic solutions for the onslaught of stresses
+									created by the complexities of the contemporary world.
+								</p>
+								<p class="section__paragraph">
+									Converging minimalist thinking with the precision of an
+									engineer’s skill, delivered simple, clean and flawless products;
+									pertinent aesthetic solutions for the onslaught of stresses
+									created by the complexities of the contemporary world.
+								</p>
+								<p class="section__paragraph">
+									In product design, the potential for calibrating the correlation
+									between aesthetics and human implementation, so that
+									attractiveness of design follows function, must be given its due
+									consideration. All human comforts derived from allowance of
+									relaxation, ergonomics, luxury and ease of serviceability were
+									among the core components of our identity and high on the list
+									of our tangible values, ascertaining further ease and
+									familiarity. Our doors should yield all levels of end users the
+									capacity to undergo commensurate sensual and subconscious
+									transposition of the brush of a delicate breeze in a temperate
+									forest.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="6" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part VI (6)</h2>
+								<p class="section__paragraph">
+									Additionally, a holistic and coherent proposition would be
+									vital, if it was to incorporate in its entirety, the diverse
+									values of technology, science, philosophy, art and brand
+									identity where all phenomena coagulate like the casserole of a
+									seasoned chef.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="7" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part VII (7)</h2>
+								<p class="section__paragraph">
+									Besides this, a product line able to simultaneously converge the
+									values from philosophy, art, science and technology while
+									defining a brand identity was going to require a holistic and
+									coherent vision whereby all phenomena submitting to a brand
+									identity and essential values, interact in harmony. They are
+									orchestrated in concert with each other, supporting and
+									reforming one another as they march forward reflecting an
+									agreement of values. Articulation of this coherence and
+									coordination was the thread that determined the success of the
+									output product line design.
+								</p>
+							</header>
+						</div>
+
+						<div data-full-section="8" class="fs__section section">
+							<header class="section__header">
+								<h2 class="section__title">Part VIII (8)</h2>
+								<p class="section__paragraph">
+									The basic values of the brand were instrumental in creating the
+									special production line of the doors. Human beings are an
+									innovative element meeting the creative aspects of door
+									production.
+								</p>
+								<p class="section__paragraph">
+									The construction of the special production line of these doors
+									was a function of the basic values of the brand. In this line of
+									production, human beings are considered as an innovative element
+									that meets the creative aspects of the production of the work.
+									Heavy parts are transported in the production line by making
+									carrier ligaments.
+								</p>
+								<p class="section__paragraph">
+									Ensuing human creativity, technology was the cardinal element of
+									our product line. Merging the fluidity and expressiveness of
+									human creativity with the precision of artificial intelligence
+									would enable the creation of the quintessential artistic
+									invention; original and fluid in its artistic expression and
+									visionary. We built our industrial platform in line with fourth
+									generation technology approaches making, the components of the
+									production line optimally designed by artificial intelligence
+									for the optimum and most efficient use of resources,
+									acknowledging the limitations of human mind. Data is recorded
+									continuously and accurately, in each component of the process,
+									resulting in an incremental, and continual, increase of
+									learning. Also, most of the intelligent transferal and
+									communication between the different robots of this production
+									line should have taken place. Our rationale for selecting the
+									most advanced technology in our production line, allowing the
+									best to cover our brand identity, creating a transcendent
+									product; efficient and estimable.
+								</p>
+							</header>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="module" src="/src/story.ts"></script>
+	</body>
+</html>
