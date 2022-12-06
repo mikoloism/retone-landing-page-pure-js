@@ -1,6 +1,8 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import {
+	HeaderComponent,
+	SidebarComponent,
 	SVGLoadingComponent,
 } from "./libs/inject-html-components";
 
@@ -23,5 +25,5 @@ export default defineConfig({
 		},
 	},
 
-	plugins: [SVGLoadingComponent.setup()],
+	plugins: [SVGLoadingComponent.setup(), HeaderComponent.setup(), SidebarComponent.setup()],
 });
