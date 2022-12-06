@@ -109,19 +109,10 @@
 		}
 	}
 
-	opacity: 0;
-	visibility: hidden;
-	transition: 0.4s ease all;
-	&--visible {
-		opacity: 1;
-		visibility: visible;
-	}
-
 	&__icon {
 		display: inline-block;
 		width: var(--svg-height);
 		height: var(--svg-height);
-		margin-top: -10px;
 		fill: inherit;
 	}
 }

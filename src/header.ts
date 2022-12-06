@@ -1,3 +1,4 @@
+import anime from 'animejs';
 import { FullSection } from '../libs/FullSection/full-section';
 
 export namespace Header {
@@ -5,6 +6,7 @@ export namespace Header {
 		VISIBLE = 'header--visible',
 		BLURRED = 'header--blurred',
 	}
+
 	const SIDEBAR_VISIBLE: string = 'sidebar--visible';
 	const TOUCH_THRESHOLD = 5;
 	var isObserverActive: boolean = true;
@@ -20,14 +22,8 @@ export namespace Header {
 			});
 		}
 
-		const $hamburgerOpen = document.querySelector<HTMLButtonElement>('#hamburger-open')!;
-		const $hamburgerClose = document.querySelector<HTMLButtonElement>('#hamburger-close')!;
-		const $sidebar_close = document.querySelector<HTMLDivElement>('.sidebar__close')!;
-
 		attachEventsListener();
-		$hamburgerOpen.addEventListener('click', toggleSidebar, false);
-		$hamburgerClose.addEventListener('click', toggleSidebar, false);
-		$sidebar_close.addEventListener('click', toggleSidebar as any, false);
+		HamburgerMenu.listenEvents(toggleSidebar);
 	}
 
 	function handleHeroSectionObserve(entries: IntersectionObserverEntry[], _observer: any): void {
@@ -82,7 +78,6 @@ export namespace Header {
 	function toggleSidebar(_event: MouseEvent): void {
 		const $sidebar = document.getElementById('sidebar')!;
 
-		toggleHamburger();
 		$sidebar.classList.toggle(SIDEBAR_VISIBLE);
 
 		if (isSidebarVisible()) {
@@ -98,15 +93,6 @@ export namespace Header {
 		function isSidebarVisible(): boolean {
 			return $sidebar.className.indexOf(SIDEBAR_VISIBLE) != -1;
 		}
-	}
-
-	function toggleHamburger() {
-		document
-			.querySelector<HTMLButtonElement>('.hamburger--open')!
-			.classList.toggle('hamburger--visible');
-		document
-			.querySelector<HTMLButtonElement>('.hamburger--close')!
-			.classList.toggle('hamburger--visible');
 	}
 
 	function makeHeaderVisible() {
@@ -134,4 +120,53 @@ export namespace Header {
 	}
 
 	type Point = { x: number; y: number };
+}
+
+namespace HamburgerMenu {
+	const ANIME_TIMELINE: anime.AnimeTimelineInstance = anime
+		.timeline({ easing: 'linear', duration: 400, autoplay: false })
+		.add({ targets: '#hamburger-icon-line-1', y1: [5, 12], y2: [5, 12] })
+		.add({ targets: '#hamburger-icon-line-3', y1: [19, 12], y2: [19, 12] }, 0)
+		.add({ targets: '#hamburger-icon-line-2', opacity: [1, 0], duration: 1 })
+		.add({
+			targets: '#hamburger-icon-line-1',
+			x1: [3, 4],
+			x2: [21, 20],
+			y1: [12, 20],
+			y2: [12, 4],
+		})
+		.add(
+			{
+				targets: '#hamburger-icon-line-3',
+				x1: [3, 4],
+				x2: [21, 20],
+				y1: [12, 4],
+				y2: [12, 20],
+			},
+			'-=400'
+		);
+
+	var isOpen: boolean = false;
+
+	export function listenEvents(clickHandler: Function): void {
+		const $button = document.querySelector<HTMLButtonElement>('#hamburger')!;
+		$button.addEventListener('click', toggle, false);
+		$button.addEventListener('click', clickHandler as any, false);
+	}
+
+	function toggle(): void {
+		isOpen = !isOpen;
+		if (isOpen) return executeCloseAnime();
+		executeOpenAnime();
+	}
+
+	function executeCloseAnime(): void {
+		ANIME_TIMELINE.direction = 'normal';
+		ANIME_TIMELINE.play();
+	}
+
+	function executeOpenAnime(): void {
+		ANIME_TIMELINE.direction = 'reverse';
+		ANIME_TIMELINE.play();
+	}
 }
