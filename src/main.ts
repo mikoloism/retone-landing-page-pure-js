@@ -308,21 +308,6 @@ const additionalCarouselAnimations: FullSection.AnimationList = [
 ];
 
 (function startup() {
-	const $taglinePlay = document.querySelector<HTMLButtonElement>('#tagline-play')!;
-	const $taglineVideo = document.querySelector<HTMLVideoElement>('#tagline-video')!;
-
-	$taglinePlay.addEventListener('click', () => {
-		$taglineVideo?.play();
-	});
-
-	$taglineVideo.onplay = () => {
-		$taglinePlay.style.opacity = '0';
-	};
-
-	$taglineVideo.onpause = () => {
-		$taglinePlay.style.opacity = '1';
-	};
-
 	ViewSize.onUpdateScreen(({ realScreenHeight, realScreenWidth }) => {
 		document.getElementById('museum')!.style.transform = `translate(-50%, -50%) scale(${
 			realScreenHeight / 1080

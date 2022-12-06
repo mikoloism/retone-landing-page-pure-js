@@ -1,5 +1,8 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import {
+	SVGLoadingComponent,
+} from "./libs/inject-html-components";
 
 export default defineConfig({
 	build: {
@@ -19,4 +22,6 @@ export default defineConfig({
 			},
 		},
 	},
+
+	plugins: [SVGLoadingComponent.setup()],
 });
