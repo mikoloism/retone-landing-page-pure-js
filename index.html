@@ -90,6 +90,7 @@
 				<div data-full-section="5" class="fs__section section--tagline tagline">
 					<button type="button" id="tagline-play" class="tagline__play">
 						<svg
+							viewBox="0 0 48 48"
 							xmlns="http://www.w3.org/2000"
 							xmlns:xlink="http://www.w3.org/1999"
 							class="tagline__icon"
@@ -103,9 +104,10 @@
 					<video
 						id="tagline-video"
 						class="tagline__video"
-						poster="/assets/images/tagline.png"
+						poster="/assets/images/tagline.jpg"
 						src="/assets/tagline.mp4"
 						playsinline
+						autoplay
 					></video>
 				</div>
 
@@ -193,5 +195,6 @@
 		</div>
 
 		<script type="module" src="/src/main.ts"></script>
+		<script type="module" src="/src/loading.ts"></script>
 	</body>
 </html>
