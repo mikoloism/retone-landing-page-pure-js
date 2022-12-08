@@ -1,43 +1,38 @@
-export namespace LoadingScripts {
-	export function observe<T extends Element>(target: string) {
-		return document.querySelector<T>(target)!;
-	}
-}
-
-(function startup() {
-	const $loading = document.querySelector<HTMLDivElement>('#loading');
-	const $taglinePlay = document.querySelector<HTMLButtonElement>('#tagline-play')!;
-	const $taglineVideo = document.querySelector<HTMLVideoElement>('#tagline-video')!;
-
-	$taglinePlay.addEventListener('click', () => {
-		$taglineVideo?.play();
+(function startupLoading() {
+	document.querySelector<HTMLVideoElement>('#tagline-video')!.pause();
+	document.querySelector<HTMLButtonElement>('#tagline-play')!.addEventListener('click', () => {
+		document
+			.querySelector<HTMLVideoElement>('#tagline-video')!
+			.play()
+			.then(() => document.querySelector<HTMLVideoElement>('#tagline-video')!.pause());
 		handleClickTaglineVideo();
 	});
 
-	$taglineVideo.addEventListener('canplaythrough', handleCanPlayTaglineVideo, false);
+	document.querySelector<HTMLVideoElement>('#tagline-video')!.addEventListener('play', () => {
+		// document.querySelector<HTMLVideoElement>('#tagline-video')!.addEventListener('canplay', handleCanPlayTaglineVideo);
+		document.querySelector<HTMLButtonElement>('#tagline-play')!.style.display = 'none';
+		window.setTimeout(() => {
+			handleCanPlayTaglineVideo();
+		}, 2700);
+	});
 
-	$taglineVideo.onplay = () => {
-		$taglinePlay.style.opacity = '0';
-	};
-
-	$taglineVideo.onpause = () => {
-		$taglinePlay.style.opacity = '1';
-	};
-
-	console.log('initial');
-
-	function handleClickTaglineVideo(): void {
-		if ($taglineVideo.classList.contains('can-play')) return;
-
-		$loading?.classList.remove('loading--inactive');
-		$loading?.classList.add('loading--active');
-		console.log('active loading');
-	}
-
-	function handleCanPlayTaglineVideo(): void {
-		console.log('inactive loading');
-		$taglineVideo.classList.add('can-play');
-		$loading?.classList.remove('loading--active');
-		$loading?.classList.add('loading--inactive');
-	}
+	document.querySelector<HTMLVideoElement>('#tagline-video')!.addEventListener('pause', () => {
+		document.querySelector<HTMLButtonElement>('#tagline-play')!.style.display = 'flex';
+	});
 })();
+
+export function handleClickTaglineVideo(): void {
+	if (document.querySelector<HTMLVideoElement>('#tagline-video')!.classList.contains('can-play'))
+		return;
+
+	document.querySelector<HTMLDivElement>('#loading')?.classList.remove('loading--inactive');
+	document.querySelector<HTMLDivElement>('#loading')?.classList.add('loading--active');
+}
+
+export function handleCanPlayTaglineVideo() {
+	document.querySelector<HTMLVideoElement>('#tagline-video')!.classList.add('can-play');
+	document.querySelector<HTMLVideoElement>('#tagline-video')!.play();
+	document.querySelector<HTMLDivElement>('#loading')?.classList.remove('loading--active');
+	document.querySelector<HTMLDivElement>('#loading')?.classList.add('loading--inactive');
+	document.querySelector<HTMLVideoElement>('#tagline-video')!.play();
+}
