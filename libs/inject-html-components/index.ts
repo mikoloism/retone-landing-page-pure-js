@@ -5,42 +5,41 @@ export namespace SVGLoadingComponent {
 	const $TEMPLATE = /*html*/ `
 	<div id="loading" class="loading loading--inactive">
 		<svg height="450" width="260">
-		<path
-			d="M 130 20 A 110 110 0 0 1 240 130 L 240 320 A 110 110 0 0 1 20 320 L 20 130 A 110 110 0 0 1 240 130 L 240 320 A 110 110 0 0 1 20 320 L 20 130 A 110 110 0 0 1 240 130"
-			stroke="black" fill="none" stroke-width="40" stroke-dasharray="0 708.3625 362.7875 10000">
-			<animate attributeType="CSS" attributeName="stroke-dasharray" repeatCount="indefinite" calcMode="spline"
-			values="0 0 1 2500;0 708.3625 362.7875 2500;0 2141.3 1 2500" keyTimes="0; 0.5; 1"
-			keySplines="0 0 0.58 1; 0.42 0 1 1" dur="3s" />
-		</path>
-		Sorry, your browser does not support inline SVG.
+			<path
+				d="M 130 20 A 110 110 0 0 1 240 130 L 240 320 A 110 110 0 0 1 20 320 L 20 130 A 110 110 0 0 1 240 130 L 240 320 A 110 110 0 0 1 20 320 L 20 130 A 110 110 0 0 1 240 130"
+				stroke="black" fill="none" stroke-width="40" stroke-dasharray="0 708.3625 362.7875 10000">
+				<animate attributeType="CSS" attributeName="stroke-dasharray" repeatCount="indefinite" calcMode="spline"
+				values="0 0 1 2500;0 708.3625 362.7875 2500;0 2141.3 1 2500" keyTimes="0; 0.5; 1"
+				keySplines="0 0 0.58 1; 0.42 0 1 1" dur="3s" />
+			</path>
+			Sorry, your browser does not support inline SVG.
 		</svg>
 	</div>
 	`;
 
 	export function setup() {
-		return [
-			{
-				name: "inject-loading-component",
-				transformIndexHtml(html: string): string {
-					return html.replace(TARGET, $TEMPLATE);
-				},
+		return {
+			name: "inject-loading-component",
+			transformIndexHtml(html: string): string {
+				return html.replace(TARGET, $TEMPLATE);
 			},
-			{
-				name: "inject-loading-script",
-				transformIndexHtml(html: string): IndexHtmlTransformResult {
-					return {
-						html: "",
-						tags: [
-							{
-								tag: "script",
-								injectTo: "body",
-								attrs: { src: "/src/loading.ts", type: "module" },
-							},
-						],
-					};
-				},
-			},
-		];
+		};
+		// {
+		// 	name: "inject-loading-script",
+		// 	transformIndexHtml(html: string): IndexHtmlTransformResult {
+		// 		return {
+		// 			html: "",
+		// 			tags: [
+		// 				{
+		// 					tag: "script",
+		// 					injectTo: "body",
+		// 					attrs: { src: "/src/loading.ts", type: "module" },
+		// 				},
+		// 			],
+		// 		};
+		// 	},
+		// },
+		// ];
 	}
 }
 
@@ -57,8 +56,8 @@ export namespace SidebarComponent {
 			<nav class="sidebar__navigation navigation">
 				<ul class="navigation__list">
 					<li class="navigation__item">
-						<a href="/" class="navigation__link">
-							<span class="navigation__text">Retone Hero</span>
+						<a href="/v0.2/anatomy" class="navigation__link">
+							<span class="navigation__text">Retone Hero Anatomy</span>
 						</a>
 					</li>
 					<li class="navigation__item">
@@ -67,19 +66,19 @@ export namespace SidebarComponent {
 						</a>
 					</li>
 					<li class="navigation__item">
-						<a href="/pages/about/index.html" class="navigation__link">
+						<a href="/about/index.html" class="navigation__link">
 							<span class="navigation__text">About Retone</span>
 						</a>
 					</li>
 
 					<li class="navigation__item">
-						<a href="/pages/solutions/index.html" class="navigation__link">
+						<a href="/solutions/index.html" class="navigation__link">
 							<span class="navigation__text">Solutions</span>
 						</a>
 					</li>
 
 					<li class="navigation__item">
-						<a href="/pages/story/index.html" class="navigation__link">
+						<a href="/story/index.html" class="navigation__link">
 							<span class="navigation__text">Retone Hero Story</span>
 						</a>
 					</li>
