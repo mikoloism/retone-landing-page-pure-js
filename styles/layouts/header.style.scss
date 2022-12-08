@@ -53,11 +53,7 @@
 	display: inline-flex;
 	place-items: center;
 	place-content: center;
-	left: viewHeight(4);
-
-	@include use-laptop {
-		left: 10%;
-	}
+	left: 10%;
 
 	&__link {
 		width: 100%;
