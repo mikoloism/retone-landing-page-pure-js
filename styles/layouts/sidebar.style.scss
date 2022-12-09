@@ -28,7 +28,7 @@
 		flex-wrap: wrap;
 
 		place-items: center;
-		place-content: center;
+		place-content: flex-end;
 
 		z-index: 9999;
 		overflow: hidden;
@@ -44,17 +44,9 @@
 	}
 
 	&__close {
-		& {
-			cursor: pointer;
-		}
-
 		display: none;
 		height: 100%;
-
-		@include use-tablet {
-			display: inline-block;
-			width: 66.666666667%;
-		}
+		cursor: pointer;
 	}
 
 	&__inner {
@@ -65,6 +57,8 @@
 			width: 33.3333333%;
 		}
 		height: 100%;
+		padding-left: 10%;
+		padding-right: 5%;
 
 		flex-wrap: wrap;
 		flex-direction: column;
@@ -153,6 +147,5 @@
 
 	&__text {
 		display: inline-block;
-		padding-left: viewHeight(4);
 	}
 }
