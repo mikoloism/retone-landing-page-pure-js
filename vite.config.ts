@@ -7,6 +7,8 @@ import {
 } from "./libs/inject-html-components";
 
 export default defineConfig({
+	base: "/",
+	appType: "mpa",
 	build: {
 		rollupOptions: {
 			input: {
@@ -17,8 +19,6 @@ export default defineConfig({
 			},
 		},
 	},
-	appType: "mpa",
-	base: "/",
 	css: {
 		preprocessorOptions: {
 			scss: {
