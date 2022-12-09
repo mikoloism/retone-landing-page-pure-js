@@ -1,12 +1,4 @@
-@charset "utf-8";
-
-@import "../utils/_functions.scss";
-
-@import "../base/_setup.scss";
-@import "../../libs/FullSection/full-screen.scss";
-@import "../layouts/header.style.scss";
-@import "../layouts/footer.style.scss";
-@import "../layouts/sidebar.style.scss";
+@import "/styles/_common.scss";
 
 .section {
 	& {

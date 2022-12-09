@@ -1,28 +1,16 @@
-@charset "utf-8";
+@import "/styles/_common.scss";
+@import "/libs/FullSection/full-screen.scss";
 
-@import "../utils/_functions.scss";
+.header {
+	color: black;
+	fill: black;
+}
 
-@import "../base/_setup.scss";
-@import "../../libs/FullSection/full-screen.scss";
-@import "../layouts/header.style.scss";
-@import "../layouts/footer.style.scss";
-@import "../layouts/sidebar.style.scss";
-
-.page {
-	&__header {
-		padding: 0 10%;
-		padding-top: 120px;
-		height: 300px;
-		color: white;
-		line-height: 2.4;
-		background: black;
-	}
-
-	&__wrapper {
-		height: calc(100% - 300px);
-		color: black;
-		overflow: hidden;
-	}
+.page__wrapper {
+	margin-top: 200px;
+	height: calc(100% - 200px);
+	color: black;
+	overflow: hidden;
 }
 
 .section {
