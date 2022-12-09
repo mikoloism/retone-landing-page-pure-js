@@ -85,7 +85,7 @@ export namespace Header {
 			FullSection.detachEventsListener();
 			// makeHeaderHidden();
 		} else {
-			attachEventsListener();
+			isObserverActive && attachEventsListener();
 			FullSection.attachEventsListener();
 			// makeHeaderVisible();
 		}
@@ -103,13 +103,13 @@ export namespace Header {
 		document.getElementById('header')!.classList.remove(HeaderState.VISIBLE);
 	}
 
-	function attachEventsListener() {
+	export function attachEventsListener() {
 		window.addEventListener('wheel', handleOnMouseWheel, false);
 		window.addEventListener('touchstart', handleOnTouchStart, false);
 		window.addEventListener('touchend', handleOnTouchEnd, false);
 	}
 
-	function detachEventsListener() {
+	export function detachEventsListener() {
 		window.removeEventListener('wheel', handleOnMouseWheel, false);
 		window.removeEventListener('touchstart', handleOnTouchStart, false);
 		window.removeEventListener('touchend', handleOnTouchEnd, false);
