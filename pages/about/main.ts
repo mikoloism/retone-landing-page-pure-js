@@ -5,4 +5,5 @@ import { ViewSize } from "../../src/view-size";
 	ViewSize.init();
 	Header.disableObserver();
 	Header.init();
+	Header.detachEventsListener();
 })();
