@@ -1,4 +1,4 @@
-import { anime } from "../../src/lib";
+import { anime } from "../utils";
 
 export namespace FullSection {
 	export class Range {
