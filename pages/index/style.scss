@@ -1,4 +1,12 @@
-@import "../utils/_breakpoints.scss";
+@import "/styles/_common.scss";
+
+@import "/libs/FullSection/full-screen.scss";
+@import "/styles/layouts/loading.style.scss";
+@import "/styles/utils/_breakpoints.scss";
+
+/**/
+// MAIN LAYOUTS
+/**/
 
 .section {
 	&--hero,
@@ -162,4 +170,78 @@
 	top: var(--fs-wrapper-top);
 	background-color: dimgrey;
 	z-index: 10;
+}
+
+/**/
+// MUSEUM LAYOUTS
+/**/
+
+:root {
+	--angle1: 0deg;
+	--angle2: 90deg;
+	--angle3: 90deg;
+	--angle4: 90deg;
+}
+
+.museum {
+	&__wrapper {
+		width: 2580px;
+		height: 1080px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(0.939815);
+		overflow: hidden;
+	}
+
+	&__inner {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1);
+		transform-origin: center 66.66%;
+		overflow: hidden;
+	}
+
+	&__background img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	// &__doors {}
+
+	&__door {
+		& {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transform-origin: center center;
+			perspective-origin: center center;
+			transform-style: preserve-3d;
+		}
+
+		&--1 {
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle1))
+				translateZ(-2000px);
+		}
+
+		&--2 {
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle2))
+				translateZ(-2000px);
+		}
+
+		&--3 {
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle3))
+				translateZ(-2000px);
+		}
+
+		&--4 {
+			transform: perspective(2000px) translateZ(2000px) rotateY(var(--angle4))
+				translateZ(-2000px);
+		}
+	}
 }
