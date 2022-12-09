@@ -1,18 +1,31 @@
 @import "/styles/_common.scss";
 @import "/libs/FullSection/full-screen.scss";
 
+.header {
+	position: -webkit-sticky;
+	position: sticky;
+	background: black;
+	color: white;
+	fill: white;
+}
+
 .page {
 	&__header {
 		padding: 0 10%;
-		padding-top: 120px;
-		height: 300px;
-		color: white;
 		line-height: 2.4;
+		color: white;
 		background: black;
 	}
 
+	&__title {
+		font-size: 1.1rem;
+	}
+
+	&__subtitle {
+		font-size: 1.2rem;
+	}
+
 	&__wrapper {
-		height: calc(100% - 300px);
 		color: black;
 		overflow: hidden;
 	}
@@ -21,38 +34,35 @@
 .section {
 	& {
 		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		place-items: center;
-		place-content: flex-start;
-
-		overflow: hidden;
-		overflow-y: auto;
-	}
-
-	&__header {
-		display: flex;
 		min-width: 250px;
 		width: 100%;
 		padding: 10%;
-		margin-top: 32px;
-
-		@include use-laptop {
-			margin-top: 0;
-		}
 
 		flex-direction: column;
-		flex-wrap: wrap;
 
-		place-items: flex-start;
-		justify-content: center;
+		place-items: center;
+		place-content: flex-start;
 		row-gap: 1rem;
+
+		overflow: hidden;
+		overflow-y: auto;
 
 		line-height: 1.15;
 
 		@include use-tablet {
 			line-height: 1.34;
 		}
+	}
+
+	&__header {
+		display: flex;
+		width: 100%;
+
+		flex-direction: column;
+		flex-wrap: wrap;
+
+		place-items: flex-start;
+		justify-content: center;
 	}
 
 	&__subtitle {
@@ -64,7 +74,11 @@
 	}
 
 	&__paragraph {
+		width: 100%;
+		word-break: break-all;
 		font-size: 1.2rem;
+		padding: 0;
+		margin: 0;
 	}
 
 	@include use-tablet {
