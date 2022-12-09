@@ -15,7 +15,6 @@
 		position: fixed;
 		top: 0;
 		bottom: 0;
-		right: -110vw;
 
 		display: flex;
 		width: 100vw;
@@ -40,8 +39,8 @@
 		backdrop-filter: blur(8px);
 	}
 
-	&--visible {
-		animation: sidebar-push-in 0.7s 0.4s ease both;
+	&:not(&--visible) {
+		right: -110vw;
 	}
 
 	&__close {
@@ -69,11 +68,6 @@
 
 		flex-wrap: wrap;
 		flex-direction: column;
-		opacity: 0;
-	}
-
-	&--visible &__inner {
-		opacity: 1;
 	}
 
 	&__header {
@@ -160,17 +154,5 @@
 	&__text {
 		display: inline-block;
 		padding-left: viewHeight(4);
-	}
-}
-
-@keyframes sidebar-push-in {
-	from,
-	0% {
-		right: -110vw;
-	}
-
-	to,
-	100% {
-		right: 0;
 	}
 }

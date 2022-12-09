@@ -7,9 +7,9 @@ export namespace Header {
 		BLURRED = 'header--blurred',
 	}
 
-	const SIDEBAR_VISIBLE: string = 'sidebar--visible';
 	const TOUCH_THRESHOLD = 5;
-	var isObserverActive: boolean = true;
+
+	export var isObserverActive: boolean = true;
 
 	var heroSectionObserver: IntersectionObserver;
 
@@ -23,7 +23,7 @@ export namespace Header {
 		}
 
 		attachEventsListener();
-		HamburgerMenu.listenEvents(toggleSidebar);
+		HamburgerMenu.listenEvents(Sidebar.toggleSidebar);
 	}
 
 	function handleHeroSectionObserve(entries: IntersectionObserverEntry[], _observer: any): void {
@@ -73,26 +73,6 @@ export namespace Header {
 	function triggerSwipe(direction: number): void {
 		if (direction < 0) makeHeaderVisible();
 		else if (direction > 0) makeHeaderHidden();
-	}
-
-	function toggleSidebar(_event: MouseEvent): void {
-		const $sidebar = document.getElementById('sidebar')!;
-
-		$sidebar.classList.toggle(SIDEBAR_VISIBLE);
-
-		if (isSidebarVisible()) {
-			detachEventsListener();
-			FullSection.detachEventsListener();
-			// makeHeaderHidden();
-		} else {
-			isObserverActive && attachEventsListener();
-			FullSection.attachEventsListener();
-			// makeHeaderVisible();
-		}
-
-		function isSidebarVisible(): boolean {
-			return $sidebar.className.indexOf(SIDEBAR_VISIBLE) != -1;
-		}
 	}
 
 	function makeHeaderVisible() {
@@ -168,5 +148,40 @@ namespace HamburgerMenu {
 	function executeOpenAnime(): void {
 		ANIME_TIMELINE.direction = 'reverse';
 		ANIME_TIMELINE.play();
+	}
+}
+
+namespace Sidebar {
+	const SIDEBAR_VISIBLE: string = 'sidebar--visible';
+
+	const ANIME_TIMELINE: anime.AnimeTimelineInstance = anime
+		.timeline({ easing: 'linear', duration: 600, autoplay: false, delay: 200 })
+		.add({ targets: '#sidebar', right: ['-110vw', '0vw'] })
+		.add({ targets: '.sidebar__inner', opacity: [0, 1] });
+
+	export function toggleSidebar(_event: MouseEvent): void {
+		const $sidebar = document.getElementById('sidebar')!;
+
+		$sidebar.classList.toggle(SIDEBAR_VISIBLE);
+
+		if (isSidebarVisible()) {
+			ANIME_TIMELINE.direction = 'normal';
+			ANIME_TIMELINE.play();
+			ANIME_TIMELINE.finished.then(() => {
+				Header.detachEventsListener();
+				FullSection.detachEventsListener();
+			});
+		} else {
+			ANIME_TIMELINE.direction = 'reverse';
+			ANIME_TIMELINE.play();
+			ANIME_TIMELINE.finished.then(() => {
+				Header.isObserverActive && Header.attachEventsListener();
+				FullSection.attachEventsListener();
+			});
+		}
+
+		function isSidebarVisible(): boolean {
+			return $sidebar.className.indexOf(SIDEBAR_VISIBLE) != -1;
+		}
 	}
 }
