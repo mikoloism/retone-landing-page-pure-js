@@ -14,7 +14,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"skipLibCheck": true,
-		"baseUrl": "./src/"
+		"baseUrl": "./"
 	},
-	"include": ["src", "libs/FullSection/full-section.ts"]
+	"include": ["src", "libs", "pages/**/*.ts"]
 }
