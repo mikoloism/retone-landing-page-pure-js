@@ -17,6 +17,8 @@ export default defineConfig({
 			},
 		},
 	},
+	appType: "mpa",
+	base: "/",
 	css: {
 		preprocessorOptions: {
 			scss: {
