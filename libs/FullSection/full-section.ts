@@ -85,16 +85,17 @@ export namespace FullSection {
 
 	function triggerSwipe(direction: number): void {
 		if (!canTriggerSwipe()) return;
+
 		beforeSwipeHandler?.call(null, { currentAnimationIndex, direction });
 
 		if (direction > 0) {
 			if (currentAnimationIndex > animationList.length) return;
 
 			currentAnimation = anime(animationList[currentAnimationIndex]);
-			isTransitionEnd = false;
+			disableSwipe();
 			currentAnimation.play();
 			currentAnimation.finished.then(() => {
-				isTransitionEnd = true;
+				enableSwipe();
 			});
 			currentAnimationIndex += 1;
 		} else if (direction < 0) {
@@ -102,10 +103,10 @@ export namespace FullSection {
 
 			currentAnimationIndex -= 1;
 			currentAnimation = anime(withReverseAnime(animationList[currentAnimationIndex]));
-			isTransitionEnd = false;
+			disableSwipe();
 			currentAnimation.play();
 			currentAnimation.finished.then(() => {
-				isTransitionEnd = true;
+				enableSwipe();
 			});
 		}
 
@@ -114,6 +115,14 @@ export namespace FullSection {
 
 	function canTriggerSwipe(): boolean {
 		return isTransitionEnd === true;
+	}
+
+	export function disableSwipe() {
+		isTransitionEnd = false;
+	}
+
+	export function enableSwipe() {
+		isTransitionEnd = true;
 	}
 
 	function withReverseAnime(animationObject: AnimationObject): anime.AnimeParams {
