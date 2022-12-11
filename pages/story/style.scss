@@ -6,7 +6,9 @@
 	position: sticky;
 	background: black;
 	color: white;
+	stroke: white;
 	fill: white;
+	transition: none;
 }
 
 .page {
@@ -28,7 +30,7 @@
 
 	&__wrapper {
 		--title-font-size: 1.6rem;
-	--line-height: 1.4;
+		--line-height: 1.4;
 
 		color: black;
 		overflow: hidden;
@@ -92,7 +94,7 @@
 		transform: translateY(30px);
 		box-shadow: 0 5px 56px 7px rgb(255 255 255 / 60%);
 		overflow: hidden;
-	}*/
+	} */
 }
 
 // HINT : to fix scroll on Safari in IOS
