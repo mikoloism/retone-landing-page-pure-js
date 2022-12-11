@@ -138,12 +138,11 @@ export namespace HeaderComponent {
 				id="hamburger"
 				class="header__hamburger hamburger"
 			>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hamburger__icon" id="hamburger-icon"
-				stroke-width="2" stroke-linecap="round">
-				<line id="hamburger-icon-line-1" x1="3" y1="5" x2="21" y2="5"></line>
-				<line id="hamburger-icon-line-2" x1="3" y1="12" x2="21" y2="12"></line>
-				<line id="hamburger-icon-line-3" x1="3" y1="19" x2="21" y2="19"></line>
-			</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32" class="hamburger__icon" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+					<line id="hamburger-icon-line-1" x1="2" y1="4" x2="30" y2="4"></line>
+					<line id="hamburger-icon-line-2" x1="2" y1="16" x2="30" y2="16"></line>
+					<line id="hamburger-icon-line-3" x1="2" y1="28" x2="30" y2="28"></line>
+				</svg>
 			</button>
 		</header>
 		`;
