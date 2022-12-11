@@ -84,7 +84,7 @@ export namespace SidebarComponent {
 					</li>
 
 					<li class="navigation__item">
-						<a href="/" class="navigation__link">
+						<a href="/blog/index.html" class="navigation__link">
 							<span class="navigation__text">Blog</span>
 						</a>
 					</li>
@@ -123,7 +123,7 @@ export namespace HeaderComponent {
 	<header id="header" class="header header--visible">
 			<div class="header__brand brand">
 				<a href="/" class="brand__link">Retone Home</a>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 64" height="32" class="brand__logo" fill="none" stroke="currentColor" stroke-width="8">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 64" height="32" class="brand__logo" fill="none" stroke="inherit" stroke-width="8">
 					<path d="M4,63v-37a22,22,0,0,1,22,-22"></path>
 					<path d="M46,32h32v-6a22,22,0,0,0,-44,0v12a22,22,0,0,0,41.6021,9.9878"></path>
 					<path d="M98,4v34a22,22,0,0,0,41.6021,9.9878M98,32h28"></path>
@@ -138,7 +138,7 @@ export namespace HeaderComponent {
 				id="hamburger"
 				class="header__hamburger hamburger"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32" class="hamburger__icon" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32" class="hamburger__icon" fill="none" stroke="inherit" stroke-width="4" stroke-linecap="round">
 					<line id="hamburger-icon-line-1" x1="2" y1="4" x2="30" y2="4"></line>
 					<line id="hamburger-icon-line-2" x1="2" y1="16" x2="30" y2="16"></line>
 					<line id="hamburger-icon-line-3" x1="2" y1="28" x2="30" y2="28"></line>
