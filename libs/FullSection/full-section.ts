@@ -1,4 +1,5 @@
 import { anime } from "../utils";
+import { Direction } from "./refactored";
 
 export namespace FullSection {
 	export class Range {
@@ -49,7 +50,20 @@ export namespace FullSection {
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
-		triggerSwipe(event.deltaY);
+		let direction = Direction.normalize(event.deltaY);
+		let $self = ((event as any).path || (event.composedPath && event.composedPath())).filter(
+			($element: any) => {
+				if ($element.classList && $element.classList.contains) {
+					if ($element.classList.contains("fs__section")) return $element;
+				}
+			}
+		)[0];
+
+		if (direction === Direction.Down && isScrollStart($self)) {
+			triggerSwipe(direction);
+		} else if (direction === Direction.Up && isScrollEnd($self)) {
+			triggerSwipe(direction);
+		}
 	}
 
 	var touchStartPoint: Point;
@@ -89,7 +103,7 @@ export namespace FullSection {
 		beforeSwipeHandler?.call(null, { currentAnimationIndex, direction });
 
 		if (direction > 0) {
-			if (currentAnimationIndex > animationList.length) return;
+			if (currentAnimationIndex >= animationList.length) return;
 
 			currentAnimation = anime(animationList[currentAnimationIndex]);
 			disableSwipe();
@@ -99,7 +113,7 @@ export namespace FullSection {
 			});
 			currentAnimationIndex += 1;
 		} else if (direction < 0) {
-			if (currentAnimationIndex < 0) return;
+			if (currentAnimationIndex <= 0) return;
 
 			currentAnimationIndex -= 1;
 			currentAnimation = anime(withReverseAnime(animationList[currentAnimationIndex]));
@@ -152,4 +166,12 @@ export namespace FullSection {
 	type Point = { x: number; y: number };
 	export type AnimationObject = anime.AnimeParams;
 	export type AnimationList = Array<AnimationObject>;
+}
+
+export function isScrollStart($self: HTMLElement): boolean {
+	return Math.ceil($self.scrollTop) <= 0;
+}
+
+export function isScrollEnd($self: HTMLElement): boolean {
+	return Math.ceil($self.scrollTop + $self.clientHeight) >= $self.scrollHeight;
 }
