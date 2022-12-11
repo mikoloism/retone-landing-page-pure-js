@@ -8,14 +8,20 @@
 	fill: white;
 }
 
+.fs__wrapper {
+	--title-font-size: 1.6rem;
+	--line-height: 1.25;
+
+	background-color: black;
+}
+
 .section {
 	& {
 		display: flex;
 		min-width: 250px;
 		width: 100%;
-		height: 100vh;
-		padding: 10%;
-		padding-bottom: 20%;
+		height: calc(#{viewHeight(100)} - 64px);
+		padding: min(10%, calc((#{viewHeight(100)} - 64px) / 10)) 15%;
 
 		flex-direction: column;
 
@@ -26,9 +32,7 @@
 		overflow: hidden;
 		overflow-y: auto;
 
-		line-height: 1.35;
-
-		background: black;
+		line-height: var(--line-height);
 	}
 
 	&__header {
@@ -47,12 +51,12 @@
 	}
 
 	&__title {
-		font-size: 1.6rem;
+		font-size: var(--title-font-size);
+		margin-top: calc((var(--line-height) - 1) / -2 * var(--title-font-size));
 	}
 
 	&__paragraph {
 		width: 100%;
-		word-break: break-all;
 		font-size: 1.2rem;
 		padding: 0;
 		margin: 0;
@@ -67,5 +71,12 @@
 		transform: translateY(30px);
 		box-shadow: 0 5px 56px 7px rgb(255 255 255 / 60%);
 		overflow: hidden;
-	}*/
+	} */
+}
+
+// HINT : to fix scroll on Safari in IOS
+@media screen and (max-width: 768px) {
+	.touch {
+		-webkit-overflow-scrolling: touch;
+	}
 }
