@@ -23,7 +23,7 @@
 		min-width: 250px;
 		width: 100%;
 		height: calc(#{viewHeight(100)} - 64px);
-		padding: min(10%, calc((#{viewHeight(100)} - 64px) / 10)) 15%;
+		padding: min(10%, calc((#{viewHeight(100)} - 64px) / 10)) var(--padding-side);
 
 		flex-direction: column;
 
