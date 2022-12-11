@@ -1,16 +1,17 @@
 @import "../utils/_breakpoints.scss";
 
 .header {
-	--svg-height: 36px;
+	--svg-height: 24px;
 
 	& {
+		display: flex;
 		width: 100%;
-		min-height: 64px;
-		height: viewHeight(7);
+		height: 64px;
+		padding: 0 max(15%, 16px);
 
-		@include use-laptop {
-			height: viewHeight(7);
-		}
+		flex-direction: row;
+		place-items: center;
+		place-content: space-between;
 
 		position: fixed;
 		left: 0;
@@ -21,8 +22,6 @@
 
 		top: -100%;
 		opacity: 0;
-
-		fill: white;
 	}
 
 	&--visible {
@@ -40,20 +39,15 @@
 			backdrop-filter: blur(8px);
 		}
 	}
-
-	&__brand,
-	&__hamburger {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-	}
 }
 
 .brand {
-	display: inline-flex;
-	place-items: center;
-	place-content: center;
-	left: 10%;
+	& {
+		position: relative;
+		display: inline-flex;
+		place-items: center;
+		place-content: center;
+	}
 
 	&__link {
 		width: 100%;
@@ -69,14 +63,7 @@
 	}
 
 	&__logo {
-		fill: inherit;
-		width: 125px;
-		height: calc(var(--svg-height) / 1.3);
-
-		@include use-laptop {
-			width: 132px;
-		}
-
+		height: var(--svg-height);
 		z-index: 6;
 	}
 }
@@ -91,6 +78,7 @@
 		padding: 0;
 		margin: 0;
 
+		-webkit-tap-highlight-color: transparent;
 		user-select: none;
 		touch-action: auto;
 		pointer-events: fill;
@@ -98,17 +86,13 @@
 	}
 
 	& {
-		right: viewHeight(4);
-
-		@include use-laptop {
-			right: 10%;
-		}
+		width: var(--svg-height);
+		height: var(--svg-height);
 	}
 
 	&__icon {
 		display: inline-block;
 		width: var(--svg-height);
 		height: var(--svg-height);
-		fill: inherit;
 	}
 }
