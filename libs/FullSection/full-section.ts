@@ -26,6 +26,7 @@ export namespace FullSection {
 	const TOUCH_THRESHOLD = 5;
 	var isTransitionEnd = true;
 	var currentAnimationIndex: number = 0;
+	var currentSectionIndex: number = 1;
 	var currentAnimation: anime.AnimeInstance;
 	var beforeSwipeHandler: SwipeCallback | undefined;
 	var afterSwipeHandler: SwipeCallback | undefined;
@@ -51,13 +52,7 @@ export namespace FullSection {
 
 	function handleOnMouseWheel(event: WheelEvent): void {
 		let direction = Direction.normalize(event.deltaY);
-		let $self = ((event as any).path || (event.composedPath && event.composedPath())).filter(
-			($element: any) => {
-				if ($element.classList && $element.classList.contains) {
-					if ($element.classList.contains("fs__section")) return $element;
-				}
-			}
-		)[0];
+		let $self = document.querySelector<HTMLDivElement>(`#fs-section-${currentSectionIndex}`)!;
 
 		if (direction === Direction.Down && isScrollStart($self)) {
 			triggerSwipe(direction);
@@ -66,27 +61,46 @@ export namespace FullSection {
 		}
 	}
 
-	var touchStartPoint: Point;
+	var touchStart: { point: Point; scrollTop: number };
 
 	function handleOnTouchStart(event: TouchEvent): void {
-		touchStartPoint = {
-			x: event.touches[0].clientX,
-			y: event.touches[0].clientY,
+		let $self = document.querySelector<HTMLDivElement>(`#fs-section-${currentSectionIndex}`)!;
+		touchStart = {
+			scrollTop: $self.scrollTop,
+			point: {
+				x: event.touches[0].clientX,
+				y: event.touches[0].clientY,
+			},
 		};
 	}
 
 	function handleOnTouchEnd(event: TouchEvent): void {
-		const touchEndPoint: Point = {
-			x: event.changedTouches[0].clientX,
-			y: event.changedTouches[0].clientY,
+		let $self = document.querySelector<HTMLDivElement>(`#fs-section-${currentSectionIndex}`)!;
+		const touchEnd: { point: Point } = {
+			point: {
+				x: event.changedTouches[0].clientX,
+				y: event.changedTouches[0].clientY,
+			},
 		};
 
-		if (!shouldHandleTouches(touchStartPoint, touchEndPoint)) return;
+		if (!shouldHandleTouches(touchStart.point, touchEnd.point)) return;
 
-		const distanceY = touchStartPoint.y - touchEndPoint.y;
-		const distanceX = touchStartPoint.x - touchEndPoint.x;
+		const distanceY = touchStart.point.y - touchEnd.point.y;
+		const distanceX = touchStart.point.x - touchEnd.point.x;
+		const direction = Direction.normalize(distanceY - distanceX);
 
-		triggerSwipe(distanceY - distanceX);
+		if (direction === Direction.Down && isScrollStart(touchStart)) {
+			triggerSwipe(direction);
+		} else if (
+			direction === Direction.Up &&
+			isScrollEnd({
+				scrollTop: touchStart.scrollTop,
+				scrollHeight: $self.scrollHeight,
+				clientHeight: $self.clientHeight,
+			})
+		) {
+			triggerSwipe(direction);
+		}
 	}
 
 	function shouldHandleTouches(startPoint: Point, endPoint: Point): boolean {
@@ -112,10 +126,12 @@ export namespace FullSection {
 				enableSwipe();
 			});
 			currentAnimationIndex += 1;
+			currentSectionIndex += 1;
 		} else if (direction < 0) {
 			if (currentAnimationIndex <= 0) return;
 
 			currentAnimationIndex -= 1;
+			currentSectionIndex -= 1;
 			currentAnimation = anime(withReverseAnime(animationList[currentAnimationIndex]));
 			disableSwipe();
 			currentAnimation.play();
@@ -168,10 +184,12 @@ export namespace FullSection {
 	export type AnimationList = Array<AnimationObject>;
 }
 
-export function isScrollStart($self: HTMLElement): boolean {
+export function isScrollStart($self: HTMLElement | { scrollTop: number }): boolean {
 	return Math.ceil($self.scrollTop) <= 0;
 }
 
-export function isScrollEnd($self: HTMLElement): boolean {
+export function isScrollEnd(
+	$self: HTMLElement | { scrollTop: number; clientHeight: number; scrollHeight: number }
+): boolean {
 	return Math.ceil($self.scrollTop + $self.clientHeight) >= $self.scrollHeight;
 }
