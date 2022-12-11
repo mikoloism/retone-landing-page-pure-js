@@ -28,7 +28,7 @@
 
 	&__wrapper {
 		--title-font-size: 1.6rem;
-		--line-height: 1.25;
+	--line-height: 1.4;
 
 		color: black;
 		overflow: hidden;
@@ -41,7 +41,8 @@
 		min-width: 250px;
 		width: 100%;
 		height: calc(#{viewHeight(100)} - 64px);
-		padding: min(10%, calc((#{viewHeight(100)} - 64px) / 10)) var(--padding-side);
+		padding: min(var(--padding-side), (calc(var(--view-height, 1vh) * 100) - 64px) / 10)
+			var(--padding-side);
 
 		flex-direction: column;
 

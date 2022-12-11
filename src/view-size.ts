@@ -40,6 +40,9 @@ export namespace ViewSize {
 		$document.style.setProperty('--view-height', `${realScreenHeight * 0.01}px`);
 		$document.style.setProperty('--view-width', `${realScreenWidth * 0.01}px`);
 		$document.style.setProperty('--view-size', `${realViewSize * 0.01}px`);
+
+		$document.style.setProperty('--padding-side', computePaddingSide(realScreenWidth));
+
 		handleOnUpdate?.call(null, { realScreenHeight, realScreenWidth });
 	}
 
@@ -48,3 +51,12 @@ export namespace ViewSize {
 		realScreenWidth: number;
 	}) => void;
 }
+
+const SMALLEST_SCREEN_WIDTH = 320;
+const MINIMUM_PADDING_SIZE = 32;
+function computePaddingSide(viewWidth: number, power: number = 1.5) {
+	return `${
+		(MINIMUM_PADDING_SIZE * Math.pow(viewWidth, power)) / Math.pow(SMALLEST_SCREEN_WIDTH, power)
+	}px`;
+}
+
