@@ -9,8 +9,11 @@
 }
 
 :root {
+	--padding-side: 10%;
+	--root-font-size: 16px;
+
 	font-family: "Helvetica", sans-serif;
-	font-size: 16px;
+	font-size: var(--root-font-size);
 	line-height: 24px;
 	font-weight: 400;
 	color-scheme: light dark;
@@ -22,8 +25,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
-
-	--padding-side: 10%;
 }
 
 h1,

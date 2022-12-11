@@ -42,6 +42,7 @@ export namespace ViewSize {
 		$document.style.setProperty('--view-size', `${realViewSize * 0.01}px`);
 
 		$document.style.setProperty('--padding-side', computePaddingSide(realScreenWidth));
+		$document.style.setProperty('--root-font-size', computeRootFontSize(realViewSize));
 
 		handleOnUpdate?.call(null, { realScreenHeight, realScreenWidth });
 	}
@@ -60,3 +61,12 @@ function computePaddingSide(viewWidth: number, power: number = 1.5) {
 	}px`;
 }
 
+const BASE_ROOT_FONT_SIZE = 16;
+const FONT_SIZE_RATIO = 0.28;
+const SCREEN_RATIO = 480;
+function computeRootFontSize(viewSize: number) {
+	return `${
+		(BASE_ROOT_FONT_SIZE * Math.pow(viewSize, FONT_SIZE_RATIO)) /
+		Math.pow(SCREEN_RATIO, FONT_SIZE_RATIO)
+	}px`;
+}
