@@ -105,23 +105,23 @@ export namespace Header {
 namespace HamburgerMenu {
 	const ANIME_TIMELINE: anime.AnimeTimelineInstance = anime
 		.timeline({ easing: 'linear', duration: 400, autoplay: false })
-		.add({ targets: '#hamburger-icon-line-1', y1: [5, 12], y2: [5, 12] })
-		.add({ targets: '#hamburger-icon-line-3', y1: [19, 12], y2: [19, 12] }, 0)
+		.add({ targets: '#hamburger-icon-line-1', y1: [4, 16], y2: [4, 16] })
+		.add({ targets: '#hamburger-icon-line-3', y1: [28, 16], y2: [28, 16] }, 0)
 		.add({ targets: '#hamburger-icon-line-2', opacity: [1, 0], duration: 1 })
 		.add({
 			targets: '#hamburger-icon-line-1',
-			x1: [3, 4],
-			x2: [21, 20],
-			y1: [12, 20],
-			y2: [12, 4],
+			x1: [2, 2],
+			x2: [30, 30],
+			y1: [16, 30],
+			y2: [16, 2],
 		})
 		.add(
 			{
 				targets: '#hamburger-icon-line-3',
-				x1: [3, 4],
-				x2: [21, 20],
-				y1: [12, 4],
-				y2: [12, 20],
+				x1: [2, 2],
+				x2: [30, 30],
+				y1: [16, 2],
+				y2: [16, 30],
 			},
 			'-=400'
 		);
@@ -153,18 +153,21 @@ namespace HamburgerMenu {
 
 namespace Sidebar {
 	const SIDEBAR_VISIBLE: string = 'sidebar--visible';
+	var isSidebarClose = true;
 
-	const ANIME_TIMELINE: anime.AnimeTimelineInstance = anime
-		.timeline({ easing: 'linear', duration: 600, autoplay: false, delay: 200 })
-		.add({ targets: '#sidebar', right: ['-110vw', '0vw'] })
-		.add({ targets: '.sidebar__inner', opacity: [0, 1] });
+	const ANIME_TIMELINE: anime.AnimeInstance = anime({
+		easing: 'linear',
+		duration: 600,
+		autoplay: false,
+		targets: '#sidebar',
+		right: [`-110vw`, `0`],
+	});
 
 	export function toggleSidebar(_event: MouseEvent): void {
 		const $sidebar = document.getElementById('sidebar')!;
-
 		$sidebar.classList.toggle(SIDEBAR_VISIBLE);
 
-		if (isSidebarVisible()) {
+		if (isSidebarClose) {
 			ANIME_TIMELINE.direction = 'normal';
 			ANIME_TIMELINE.play();
 			ANIME_TIMELINE.finished.then(() => {
@@ -180,8 +183,6 @@ namespace Sidebar {
 			});
 		}
 
-		function isSidebarVisible(): boolean {
-			return $sidebar.className.indexOf(SIDEBAR_VISIBLE) != -1;
-		}
+		isSidebarClose = !isSidebarClose;
 	}
 }

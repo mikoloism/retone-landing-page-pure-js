@@ -15,6 +15,7 @@
 		position: fixed;
 		top: 0;
 		bottom: 0;
+		right: -110vw;
 
 		display: flex;
 		width: 100vw;
@@ -39,8 +40,8 @@
 		backdrop-filter: blur(8px);
 	}
 
-	&:not(&--visible) {
-		right: -110vw;
+	&--visible {
+		right: 0vw;
 	}
 
 	&__close {
