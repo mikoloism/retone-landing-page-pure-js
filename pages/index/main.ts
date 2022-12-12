@@ -3,30 +3,7 @@ import { FullSection } from "../../libs/FullSection/full-section";
 import { Header } from "../../src/header";
 import { ViewSize } from "../../src/view-size";
 
-function ProxyFactory(element: HTMLElement, ...variablesNames: Array<string>): object {
-	let variablesMap = {};
-
-	variablesNames.forEach((variableName: string) => {
-		Object.assign(variablesMap, {
-			[variableName]: getComputedStyle(element).getPropertyValue(variableName),
-		});
-	});
-
-	return new Proxy(variablesMap, {
-		set(_targetObject: any, property: string, newValue: any) {
-			element.style.setProperty(property, String(newValue));
-			return true;
-		},
-	});
-}
-
-const $_var = ProxyFactory(
-	document.documentElement,
-	"--angle1",
-	"--angle2",
-	"--angle3",
-	"--angle4"
-);
+// const $_var = ProxyFactory(document.documentElement,"--angle1","--angle2","--angle3","--angle4");
 
 // const withViewHeight = (viewHeight: number) => `calc(var(--view-height, 1vh) * -${viewHeight})`;
 
