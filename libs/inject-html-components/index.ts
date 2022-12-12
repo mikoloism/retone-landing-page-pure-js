@@ -1,5 +1,3 @@
-import { IndexHtmlTransformHook, IndexHtmlTransformResult } from "vite";
-
 export namespace SVGLoadingComponent {
 	const TARGET = /<div data-loading><\/div>/i;
 	const $TEMPLATE = /*html*/ `
@@ -155,41 +153,5 @@ export namespace HeaderComponent {
 				return html.replace(TARGET, $TEMPLATE);
 			},
 		};
-	}
-}
-
-export namespace SkipButtonComponent {
-	const TARGET: RegExp = /<button data-skip="(.*?)"><\/button>/i;
-	const $TEMPLATE = /*html*/ `
-	<button
-		id="skip-button"
-		style="
-			bottom: 0;
-			height: 32px;
-			background: black;
-			color: white;
-			border-radius: 9px;
-			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: 9999999;
-		"
-	>
-	skip
-	</button>
-	`;
-	const SCRIPTS = /*html*/ `
-	<script type="module">
-		export function listenSkipButton(): void {
-			const $skipButton = document.querySelector<HTMLButtonElement>('#skip-button')!;
-			$skipButton.addEventListener('click', () => {
-				FullSection.updateIndex(12);
-			});
-		}
-	</script>
-	`;
-
-	export function setup() {
-		return { name: "inject-skip-component" };
 	}
 }
