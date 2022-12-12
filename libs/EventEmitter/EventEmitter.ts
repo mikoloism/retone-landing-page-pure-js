@@ -53,7 +53,7 @@ export class EventEmitter<EventName = string, EventParam = unknown>
 
 		if (listeners) {
 			for (let listener of listeners) {
-				listener.apply(this, args);
+				listener.apply(this, args as any);
 			}
 		}
 
