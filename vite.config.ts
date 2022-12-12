@@ -14,6 +14,7 @@ export default defineConfig({
 			input: {
 				main: resolve(__dirname, "/pages/index.html"),
 				about: resolve(__dirname, "/pages/about/index.html"),
+				blog: resolve(__dirname, "/pages/blog/index.html"),
 				solutions: resolve(__dirname, "/pages/solutions/index.html"),
 				story: resolve(__dirname, "/pages/story/index.html"),
 			},
