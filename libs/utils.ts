@@ -32,3 +32,6 @@ export function ProxyFactory(element: HTMLElement, ...variablesNames: Array<stri
 		},
 	});
 }
+
+export const withViewHeight = (viewHeight: number) =>
+	`calc(var(--view-height, 1vh) * -${viewHeight})`;

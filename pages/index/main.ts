@@ -3,11 +3,6 @@ import { FullSection } from "../../libs/FullSection/full-section";
 import { Header } from "../../src/header";
 import { ViewSize } from "../../src/view-size";
 
-// const $_var = ProxyFactory(document.documentElement,"--angle1","--angle2","--angle3","--angle4");
-
-// const withViewHeight = (viewHeight: number) => `calc(var(--view-height, 1vh) * -${viewHeight})`;
-
-// const tagline = document.getElementById('tagline')!;
 const explode = document.getElementById("explode")! as HTMLVideoElement;
 var carouselAnimations: FullSection.AnimationList = [
 	// @full-section-2 (cover)
