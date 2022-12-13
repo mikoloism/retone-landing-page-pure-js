@@ -33,11 +33,12 @@ var carouselAnimations: FullSection.AnimationList = [
 			"calc(var(--view-height, 1vh) * -200)",
 			"calc(var(--view-height, 1vh) * -300)",
 		],
-		complete: function (anim) {
+		complete(anim) {
 			if (anim.direction == "reverse") {
 				explode.pause();
 				explode.currentTime = 0;
 			}
+
 			if (anim.direction == "normal") explode.play();
 		},
 	},
@@ -51,7 +52,7 @@ var carouselAnimations: FullSection.AnimationList = [
 			"calc(var(--view-height, 1vh) * -300)",
 			"calc(var(--view-height, 1vh) * -400)",
 		],
-		complete: function (anim) {
+		complete(anim) {
 			if (anim.direction == "normal") {
 				explode.pause();
 				explode.currentTime = 0;
