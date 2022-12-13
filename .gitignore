@@ -45,3 +45,6 @@ public/assets/old-tagline.mp4
 public/assets/tagline-2.mp4
 public/assets/images/tagline-1.jpg
 public/assets/images/tagline-1.png
+cerere/
+styles/utils/_mixins.scss
+src/linked.ts
