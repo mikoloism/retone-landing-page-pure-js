@@ -93,14 +93,6 @@ var carouselAnimations: FullSection.AnimationList = [
 			"calc(var(--view-height, 1vh) * -700)",
 		],
 	},
-
-	// @footer-visible
-	{
-		targets: "#fs-wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		top: ["0px", `-50vh`],
-	},
 ];
 
 (function startup() {
