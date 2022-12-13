@@ -114,7 +114,7 @@ export namespace FullSection {
 	function triggerSwipe(direction: number): void {
 		if (!canTriggerSwipe()) return;
 
-		beforeSwipeHandler?.call(null, { currentAnimationIndex, direction });
+		beforeSwipeHandler?.call(null, { currentAnimationIndex, direction, currentSectionIndex });
 
 		if (direction > 0) {
 			if (currentAnimationIndex >= animationList.length) return;
@@ -140,7 +140,7 @@ export namespace FullSection {
 			});
 		}
 
-		afterSwipeHandler?.call(null, { currentAnimationIndex, direction });
+		afterSwipeHandler?.call(null, { currentAnimationIndex, direction, currentSectionIndex });
 	}
 
 	function canTriggerSwipe(): boolean {
@@ -178,7 +178,11 @@ export namespace FullSection {
 		beforeSwipeHandler = fn;
 	}
 
-	type SwipeCallback = (props: { direction: number; currentAnimationIndex: number }) => void;
+	type SwipeCallback = (props: {
+		direction: number;
+		currentAnimationIndex: number;
+		currentSectionIndex: number;
+	}) => void;
 	type Point = { x: number; y: number };
 	export type AnimationObject = anime.AnimeParams;
 	export type AnimationList = Array<AnimationObject>;
