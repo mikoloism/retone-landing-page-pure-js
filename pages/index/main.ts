@@ -70,20 +70,6 @@ var carouselAnimations: FullSection.AnimationList = [
 			"calc(var(--view-height, 1vh) * -400)",
 			"calc(var(--view-height, 1vh) * -500)",
 		],
-		begin() {
-			let $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
-
-			anime({
-				targets: $taglineVideo,
-				volume: [1, 0],
-				easing: "easeInOutQuad",
-				duration: 1000,
-				autoplay: true,
-			}).finished.then(() => {
-				$taglineVideo.pause();
-				$taglineVideo.volume = 1;
-			});
-		},
 	},
 
 	// @full-section-7 (story)
@@ -117,61 +103,48 @@ var carouselAnimations: FullSection.AnimationList = [
 	},
 ];
 
-const additionalCarouselAnimations: FullSection.AnimationList = [
-	// @footer-visible
-	{
-		targets: "#fs-wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		top: [`-50vh`, "-100vh"],
-
-		begin(anim) {
-			anime({
-				targets: "#footer",
-				easing: "easeInOutQuad",
-				duration: 700,
-				height: [`calc(50vh + 50px)`, `100vh`],
-				direction: anim.direction,
-				autoplay: true,
-			});
-
-			anime({
-				targets: "#footer-fs-wrapper",
-				easing: "easeInOutQuad",
-				duration: 1000,
-				translateY: [`calc(-50vh - 50px)`, "-33.33%"],
-				direction: anim.direction,
-				autoplay: true,
-			});
-		},
-	},
-
-	{
-		targets: "#footer-fs-wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: ["-33.33%", "-66.66%"],
-	},
-
-	{
-		targets: "#footer-fs-wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: ["-66.66%", "-99.99%"],
-	},
-];
-
 (function startup() {
 	ViewSize.onUpdateScreen(({ realScreenHeight, realScreenWidth }) => {
+		let $fsWrapper = document.querySelector<HTMLDivElement>("#fs-wrapper")!;
+		let $document = document.documentElement;
+
+		let width = Math.min(realScreenWidth, (realScreenHeight * 2592) / 1080);
+		$fsWrapper.style.width = `${width}px`;
+
+		let realViewSize = Math.sqrt(realScreenHeight * width);
+		$document.style.setProperty("--view-width", `${width * 0.01}px`);
+		$document.style.setProperty("--view-size", `${realViewSize * 0.01}px`);
+
 		document.getElementById("museum")!.style.transform = `translate(-50%, -50%) scale(${
 			realScreenHeight / 1080
 		})`;
+	});
 
-		if (realScreenWidth < 425) {
-			carouselAnimations.push(...additionalCarouselAnimations);
+	ViewSize.init();
+
+	FullSection.afterSwipe(function ({ currentSectionIndex }) {
+		if (currentSectionIndex == 4 || currentSectionIndex == 6) {
+			const $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
+
+			if (isVideoPlaying($taglineVideo))
+				anime({
+					targets: $taglineVideo,
+					volume: [1, 0],
+					easing: "easeInOutQuad",
+					duration: 1000,
+					autoplay: true,
+				}).finished.then(() => {
+					$taglineVideo.pause();
+					$taglineVideo.volume = 1;
+				});
 		}
 	});
-	ViewSize.init();
+
 	FullSection.init(carouselAnimations);
+
 	Header.init();
 })();
+
+function isVideoPlaying(video: HTMLVideoElement) {
+	return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+}

@@ -26,8 +26,7 @@
 					<video
 						id="hero-video"
 						src="/assets/retone.mp4"
-						preload
-						autobuffer
+						preload="auto"
 						autoplay
 						playsinline
 						muted
@@ -96,26 +95,13 @@
 					data-full-section="5"
 					class="fs__section section--tagline tagline"
 				>
-					<button type="button" id="tagline-play" class="tagline__play">
-						<svg
-							viewBox="0 0 48 48"
-							xmlns="http://www.w3.org/2000"
-							xmlns:xlink="http://www.w3.org/1999"
-							class="tagline__icon"
-						>
-							<use
-								xlink:href="/assets/mdi-sprites.svg#mdi-play"
-								href="/assets/mdi-sprites.svg#mdi-play"
-							/>
-						</svg>
-					</button>
 					<video
 						id="tagline-video"
 						class="tagline__video"
 						poster="/assets/images/tagline.jpg"
 						src="/assets/tagline.mp4"
 						playsinline
-						autoplay
+						controls
 					></video>
 				</div>
 
