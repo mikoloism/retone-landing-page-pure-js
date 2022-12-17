@@ -194,6 +194,7 @@
 }
 
 .museum {
+	position: relative;
 	&__wrapper {
 		width: 2580px;
 		height: 1080px;
@@ -202,6 +203,32 @@
 		left: 50%;
 		transform: translate(-50%, -50%) scale(0.939815);
 		overflow: hidden;
+	}
+
+	&__navigation {
+		display: inline-block;
+
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 9;
+
+		&--prev {
+			right: 0;
+		}
+
+		&--next {
+			left: 0;
+		}
+
+		border: 0;
+		outline: 0;
+		stroke: inherit;
+		box-shadow: none;
+		margin: 0;
+		fill: white;
+		padding: 0;
+		background-color: transparent;
 	}
 
 	&__inner {
@@ -213,6 +240,7 @@
 		transform: translate(-50%, -50%) scale(1);
 		transform-origin: center 66.66%;
 		overflow: hidden;
+		z-index: 8;
 	}
 
 	&__background img {
