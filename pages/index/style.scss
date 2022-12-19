@@ -36,6 +36,71 @@
 	}
 }
 
+.cover,
+.explode {
+	&__header {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		padding: 10%;
+
+		place-content: center;
+		place-items: center;
+
+		color: black;
+	}
+
+	&__title {
+		font-size: viewSize(8);
+		line-height: 1.3;
+	}
+
+	&__image,
+	&__video {
+		position: absolute;
+		z-index: 1;
+	}
+
+	.word {
+		&,
+		&__inner {
+			display: inline-block;
+		}
+
+		& {
+			overflow: hidden;
+		}
+
+		&__inner {
+			transform: translateY(100%);
+			transition: 0.7s ease all;
+		}
+	}
+}
+
+.cover {
+	&__header {
+		flex-direction: column;
+	}
+
+	&__subtitle {
+		display: block;
+		font-size: viewSize(4.9);
+		line-height: 1.3;
+	}
+}
+
+.explode {
+	&__header {
+		place-content: flex-start;
+		place-items: flex-start;
+	}
+
+	&__title {
+		font-size: viewSize(4);
+	}
+}
+
 .solutions,
 .blog {
 	& {
