@@ -4,6 +4,18 @@
 @import "/styles/layouts/loading.style.scss";
 @import "/styles/utils/_breakpoints.scss";
 
+.header {
+	padding: 0 calc(var(--view-width, 1vh) * 10);
+	height: 3rem;
+	width: calc(var(--view-width, 1vh) * 100);
+	margin: 0 auto;
+}
+
+.footer {
+	// height of header
+	height: calc((var(--view-height, 1vh) * 100) - 3rem);
+}
+
 /**/
 // MAIN LAYOUTS
 /**/
