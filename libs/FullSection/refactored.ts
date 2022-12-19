@@ -256,10 +256,7 @@ export class TouchSwipe {
 	private computeDirection(): void {
 		if (!this.isSwiped()) return;
 
-		const distanceY = this.touchStartPoint.y - this.touchEndPoint.y;
-		const distanceX = this.touchStartPoint.x - this.touchEndPoint.x;
-
-		this.trigger(Direction.normalize(distanceY - distanceX));
+		this.trigger(this.touchStartPoint, this.touchEndPoint);
 	}
 
 	private isSwiped(): boolean {
@@ -288,7 +285,7 @@ export class WheelSwipe {
 	}
 
 	private listenMouseWheel(event: WheelEvent): void {
-		this.trigger(Direction.normalize(event.deltaY));
+		this.trigger({ x: 0, y: 0 }, { x: 0, y: event.deltaY });
 	}
 }
 
@@ -296,17 +293,32 @@ export enum Direction {
 	// TODO : from RIGHT to LEFT = SWIPE_UP
 	// TODO : from LEFT to RIGHT == SWIPE_DOWN
 
-	Up = 1,
-	Right = -1,
-	Down = -1,
-	Left = 1,
-	Stable = 0,
+	Up = "up",
+	Right = "right",
+	Down = "down",
+	Left = "left",
+	Stable = "stable",
 }
 export namespace Direction {
-	export function normalize(direction: number): Direction {
-		if (direction > 0) return Direction.Up;
-		if (direction < 0) return Direction.Down;
-		return Direction.Stable;
+	export function normalize(startPoint: TouchPoint, endPoint: TouchPoint): Direction {
+		const distanceY = endPoint.y - startPoint.y;
+		const distanceX = endPoint.x - startPoint.x;
+		const angle = (Math.atan2(distanceY, distanceX) * 180) / Math.PI;
+
+		console.log(angle);
+
+		let direction =
+			angle < -135
+				? Direction.Left
+				: angle < -45
+				? Direction.Up
+				: angle < 45
+				? Direction.Right
+				: angle < 135
+				? Direction.Down
+				: Direction.Left;
+
+		return direction;
 	}
 }
 

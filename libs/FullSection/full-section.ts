@@ -56,7 +56,7 @@ export namespace FullSection {
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
-		let direction = Direction.normalize(event.deltaY);
+		let direction = Direction.normalize({ x: 0, y: 0 }, { x: 0, y: event.deltaY });
 		let $self = document.querySelector<HTMLDivElement>(`#fs-section-${currentSectionIndex}`)!;
 
 		if (direction === Direction.Down && isScrollStart($self)) {
@@ -90,9 +90,7 @@ export namespace FullSection {
 
 		if (!shouldHandleTouches(touchStart.point, touchEnd.point)) return;
 
-		const distanceY = touchStart.point.y - touchEnd.point.y;
-		const distanceX = touchStart.point.x - touchEnd.point.x;
-		const direction = Direction.normalize(distanceY - distanceX);
+		const direction = Direction.normalize(touchStart.point, touchEnd.point);
 
 		if (direction === Direction.Down && isScrollStart(touchStart)) {
 			triggerSwipe(direction);
@@ -116,12 +114,12 @@ export namespace FullSection {
 		return distance > TOUCH_THRESHOLD;
 	}
 
-	function triggerSwipe(direction: number): void {
+	function triggerSwipe(direction: Direction): void {
 		if (!canTriggerSwipe()) return;
 
 		beforeSwipeHandler?.call(null, { currentAnimationIndex, direction, currentSectionIndex });
 
-		if (direction > 0) {
+		if (direction === Direction.Up) {
 			if (currentAnimationIndex >= animationList.length) return;
 			let currentAnimations = animationList[currentAnimationIndex];
 
@@ -137,7 +135,7 @@ export namespace FullSection {
 				currentAnimationIndex += 1;
 				currentSectionIndex = sectionMap[currentAnimationIndex] as number;
 			});
-		} else if (direction < 0) {
+		} else if (direction === Direction.Down) {
 			if (currentAnimationIndex <= 0) return;
 
 			currentAnimationIndex -= 1;
@@ -196,7 +194,7 @@ export namespace FullSection {
 	}
 
 	type SwipeCallback = (props: {
-		direction: number;
+		direction: number | Direction;
 		currentAnimationIndex: number;
 		currentSectionIndex: number;
 	}) => void;
