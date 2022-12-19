@@ -266,31 +266,37 @@ const $_var = ProxyFactory(
 
 var museumCarouselAnimations: FullSection.AnimationList = [
 	// @full-section-3 (museum-door-2 move-in)
-	{
-		targets: $_var,
-		easing: "easeInOutQuad",
-		duration: 1000,
-		"--angle1": ["0deg", "-90deg"],
-		"--angle2": ["90deg", "0deg"],
-	},
+	[
+		{
+			targets: $_var,
+			easing: "easeInOutQuad",
+			duration: 1000,
+			"--angle1": ["0deg", "-90deg"],
+			"--angle2": ["90deg", "0deg"],
+		},
+	],
 
 	// @full-section-3 (museum-door-3 move-in)
-	{
-		targets: $_var,
-		easing: "easeInOutQuad",
-		duration: 1000,
-		"--angle2": ["0deg", "-90deg"],
-		"--angle3": ["90deg", "0deg"],
-	},
+	[
+		{
+			targets: $_var,
+			easing: "easeInOutQuad",
+			duration: 1000,
+			"--angle2": ["0deg", "-90deg"],
+			"--angle3": ["90deg", "0deg"],
+		},
+	],
 
 	// @full-section-3 (museum-door-4 move-in)
-	{
-		targets: $_var,
-		easing: "easeInOutQuad",
-		duration: 1000,
-		"--angle3": ["0deg", "-90deg"],
-		"--angle4": ["90deg", "0deg"],
-	},
+	[
+		{
+			targets: $_var,
+			easing: "easeInOutQuad",
+			duration: 1000,
+			"--angle3": ["0deg", "-90deg"],
+			"--angle4": ["90deg", "0deg"],
+		},
+	],
 ];
 
 var currentAnimeIndex = 0;
@@ -307,19 +313,32 @@ var currentAnimeIndex = 0;
 
 function listenClickPrev() {
 	if (currentAnimeIndex <= 0) return;
-
 	currentAnimeIndex -= 1;
-	let museumAnimation = anime({
-		...museumCarouselAnimations[currentAnimeIndex],
-		direction: "reverse",
+
+	let animations = museumCarouselAnimations[currentAnimeIndex];
+	let museumAnimation: any;
+
+	animations.map((animation: any) => {
+		museumAnimation = anime({
+			...animation,
+			direction: "reverse",
+		});
+
+		museumAnimation.play();
 	});
-	museumAnimation.play();
+
 	checkMuseumButtonVisibility();
 }
 
 function listenClickNext() {
-	let museumAnimation = anime(museumCarouselAnimations[currentAnimeIndex]);
-	museumAnimation.play();
+	let animations = museumCarouselAnimations[currentAnimeIndex];
+	let museumAnimation: any;
+
+	animations.map((animation: any) => {
+		museumAnimation = anime(animation);
+		museumAnimation.play();
+	});
+
 	museumAnimation.finished.then(() => {
 		currentAnimeIndex += 1;
 		checkMuseumButtonVisibility();
