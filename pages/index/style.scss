@@ -265,9 +265,9 @@
 
 :root {
 	--angle1: 0deg;
-	--angle2: 90deg;
-	--angle3: 90deg;
-	--angle4: 90deg;
+	--angle2: -90deg;
+	--angle3: -90deg;
+	--angle4: -90deg;
 }
 
 .museum {
@@ -284,6 +284,7 @@
 
 	&__navigation {
 		display: inline-block;
+		color: white;
 
 		position: absolute;
 		height: 100%;
@@ -295,11 +296,11 @@
 		z-index: 9;
 
 		&--prev {
-			right: 0;
+			left: 0;
 		}
 
 		&--next {
-			left: 0;
+			right: 0;
 		}
 
 		border: 0;

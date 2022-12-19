@@ -272,8 +272,8 @@ var museumCarouselAnimations: FullSection.AnimationList = [
 			targets: $_var,
 			easing: "easeInOutQuad",
 			duration: 1000,
-			"--angle1": ["0deg", "-90deg"],
-			"--angle2": ["90deg", "0deg"],
+			"--angle1": ["0deg", "90deg"],
+			"--angle2": ["-90deg", "0deg"],
 		},
 	],
 
@@ -283,8 +283,8 @@ var museumCarouselAnimations: FullSection.AnimationList = [
 			targets: $_var,
 			easing: "easeInOutQuad",
 			duration: 1000,
-			"--angle2": ["0deg", "-90deg"],
-			"--angle3": ["90deg", "0deg"],
+			"--angle2": ["0deg", "90deg"],
+			"--angle3": ["-90deg", "0deg"],
 		},
 	],
 
@@ -294,8 +294,8 @@ var museumCarouselAnimations: FullSection.AnimationList = [
 			targets: $_var,
 			easing: "easeInOutQuad",
 			duration: 1000,
-			"--angle3": ["0deg", "-90deg"],
-			"--angle4": ["90deg", "0deg"],
+			"--angle3": ["0deg", "90deg"],
+			"--angle4": ["-90deg", "0deg"],
 		},
 	],
 ];
