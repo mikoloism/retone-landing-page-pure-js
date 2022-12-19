@@ -1,6 +1,7 @@
 import anime from "animejs";
 import { ProxyFactory } from "../../libs/utils";
 import { FullSection } from "../../libs/FullSection/full-section";
+import { Direction } from "../../libs/FullSection/refactored";
 import { Header } from "../../src/header";
 import { ViewSize, computeRootFontSize } from "../../src/view-size";
 
@@ -257,100 +258,161 @@ function isVideoPlaying(video: HTMLVideoElement) {
 	return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 }
 
-const $_var = ProxyFactory(
-	document.documentElement,
-	"--angle1",
-	"--angle2",
-	"--angle3",
-	"--angle4"
-);
+namespace Museum {
+	const TOUCH_THRESHOLD = 5;
+	const $_var = ProxyFactory(
+		document.documentElement,
+		"--angle1",
+		"--angle2",
+		"--angle3",
+		"--angle4"
+	);
 
-var museumCarouselAnimations: FullSection.AnimationList = [
-	// @full-section-3 (museum-door-2 move-in)
-	[
-		{
-			targets: $_var,
-			easing: "easeInOutQuad",
-			duration: 1000,
-			"--angle1": ["0deg", "90deg"],
-			"--angle2": ["-90deg", "0deg"],
-		},
-	],
+	const museumCarouselAnimations: FullSection.AnimationList = [
+		// @full-section-3 (museum-door-2 move-in)
+		[
+			{
+				targets: $_var,
+				easing: "easeInOutQuad",
+				duration: 1000,
+				"--angle1": ["0deg", "90deg"],
+				"--angle2": ["-90deg", "0deg"],
+			},
+		],
 
-	// @full-section-3 (museum-door-3 move-in)
-	[
-		{
-			targets: $_var,
-			easing: "easeInOutQuad",
-			duration: 1000,
-			"--angle2": ["0deg", "90deg"],
-			"--angle3": ["-90deg", "0deg"],
-		},
-	],
+		// @full-section-3 (museum-door-3 move-in)
+		[
+			{
+				targets: $_var,
+				easing: "easeInOutQuad",
+				duration: 1000,
+				"--angle2": ["0deg", "90deg"],
+				"--angle3": ["-90deg", "0deg"],
+			},
+		],
 
-	// @full-section-3 (museum-door-4 move-in)
-	[
-		{
-			targets: $_var,
-			easing: "easeInOutQuad",
-			duration: 1000,
-			"--angle3": ["0deg", "90deg"],
-			"--angle4": ["-90deg", "0deg"],
-		},
-	],
-];
+		// @full-section-3 (museum-door-4 move-in)
+		[
+			{
+				targets: $_var,
+				easing: "easeInOutQuad",
+				duration: 1000,
+				"--angle3": ["0deg", "90deg"],
+				"--angle4": ["-90deg", "0deg"],
+			},
+		],
+	];
 
-var currentAnimeIndex = 0;
+	var currentAnimeIndex = 0;
 
-(function startup2() {
-	const $prevMuseum = document.querySelector<HTMLButtonElement>("#museum-prev")!;
-	const $nextMuseum = document.querySelector<HTMLButtonElement>("#museum-next")!;
+	export function init() {
+		const $prevMuseum = document.querySelector<HTMLButtonElement>("#museum-prev")!;
+		const $nextMuseum = document.querySelector<HTMLButtonElement>("#museum-next")!;
+		const $museumSection = document.querySelector<HTMLDivElement>("#fs-section-3.museum")!;
 
-	checkMuseumButtonVisibility();
+		checkMuseumButtonVisibility();
 
-	$prevMuseum.addEventListener("click", listenClickPrev);
-	$nextMuseum.addEventListener("click", listenClickNext);
-})();
+		$prevMuseum.addEventListener("click", listenClickPrev);
+		$nextMuseum.addEventListener("click", listenClickNext);
 
-function listenClickPrev() {
-	if (currentAnimeIndex <= 0) return;
-	currentAnimeIndex -= 1;
+		$museumSection.addEventListener("touchstart", handleOnTouchStart, false);
+		$museumSection.addEventListener("touchend", handleOnTouchEnd, false);
+	}
 
-	let animations = museumCarouselAnimations[currentAnimeIndex];
-	let museumAnimation: any;
+	var touchStart: Point;
 
-	animations.map((animation: any) => {
-		museumAnimation = anime({
-			...animation,
-			direction: "reverse",
+	function handleOnTouchStart(event: TouchEvent): void {
+		touchStart = {
+			x: event.touches[0].clientX,
+			y: event.touches[0].clientY,
+		};
+	}
+
+	function handleOnTouchEnd(event: TouchEvent): void {
+		const touchEnd: Point = {
+			x: event.changedTouches[0].clientX,
+			y: event.changedTouches[0].clientY,
+		};
+
+		if (!shouldHandleTouches(touchStart, touchEnd)) return;
+		let direction = Direction.normalize(touchStart, touchEnd);
+
+		if (
+			direction === Direction.Left &&
+			currentAnimeIndex <= museumCarouselAnimations.length - 1
+		) {
+			listenClickNext();
+		} else if (direction === Direction.Right && currentAnimeIndex > 0) {
+			listenClickPrev();
+		}
+	}
+
+	function shouldHandleTouches(startPoint: Point, endPoint: Point): boolean {
+		const distance = Math.sqrt(
+			Math.pow(startPoint.x - endPoint.x, 2) + Math.pow(startPoint.y - endPoint.y, 2)
+		);
+
+		return distance > TOUCH_THRESHOLD;
+	}
+
+	var isTransitionEnd: boolean = true;
+
+	function listenClickPrev() {
+		if (!isTransitionEnd) return;
+
+		isTransitionEnd = false;
+
+		currentAnimeIndex -= 1;
+
+		let animations = museumCarouselAnimations[currentAnimeIndex];
+		let museumAnimation: any;
+
+		animations.map((animation: any) => {
+			museumAnimation = anime({
+				...animation,
+				direction: "reverse",
+			});
+
+			museumAnimation.play();
 		});
 
-		museumAnimation.play();
-	});
+		museumAnimation.finished.then(() => {
+			isTransitionEnd = true;
+		});
 
-	checkMuseumButtonVisibility();
-}
-
-function listenClickNext() {
-	let animations = museumCarouselAnimations[currentAnimeIndex];
-	let museumAnimation: any;
-
-	animations.map((animation: any) => {
-		museumAnimation = anime(animation);
-		museumAnimation.play();
-	});
-
-	museumAnimation.finished.then(() => {
-		currentAnimeIndex += 1;
 		checkMuseumButtonVisibility();
-	});
+	}
+
+	function listenClickNext() {
+		if (!isTransitionEnd) return;
+
+		isTransitionEnd = false;
+
+		let animations = museumCarouselAnimations[currentAnimeIndex];
+		let museumAnimation: any;
+
+		animations.map((animation: any) => {
+			museumAnimation = anime(animation);
+			museumAnimation.play();
+		});
+
+		museumAnimation.finished.then(() => {
+			currentAnimeIndex += 1;
+			checkMuseumButtonVisibility();
+			isTransitionEnd = true;
+		});
+	}
+
+	function checkMuseumButtonVisibility() {
+		const $prevMuseum = document.querySelector<HTMLButtonElement>("#museum-prev")!;
+		const $nextMuseum = document.querySelector<HTMLButtonElement>("#museum-next")!;
+
+		$prevMuseum.style.visibility = currentAnimeIndex <= 0 ? "hidden" : "visible";
+		$nextMuseum.style.visibility =
+			currentAnimeIndex >= museumCarouselAnimations.length ? "hidden" : "visible";
+	}
+
+	type Point = { x: number; y: number };
 }
 
-function checkMuseumButtonVisibility() {
-	const $prevMuseum = document.querySelector<HTMLButtonElement>("#museum-prev")!;
-	const $nextMuseum = document.querySelector<HTMLButtonElement>("#museum-next")!;
-
-	$prevMuseum.style.visibility = currentAnimeIndex <= 0 ? "hidden" : "visible";
-	$nextMuseum.style.visibility =
-		currentAnimeIndex >= museumCarouselAnimations.length ? "hidden" : "visible";
-}
+Museum.init();
