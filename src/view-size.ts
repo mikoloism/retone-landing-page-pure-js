@@ -64,7 +64,7 @@ function computePaddingSide(viewWidth: number, power: number = 1.5) {
 const BASE_ROOT_FONT_SIZE = 16;
 const FONT_SIZE_RATIO = 0.28;
 const SCREEN_RATIO = 480;
-function computeRootFontSize(viewSize: number) {
+export function computeRootFontSize(viewSize: number) {
 	return `${
 		(BASE_ROOT_FONT_SIZE * Math.pow(viewSize, FONT_SIZE_RATIO)) /
 		Math.pow(SCREEN_RATIO, FONT_SIZE_RATIO)

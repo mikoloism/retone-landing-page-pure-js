@@ -2,7 +2,7 @@ import anime from "animejs";
 import { ProxyFactory } from "../../libs/utils";
 import { FullSection } from "../../libs/FullSection/full-section";
 import { Header } from "../../src/header";
-import { ViewSize } from "../../src/view-size";
+import { ViewSize, computeRootFontSize } from "../../src/view-size";
 
 const explode = document.getElementById("explode")! as HTMLVideoElement;
 var carouselAnimations: FullSection.AnimationList = [
@@ -153,6 +153,7 @@ var carouselAnimations: FullSection.AnimationList = [
 		let realViewSize = Math.sqrt(realScreenHeight * width);
 		$document.style.setProperty("--view-width", `${width * 0.01}px`);
 		$document.style.setProperty("--view-size", `${realViewSize * 0.01}px`);
+		$document.style.setProperty("--root-font-size", computeRootFontSize(realViewSize));
 
 		document.getElementById("museum")!.style.transform = `translate(-50%, -50%) scale(${
 			realScreenHeight / 1080
