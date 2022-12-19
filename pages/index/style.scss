@@ -209,8 +209,12 @@
 		display: inline-block;
 
 		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
+		height: 100%;
+		width: viewSize(9);
+		& svg {
+			width: viewSize(6);
+			height: viewSize(6);
+		}
 		z-index: 9;
 
 		&--prev {
