@@ -7,93 +7,139 @@ import { ViewSize } from "../../src/view-size";
 const explode = document.getElementById("explode")! as HTMLVideoElement;
 var carouselAnimations: FullSection.AnimationList = [
 	// @full-section-2 (cover)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: ["0", "calc(var(--view-height, 1vh) * -100)"],
-	},
+	[
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: ["0", "calc(var(--view-height, 1vh) * -100)"],
+		},
+	],
 
-	// @full-section-3 (museum)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: [
-			"calc(var(--view-height, 1vh) * -100)",
-			"calc(var(--view-height, 1vh) * -200)",
-		],
-	},
+	[
+		{
+			targets: ".cover__header",
+			easing: "easeInOutQuad",
+			duration: 400,
+			background: ["rgba(0,0,0,0%)", "rgba(0,0,0,80%)"],
+			color: ["#333", "#fff"],
+		},
+		{
+			targets: ".cover .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["100%", "0"],
+			delay: 200,
+		},
+	],
+
+	[
+		{
+			targets: ".cover .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["0", "-100%"],
+		},
+
+		// @full-section-3 (museum)
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: [
+				"calc(var(--view-height, 1vh) * -100)",
+				"calc(var(--view-height, 1vh) * -200)",
+			],
+			delay: 800,
+		},
+	],
 
 	// @full-section-4 (explode)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: [
-			"calc(var(--view-height, 1vh) * -200)",
-			"calc(var(--view-height, 1vh) * -300)",
-		],
-		complete(anim) {
-			if (anim.direction == "reverse") {
-				explode.pause();
-				explode.currentTime = 0;
-			}
+	[
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: [
+				"calc(var(--view-height, 1vh) * -200)",
+				"calc(var(--view-height, 1vh) * -300)",
+			],
+			complete(anim) {
+				anime({
+					targets: ".explode .word__inner",
+					duration: 400,
+					easing: "easeInOutQuad",
+					translateY: ["100%", "0"],
+				});
 
-			if (anim.direction == "normal") explode.play();
+				if (anim.direction == "reverse") {
+					explode.pause();
+					explode.currentTime = 0;
+				}
+
+				if (anim.direction == "normal") explode.play();
+			},
 		},
-	},
+	],
 
 	// @full-section-5 (tagline)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: [
-			"calc(var(--view-height, 1vh) * -300)",
-			"calc(var(--view-height, 1vh) * -400)",
-		],
-		complete(anim) {
-			if (anim.direction == "normal") {
-				explode.pause();
-				explode.currentTime = 0;
-			}
-			if (anim.direction == "reverse") explode.play();
+	[
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: [
+				"calc(var(--view-height, 1vh) * -300)",
+				"calc(var(--view-height, 1vh) * -400)",
+			],
+			complete(anim) {
+				if (anim.direction == "normal") {
+					explode.pause();
+					explode.currentTime = 0;
+				}
+				if (anim.direction == "reverse") explode.play();
+			},
 		},
-	},
+	],
 
 	// @full-section-6 (solutions)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: [
-			"calc(var(--view-height, 1vh) * -400)",
-			"calc(var(--view-height, 1vh) * -500)",
-		],
-	},
+	[
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: [
+				"calc(var(--view-height, 1vh) * -400)",
+				"calc(var(--view-height, 1vh) * -500)",
+			],
+		},
+	],
 
 	// @full-section-7 (story)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: [
-			"calc(var(--view-height, 1vh) * -500)",
-			"calc(var(--view-height, 1vh) * -600)",
-		],
-	},
+	[
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: [
+				"calc(var(--view-height, 1vh) * -500)",
+				"calc(var(--view-height, 1vh) * -600)",
+			],
+		},
+	],
 
 	// @full-section-8 (blog)
-	{
-		targets: ".fs__wrapper",
-		easing: "easeInOutQuad",
-		duration: 1000,
-		translateY: [
-			"calc(var(--view-height, 1vh) * -600)",
-			"calc(var(--view-height, 1vh) * -700)",
-		],
-	},
+	[
+		{
+			targets: ".fs__wrapper",
+			easing: "easeInOutQuad",
+			duration: 1000,
+			translateY: [
+				"calc(var(--view-height, 1vh) * -600)",
+				"calc(var(--view-height, 1vh) * -700)",
+			],
+		},
+	],
 ];
 
 (function startup() {
