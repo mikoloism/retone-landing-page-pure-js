@@ -4,93 +4,140 @@
 	& {
 		display: flex;
 		width: 100%;
-		height: calc(50vh + 50px);
-
-		@include use-tablet {
-			height: 500px;
-		}
-
-		padding-top: 50px;
-
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-
-		flex-direction: row;
-		flex-wrap: wrap;
-
-		background-color: rgb(223 222 220/1);
-		color: rgb(80 80 80/1);
+		height: calc((var(--view-height, 1vh) * 100) - 64px);
+		flex-direction: column;
 		overflow: hidden;
-		z-index: 2;
+		overflow-y: auto;
 
-		scroll-behavior: smooth;
-		scroll-snap-type: y mandatory;
-	}
-
-	&__inner {
-		display: inline-block;
-		width: 100%;
-		height: calc(50vh + 50px);
-
-		@include use-tablet {
-			display: flex;
-			height: 500px;
+		@include use-tablet(640px) {
+			height: unset;
 			flex-direction: row;
-			flex-wrap: wrap;
+			overflow: unset;
 		}
 	}
 
-	&__information,
-	&__navigation,
-	&__socials {
-		display: inline-block;
-		height: calc(100% + 50px);
-		padding-top: 50px;
-		scroll-snap-align: end;
+	&__about {
+		width: 100%;
+		height: max-content;
 
-		@include use-tablet {
+		@include use-tablet(640px) {
+			width: 40%;
 			height: 100%;
-			padding-top: 0;
 		}
 	}
 
-	&__information,
+	&__navigation {
+		width: 100%;
+		height: max-content;
+
+		@include use-tablet(640px) {
+			width: 30%;
+			height: 100%;
+		}
+	}
+
 	&__socials {
-		display: inline-flex;
+		width: 100%;
+		height: 100%;
+
+		@include use-tablet(640px) {
+			width: 30%;
+		}
+	}
+}
+
+.about {
+	&,
+	&__inner,
+	&__header,
+	&__title,
+	&__paragraph {
+		padding: 0;
+		margin: 0;
+	}
+
+	&__paragraph {
+		display: block;
+		font-size: 1.2rem;
+		padding: 1.5rem 0;
+		overflow: hidden;
+		overflow-y: hidden;
+	}
+}
+
+.socials {
+	&,
+	&__inner,
+	&__links,
+	&__link,
+	&__text,
+	&__header,
+	&__title {
+		padding: 0;
+		margin: 0;
+	}
+
+	&__links {
+		display: inline-block;
+		width: 100%;
+		max-height: 100%;
+
+		overflow: hidden;
+		overflow-y: auto;
+	}
+
+	&__link {
+		display: flex;
+		width: 100%;
+		height: 2.5rem;
+
+		font-size: 1.2rem;
+		line-height: 2rem;
+
+		padding: 1rem 0;
+
 		place-items: center;
-		place-content: center;
+		place-content: flex-start;
+
+		color: inherit;
+		user-select: none;
+		touch-action: auto;
+		pointer-events: fill;
+		cursor: pointer;
+		text-decoration: none;
 	}
 
-	&__information {
-		width: 100%;
-
-		@include use-tablet {
-			width: 50%;
-		}
-	}
-
-	&__navigation,
-	&__socials {
-		width: 100%;
-
-		@include use-tablet {
-			width: 25%;
-		}
+	&__text {
+		display: inline-block;
+		text-transform: capitalize;
 	}
 }
-.footer .information {
-	background-color: gray;
-}
 
-.footer .socials {
-	background: gray;
+.navigation,
+.socials,
+.about {
+	&__inner {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		padding: 5% 10%;
+		flex-direction: column;
+		line-height: 1.6;
+	}
+
+	&__header {
+		display: block;
+	}
+
+	&__title {
+		display: block;
+		font-size: 1.6rem;
+	}
 }
 
 // TODO : extract to `navigation layouts`;
 .footer .navigation {
-	&,
+	&__wrapper,
 	&__list,
 	&__item,
 	&__link,
@@ -99,29 +146,36 @@
 		margin: 0;
 	}
 
-	&,
-	&__list {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
+	&__wrapper {
+		display: inline-flex;
+		width: 100%;
+
 		place-items: center;
 		place-content: center;
 	}
 
 	&__list {
 		list-style: none;
+
+		display: inline-block;
 		width: 100%;
-		height: 100%;
+		max-height: 100%;
+
+		overflow: hidden;
+		overflow-y: auto;
+
+		@include use-tablet(640px) {
+			overflow: unset;
+		}
 	}
 
 	&__item {
 		display: flex;
 		width: 100%;
-		height: 3.7rem;
+		height: 2.5rem;
 
-		font-size: 1.785rem;
-		line-height: 0.5rem;
-		letter-spacing: -0.075rem;
+		font-size: 1.2rem;
+		line-height: 2rem;
 
 		place-items: center;
 		place-content: center;
