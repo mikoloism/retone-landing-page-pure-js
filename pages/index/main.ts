@@ -157,6 +157,74 @@ var carouselAnimations: FullSection.AnimationList = [
 		document.getElementById("museum")!.style.transform = `translate(-50%, -50%) scale(${
 			realScreenHeight / 1080
 		})`;
+
+		const mobileCarouselAnimations: any = [
+			...carouselAnimations,
+
+			// @full-section-9 (footer)
+			[
+				{
+					targets: ".fs__wrapper",
+					easing: "easeInOutQuad",
+					duration: 1000,
+					translateY: [
+						"calc(var(--view-height, 1vh) * -700)",
+						"calc((var(--view-height, 1vh) * -800) + 64px)",
+					],
+				},
+			],
+		];
+
+		if (realScreenWidth <= 639) {
+			FullSection.init(mobileCarouselAnimations, {
+				0: 1,
+				1: 2,
+				2: 2,
+				3: 3,
+				4: 4,
+				5: 5,
+				6: 6,
+				7: 7,
+				8: 8,
+				9: 9,
+			});
+		} else {
+			window.setTimeout(function () {}, 200);
+			FullSection.init(
+				[
+					...carouselAnimations,
+
+					// @full-section-9 (footer)
+					[
+						{
+							targets: ".fs__wrapper",
+							easing: "easeInOutQuad",
+							duration: 1000,
+							translateY: [
+								"calc(var(--view-height, 1vh) * -700)",
+								`calc((var(--view-height, 1vh) * -700) - ${
+									window.getComputedStyle(
+										document.querySelector<HTMLDivElement>(".footer")!
+									).height
+								})`,
+							],
+						},
+					],
+				],
+				{
+					0: 1,
+					1: 2,
+					2: 2,
+					3: 3,
+					4: 4,
+					5: 5,
+					6: 6,
+					7: 7,
+					8: 8,
+					9: 9,
+				}
+			);
+		}
 	});
 
 	ViewSize.init();
@@ -179,7 +247,7 @@ var carouselAnimations: FullSection.AnimationList = [
 		}
 	});
 
-	FullSection.init(carouselAnimations);
+	// FullSection.init(carouselAnimations);
 
 	Header.init();
 })();
