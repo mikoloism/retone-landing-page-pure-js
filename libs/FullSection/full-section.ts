@@ -30,11 +30,16 @@ export namespace FullSection {
 	var currentAnimation: anime.AnimeInstance;
 	var beforeSwipeHandler: SwipeCallback | undefined;
 	var afterSwipeHandler: SwipeCallback | undefined;
+	var sectionMap: Record<number | string, number | string> = {};
 
 	var animationList: AnimationList = [];
 
-	export function init(animations: AnimationList) {
+	export function init(
+		animations: AnimationList,
+		sectionMapObject: Record<string | number, string | number>
+	) {
 		animationList = animations;
+		sectionMap = sectionMapObject;
 		attachEventsListener();
 	}
 
@@ -118,23 +123,35 @@ export namespace FullSection {
 
 		if (direction > 0) {
 			if (currentAnimationIndex >= animationList.length) return;
+			let currentAnimations = animationList[currentAnimationIndex];
 
-			currentAnimation = anime(animationList[currentAnimationIndex]);
 			disableSwipe();
-			currentAnimation.play();
+
+			currentAnimations.map((animation: any) => {
+				currentAnimation = anime(animation);
+				currentAnimation.play();
+			});
+
 			currentAnimation.finished.then(() => {
 				enableSwipe();
+				currentAnimationIndex += 1;
+				currentSectionIndex = sectionMap[currentAnimationIndex] as number;
 			});
-			currentAnimationIndex += 1;
-			currentSectionIndex += 1;
 		} else if (direction < 0) {
 			if (currentAnimationIndex <= 0) return;
 
 			currentAnimationIndex -= 1;
-			currentSectionIndex -= 1;
-			currentAnimation = anime(withReverseAnime(animationList[currentAnimationIndex]));
+			currentSectionIndex = sectionMap[currentAnimationIndex] as number;
+
 			disableSwipe();
-			currentAnimation.play();
+
+			let currentAnimations = animationList[currentAnimationIndex];
+
+			currentAnimations.map((animation: any) => {
+				currentAnimation = anime(withReverseAnime(animation));
+				currentAnimation.play();
+			});
+
 			currentAnimation.finished.then(() => {
 				enableSwipe();
 			});
@@ -184,7 +201,7 @@ export namespace FullSection {
 		currentSectionIndex: number;
 	}) => void;
 	type Point = { x: number; y: number };
-	export type AnimationObject = anime.AnimeParams;
+	export type AnimationObject = Array<anime.AnimeParams>;
 	export type AnimationList = Array<AnimationObject>;
 }
 
