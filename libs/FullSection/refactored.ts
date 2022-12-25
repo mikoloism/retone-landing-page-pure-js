@@ -305,8 +305,6 @@ export namespace Direction {
 		const distanceX = endPoint.x - startPoint.x;
 		const angle = (Math.atan2(distanceY, distanceX) * 180) / Math.PI;
 
-		console.log(angle);
-
 		let direction =
 			angle < -135
 				? Direction.Left
