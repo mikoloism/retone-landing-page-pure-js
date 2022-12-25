@@ -1,7 +1,7 @@
 @import "../utils/_breakpoints.scss";
 
 .header {
-	--svg-height: 1.125rem;
+	--svg-height: 1.3125rem;
 
 	& {
 		display: flex;
@@ -24,24 +24,11 @@
 		stroke: white;
 		fill: white;
 
-		top: -100%;
-		opacity: 0;
-	}
-
-	&--visible {
 		top: 0;
 		opacity: 1;
-	}
-
-	&--blurred {
-		background: rgba(50, 50, 50, 0.5);
-		-webkit-backdrop-filter: blur(12px);
-		backdrop-filter: blur(12px);
-
-		@include use-tablet {
-			background: rgba(80, 80, 80, 0.4);
-			backdrop-filter: blur(8px);
-		}
+		background: rgba(0, 0, 0, 0.4);
+		-webkit-backdrop-filter: blur(4px);
+		backdrop-filter: blur(4px);
 	}
 }
 
