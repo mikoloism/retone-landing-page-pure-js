@@ -10,7 +10,7 @@
 		overflow-y: auto;
 
 		@include use-tablet(640px) {
-			height: unset;
+			height: unset !important;
 			flex-direction: row;
 			overflow: unset;
 		}
@@ -83,7 +83,7 @@
 		max-height: 100%;
 
 		overflow: hidden;
-		overflow-y: auto;
+		overflow-y: visible;
 	}
 
 	&__link {
