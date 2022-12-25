@@ -56,7 +56,7 @@ export namespace FullSection {
 	}
 
 	function handleOnMouseWheel(event: WheelEvent): void {
-		let direction = Direction.normalize({ x: 0, y: 0 }, { x: 0, y: event.deltaY });
+		let direction = Direction.normalize({ x: 0, y: 0 }, { x: 0, y: event.deltaY * -1 });
 		let $self = document.querySelector<HTMLDivElement>(`#fs-section-${currentSectionIndex}`)!;
 
 		if (direction === Direction.Down && isScrollStart($self)) {
