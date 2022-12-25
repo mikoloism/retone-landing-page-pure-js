@@ -75,7 +75,5 @@ const carouselAnimations: FullSection.AnimationList = [
 		7: 8,
 	});
 
-	Header.disableObserver();
 	Header.init();
-	Header.detachEventsListener();
 })();
