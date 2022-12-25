@@ -15,13 +15,11 @@ var carouselAnimations: FullSection.AnimationList = [
 			duration: 1000,
 			translateY: ["0", "calc(var(--view-height, 1vh) * -100)"],
 		},
-	],
-
-	[
 		{
 			targets: ".cover__header",
 			easing: "easeInOutQuad",
 			duration: 400,
+			delay: 1000,
 			background: ["rgba(0,0,0,0%)", "rgba(0,0,0,80%)"],
 			color: ["#333", "#fff"],
 		},
@@ -30,7 +28,7 @@ var carouselAnimations: FullSection.AnimationList = [
 			easing: "easeInOutQuad",
 			duration: 400,
 			translateY: ["100%", "0"],
-			delay: 200,
+			delay: 1200,
 		},
 	],
 
@@ -39,9 +37,19 @@ var carouselAnimations: FullSection.AnimationList = [
 			targets: ".cover .word__inner",
 			easing: "easeInOutQuad",
 			duration: 400,
-			translateY: ["0", "-100%"],
+			translateY: ["0%", "-100%"],
 		},
+		{
+			targets: ".cover__header",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			background: ["rgba(0,0,0,80%)", "rgba(0,0,0,0%)"],
+			color: ["#fff", "#333"],
+		},
+	],
 
+	[
 		// @full-section-3 (museum)
 		{
 			targets: ".fs__wrapper",
@@ -51,7 +59,6 @@ var carouselAnimations: FullSection.AnimationList = [
 				"calc(var(--view-height, 1vh) * -100)",
 				"calc(var(--view-height, 1vh) * -200)",
 			],
-			delay: 800,
 		},
 	],
 
