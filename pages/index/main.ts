@@ -88,6 +88,38 @@ var carouselAnimations: FullSection.AnimationList = [
 				if (anim.direction == "normal") explode.play();
 			},
 		},
+		{
+			targets: ".explode__header",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			background: ["rgba(0,0,0,0%)", "rgba(0,0,0,80%)"],
+			color: ["#333", "#fff"],
+		},
+		{
+			targets: ".explode .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["100%", "0"],
+			delay: 1200,
+		},
+	],
+
+	[
+		{
+			targets: ".explode .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["0%", "-100%"],
+		},
+		{
+			targets: ".explode__header",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			background: ["rgba(0,0,0,80%)", "rgba(0,0,0,0%)"],
+			color: ["#fff", "#333"],
+		},
 	],
 
 	// @full-section-5 (tagline)
@@ -184,19 +216,22 @@ var carouselAnimations: FullSection.AnimationList = [
 			],
 		];
 
+		const SECTION_MAP = {
+			0: 1,
+			1: 2,
+			2: 2,
+			3: 3,
+			4: 4,
+			5: 4,
+			6: 5,
+			7: 6,
+			8: 7,
+			9: 8,
+			10: 9,
+		};
+
 		if (realScreenWidth <= 639) {
-			FullSection.init(mobileCarouselAnimations, {
-				0: 1,
-				1: 2,
-				2: 2,
-				3: 3,
-				4: 4,
-				5: 5,
-				6: 6,
-				7: 7,
-				8: 8,
-				9: 9,
-			});
+			FullSection.init(mobileCarouselAnimations, SECTION_MAP);
 		} else {
 			window.setTimeout(function () {}, 200);
 			FullSection.init(
@@ -220,18 +255,7 @@ var carouselAnimations: FullSection.AnimationList = [
 						},
 					],
 				],
-				{
-					0: 1,
-					1: 2,
-					2: 2,
-					3: 3,
-					4: 4,
-					5: 5,
-					6: 6,
-					7: 7,
-					8: 8,
-					9: 9,
-				}
+				SECTION_MAP
 			);
 		}
 	});
