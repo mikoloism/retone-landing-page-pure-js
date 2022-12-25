@@ -7,7 +7,7 @@
 .header {
 	padding: 0 1.09375rem;
 	height: 3.5rem;
-	width: calc(var(--view-width, 1vh) * 100);
+	width: calc(var(--view-width, 1vw) * 100);
 	margin: 0 auto;
 }
 
@@ -97,17 +97,12 @@
 
 	&__subtitle {
 		display: block;
-		font-size: viewSize(4.9);
+		font-size: viewSize(5.4);
 		line-height: 1.3;
 	}
 }
 
 .explode {
-	&__header {
-		place-content: flex-start;
-		place-items: flex-start;
-	}
-
 	&__title {
 		font-size: viewSize(4);
 	}
