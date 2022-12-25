@@ -275,8 +275,8 @@ namespace Museum {
 				targets: $_var,
 				easing: "easeInOutQuad",
 				duration: 1000,
-				"--angle1": ["0deg", "90deg"],
-				"--angle2": ["-90deg", "0deg"],
+				"--angle1": ["0deg", "80deg"],
+				"--angle2": ["-80deg", "0deg"],
 			},
 		],
 
@@ -286,8 +286,8 @@ namespace Museum {
 				targets: $_var,
 				easing: "easeInOutQuad",
 				duration: 1000,
-				"--angle2": ["0deg", "90deg"],
-				"--angle3": ["-90deg", "0deg"],
+				"--angle2": ["0deg", "80deg"],
+				"--angle3": ["-80deg", "0deg"],
 			},
 		],
 
@@ -297,8 +297,8 @@ namespace Museum {
 				targets: $_var,
 				easing: "easeInOutQuad",
 				duration: 1000,
-				"--angle3": ["0deg", "90deg"],
-				"--angle4": ["-90deg", "0deg"],
+				"--angle3": ["0deg", "80deg"],
+				"--angle4": ["-80deg", "0deg"],
 			},
 		],
 	];
