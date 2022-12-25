@@ -237,10 +237,13 @@ var carouselAnimations: FullSection.AnimationList = [
 
 			if (isVideoPlaying($taglineVideo))
 				anime({
-					targets: $taglineVideo,
-					volume: [1, 0],
-					easing: "easeInOutQuad",
-					duration: 1000,
+					targets: `#tagline-video`,
+					"data-volume": [1, 0],
+					update(_anim: any) {
+						$taglineVideo.volume = parseFloat($taglineVideo.dataset.volume as string);
+					},
+					easing: "linear",
+					duration: 3000,
 					autoplay: true,
 				}).finished.then(() => {
 					$taglineVideo.pause();
