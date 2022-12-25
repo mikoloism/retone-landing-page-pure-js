@@ -263,6 +263,29 @@ var carouselAnimations: FullSection.AnimationList = [
 	ViewSize.init();
 
 	FullSection.afterSwipe(function ({ currentSectionIndex }) {
+		let $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
+
+		$taglineVideo.addEventListener("play", function () {
+			if (!isFullScreenEnabled()) {
+				if (($taglineVideo as any).webkitEnterFullscreen) {
+					($taglineVideo as any).webkitEnterFullscreen();
+				} else if (($taglineVideo as any).webkitRequestFullscreen) {
+					($taglineVideo as any).webkitRequestFullscreen();
+				} else if ($taglineVideo.requestFullscreen) {
+					$taglineVideo.requestFullscreen();
+				}
+			}
+		});
+
+		document.addEventListener("fullscreenchange", function () {
+			if (isFullScreenEnabled()) {
+				FullSection.disableSwipe();
+			} else {
+				$taglineVideo.pause();
+				FullSection.enableSwipe();
+			}
+		});
+
 		if (currentSectionIndex == 4 || currentSectionIndex == 6) {
 			const $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
 
@@ -287,6 +310,16 @@ var carouselAnimations: FullSection.AnimationList = [
 
 	Header.init();
 })();
+
+function isFullScreenEnabled(): boolean {
+	const fullscreenElement: Element | null =
+		document.fullscreenElement ||
+		(document as any).mozFullScreenElement ||
+		(document as any).webkitFullscreenElement ||
+		(document as any).msFullscreenElement;
+
+	return fullscreenElement != null;
+}
 
 function isVideoPlaying(video: HTMLVideoElement) {
 	return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
