@@ -283,47 +283,26 @@ var carouselAnimations: FullSection.AnimationList = [
 
 	ViewSize.init();
 
-	FullSection.afterSwipe(function ({ currentSectionIndex }) {
-		let $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
+	const $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
 
-		$taglineVideo.addEventListener("play", function () {
-			if (!isFullScreenEnabled()) {
-				if (($taglineVideo as any).webkitEnterFullscreen) {
-					($taglineVideo as any).webkitEnterFullscreen();
-				} else if (($taglineVideo as any).webkitRequestFullscreen) {
-					($taglineVideo as any).webkitRequestFullscreen();
-				} else if ($taglineVideo.requestFullscreen) {
-					$taglineVideo.requestFullscreen();
-				}
+	$taglineVideo.addEventListener("playing", function () {
+		if (!isFullScreenEnabled()) {
+			if (($taglineVideo as any).webkitEnterFullscreen) {
+				($taglineVideo as any).webkitEnterFullscreen();
+			} else if (($taglineVideo as any).webkitRequestFullscreen) {
+				($taglineVideo as any).webkitRequestFullscreen();
+			} else if ($taglineVideo.requestFullscreen) {
+				$taglineVideo.requestFullscreen();
 			}
-		});
+		}
+	});
 
-		document.addEventListener("fullscreenchange", function () {
-			if (isFullScreenEnabled()) {
-				FullSection.disableSwipe();
-			} else {
-				$taglineVideo.pause();
-				FullSection.enableSwipe();
-			}
-		});
-
-		if (currentSectionIndex == 4 || currentSectionIndex == 6) {
-			const $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
-
-			if (isVideoPlaying($taglineVideo))
-				anime({
-					targets: `#tagline-video`,
-					"data-volume": [1, 0],
-					update(_anim: any) {
-						$taglineVideo.volume = parseFloat($taglineVideo.dataset.volume as string);
-					},
-					easing: "linear",
-					duration: 3000,
-					autoplay: true,
-				}).finished.then(() => {
-					$taglineVideo.pause();
-					$taglineVideo.volume = 1;
-				});
+	document.addEventListener("fullscreenchange", function () {
+		if (isFullScreenEnabled()) {
+			FullSection.disableSwipe();
+		} else {
+			$taglineVideo.pause();
+			FullSection.enableSwipe();
 		}
 	});
 
