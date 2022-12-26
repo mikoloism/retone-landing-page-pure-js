@@ -49,8 +49,8 @@ var carouselAnimations: FullSection.AnimationList = [
 		},
 	],
 
+	// @full-section-3 (museum)
 	[
-		// @full-section-3 (museum)
 		{
 			targets: ".fs__wrapper",
 			easing: "easeInOutQuad",
@@ -153,6 +153,13 @@ var carouselAnimations: FullSection.AnimationList = [
 				"calc(var(--view-height, 1vh) * -500)",
 			],
 		},
+		{
+			targets: ".solutions .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["100%", "0"],
+			delay: 1000,
+		},
 	],
 
 	// @full-section-7 (story)
@@ -166,6 +173,13 @@ var carouselAnimations: FullSection.AnimationList = [
 				"calc(var(--view-height, 1vh) * -600)",
 			],
 		},
+		{
+			targets: ".story .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["100%", "0"],
+			delay: 1000,
+		},
 	],
 
 	// @full-section-8 (blog)
@@ -178,6 +192,13 @@ var carouselAnimations: FullSection.AnimationList = [
 				"calc(var(--view-height, 1vh) * -600)",
 				"calc(var(--view-height, 1vh) * -700)",
 			],
+		},
+		{
+			targets: ".blog .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["100%", "0"],
+			delay: 1000,
 		},
 	],
 ];
@@ -321,9 +342,9 @@ function isFullScreenEnabled(): boolean {
 	return fullscreenElement != null;
 }
 
-function isVideoPlaying(video: HTMLVideoElement) {
-	return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
-}
+// function isVideoPlaying(video: HTMLVideoElement) {
+// 	return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+// }
 
 namespace Museum {
 	const TOUCH_THRESHOLD = 5;
