@@ -268,7 +268,7 @@ var carouselAnimations: FullSection.AnimationList = [
 					duration: 1000,
 					translateY: [
 						"calc(var(--view-height, 1vh) * -700)",
-						"calc((var(--view-height, 1vh) * -800) + 64px)",
+						"calc((var(--view-height, 1vh) * -800) + 3.5rem)",
 					],
 				},
 			],
@@ -284,8 +284,9 @@ var carouselAnimations: FullSection.AnimationList = [
 			6: 5,
 			7: 6,
 			8: 7,
-			9: 8,
-			10: 9,
+			9: 7,
+			10: 8,
+			11: 9,
 		};
 
 		if (realScreenWidth <= 639) {
