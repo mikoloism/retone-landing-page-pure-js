@@ -174,11 +174,48 @@ var carouselAnimations: FullSection.AnimationList = [
 			],
 		},
 		{
+			targets: ".story__background",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			background: ["rgba(0,0,0,0%)", "rgba(0,0,0,80%)"],
+		},
+		{
+			targets: ".story__header",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			color: ["#333", "#fff"],
+		},
+		{
 			targets: ".story .word__inner",
 			easing: "easeInOutQuad",
 			duration: 400,
 			translateY: ["100%", "0"],
 			delay: 1000,
+		},
+	],
+
+	[
+		{
+			targets: ".story .word__inner",
+			easing: "easeInOutQuad",
+			duration: 400,
+			translateY: ["0%", "-100%"],
+		},
+		{
+			targets: ".story__background",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			background: ["rgba(0,0,0,80%)", "rgba(0,0,0,0%)"],
+		},
+		{
+			targets: ".story__header",
+			easing: "easeInOutQuad",
+			duration: 400,
+			delay: 1000,
+			color: ["#fff", "#333"],
 		},
 	],
 
