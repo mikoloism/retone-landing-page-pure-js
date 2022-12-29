@@ -44,7 +44,7 @@
 	&--tagline video {
 		width: viewWidth(100);
 		height: viewHeight(100);
-		object-fit: contain;
+		object-fit: cover;
 	}
 }
 
