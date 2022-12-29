@@ -63,6 +63,12 @@
 		overflow: hidden;
 		overflow-y: hidden;
 	}
+
+	&__link {
+		color: inherit;
+		transition: 0.3s ease all;
+		padding: 0 6px;
+	}
 }
 
 .socials {
