@@ -325,38 +325,61 @@ var carouselAnimations: FullSection.AnimationList = [
 
 	$taglineVideo.addEventListener("playing", function () {
 		if (!isFullScreenEnabled()) {
-			if (($taglineVideo as any).webkitEnterFullscreen) {
-				($taglineVideo as any).webkitEnterFullscreen();
-			} else if (($taglineVideo as any).webkitRequestFullscreen) {
-				($taglineVideo as any).webkitRequestFullscreen();
-			} else if ($taglineVideo.requestFullscreen) {
-				$taglineVideo.requestFullscreen();
-			}
+			$taglineVideo.style.objectFit = "contain";
+			FullSection.disableSwipe();
+			requestFullScreen($taglineVideo);
 		}
 	});
 
-	document.addEventListener("fullscreenchange", function () {
-		if (isFullScreenEnabled()) {
-			FullSection.disableSwipe();
-		} else {
-			$taglineVideo.pause();
-			FullSection.enableSwipe();
-		}
-	});
+	document.addEventListener("webkitfullscreenchange", handleChangeFullScreen);
+	document.addEventListener("fullscreenchange", handleChangeFullScreen);
 
 	// FullSection.init(carouselAnimations);
 
 	Header.init();
 })();
 
-function isFullScreenEnabled(): boolean {
-	const fullscreenElement: Element | null =
-		document.fullscreenElement ||
-		(document as any).mozFullScreenElement ||
-		(document as any).webkitFullscreenElement ||
-		(document as any).msFullscreenElement;
+function handleChangeFullScreen() {
+	if (!isFullScreenEnabled()) {
+		const $taglineVideo = document.querySelector<HTMLVideoElement>("#tagline-video")!;
+		$taglineVideo.pause();
+		$taglineVideo.currentTime = 0;
+		FullSection.enableSwipe();
+		$taglineVideo.style.objectFit = "cover";
+	}
+}
 
-	return fullscreenElement != null;
+function requestFullScreen($self: Element): void {
+	if (($self as any).webkitEnterFullscreen) {
+		($self as any).webkitEnterFullscreen();
+	} else if (($self as any).webkitRequestFullscreen) {
+		($self as any).webkitRequestFullscreen();
+	} else if ($self.requestFullscreen) {
+		$self.requestFullscreen();
+	}
+}
+
+function getFullScreenElement(): Element | null | undefined {
+	const fullscreenElement: Element | null =
+		document.fullscreenElement ??
+		(document as any).mozFullScreenElement ??
+		(document as any).webkitFullscreenElement ??
+		(document as any).msFullscreenElement ??
+		undefined;
+
+	return fullscreenElement;
+}
+
+function isFullScreenEnabled(): boolean {
+	const fullscreenElement = getFullScreenElement();
+
+	return (
+		(fullscreenElement != null ||
+			fullscreenElement != undefined ||
+			document.fullscreen != false ||
+			(document as any).webkitIsFullScreen) &&
+		fullscreenElement instanceof Element
+	);
 }
 
 // function isVideoPlaying(video: HTMLVideoElement) {
