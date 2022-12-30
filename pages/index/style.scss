@@ -267,6 +267,19 @@
 	}
 }
 
+.blog {
+	&__cta {
+		position: relative;
+		text-decoration: none;
+		color: white;
+		font-size: viewSize(2.1);
+
+		& svg {
+			width: viewSize(2);
+			height: viewSize(2);
+		}
+	}
+}
 
 .hero {
 	&__header {

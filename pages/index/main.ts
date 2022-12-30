@@ -6,6 +6,102 @@ import { Header } from "../../src/header";
 import { ViewSize, computeRootFontSize } from "../../src/view-size";
 
 const explode = document.getElementById("explode")! as HTMLVideoElement;
+
+class CallToAction<TSelector extends Element = Element> {
+	private readonly ANIMATION_BASE: anime.AnimeParams = {
+		easing: "linear",
+		duration: 400,
+		autoplay: false,
+	};
+
+	private readonly ANIMATION_LINE_1_HOVER: anime.AnimeInstance = anime({
+		...this.ANIMATION_BASE,
+		targets: ".cta-icon-line-1",
+		x1: [4, 28],
+		y1: [4, -20],
+		x2: [20, 44],
+		y2: [4, -20],
+	});
+
+	private readonly ANIMATION_LINE_1_REPEAT: anime.AnimeInstance = anime({
+		...this.ANIMATION_BASE,
+		delay: 400,
+		targets: ".cta-icon-line-1",
+		x1: [-20, 4],
+		y1: [28, 4],
+		x2: [-4, 20],
+		y2: [28, 4],
+	});
+
+	private readonly ANIMATION_LINE_2_HOVER: anime.AnimeInstance = anime({
+		...this.ANIMATION_BASE,
+		targets: ".cta-icon-line-2",
+		x1: [20, 44],
+		y1: [4, -20],
+		x2: [20, 44],
+		y2: [20, -4],
+	});
+
+	private readonly ANIMATION_LINE_2_REPEAT: anime.AnimeInstance = anime({
+		...this.ANIMATION_BASE,
+		delay: 400,
+		targets: ".cta-icon-line-2",
+		x1: [-4, 20],
+		y1: [28, 4],
+		x2: [-4, 20],
+		y2: [44, 20],
+	});
+
+	private readonly ANIMATION_LINE_3_HOVER: anime.AnimeInstance = anime({
+		...this.ANIMATION_BASE,
+		targets: ".cta-icon-line-3",
+		x1: [4, 28],
+		y1: [20, -4],
+		x2: [20, 44],
+		y2: [4, -20],
+	});
+
+	private readonly ANIMATION_LINE_3_REPEAT: anime.AnimeInstance = anime({
+		...this.ANIMATION_BASE,
+		delay: 400,
+		targets: ".cta-icon-line-3",
+		x1: [-20, 4],
+		y1: [44, 20],
+		x2: [-4, 20],
+		y2: [28, 4],
+	});
+
+	private play(animation: anime.AnimeInstance) {
+		animation.play();
+	}
+
+	private $self: TSelector | null;
+
+	public constructor(selector: string) {
+		this.$self = document.querySelector<TSelector>(selector);
+
+		this.$self?.addEventListener("mouseenter", () => this.playOnHover());
+		this.$self?.addEventListener("startup", () => this.playOnStartup());
+	}
+
+	public playOnHover(): void {
+		this.playOnStartup();
+		this.play(this.ANIMATION_LINE_1_REPEAT);
+		this.play(this.ANIMATION_LINE_2_REPEAT);
+		this.play(this.ANIMATION_LINE_3_REPEAT);
+	}
+
+	public playOnStartup(): void {
+		this.play(this.ANIMATION_LINE_1_HOVER);
+		this.play(this.ANIMATION_LINE_2_HOVER);
+		this.play(this.ANIMATION_LINE_3_HOVER);
+	}
+
+	public triggerOnStartup(): void {
+		this.$self?.dispatchEvent(new CustomEvent("startup"));
+	}
+}
+
 var carouselAnimations: FullSection.AnimationList = [
 	// @full-section-2 (cover)
 	[
