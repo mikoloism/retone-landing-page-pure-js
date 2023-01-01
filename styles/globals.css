@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#__next {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+
+  background: white;
+  color: black;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+#root,
+#__next {
+  flex-direction: row;
+  max-height: 100vh;
+  place-content: flex-start;
+  scroll-behavior: smooth;
+}

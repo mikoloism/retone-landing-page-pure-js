@@ -1,20 +1,31 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
-		"useDefineForClassFields": true,
-		"module": "ESNext",
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"moduleResolution": "Node",
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
 		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"esModuleInterop": true,
-		"noEmit": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitReturns": true,
-		"skipLibCheck": true,
-		"baseUrl": "./"
+		"jsx": "preserve",
+		"incremental": true,
+		"baseUrl": "./",
+		"paths": {
+			"@/components/*": ["components/*"],
+			"@/pages/*": ["pages/*"],
+			"@/vendors/normalize.css": [
+				"node_modules/normalize.css/normalize.css"
+			],
+			"@/vendors/*": ["vendors/*"],
+			"@/libs/*": ["libs/*"],
+			"@/styles/*": ["styles/*", "styles/layouts/*"]
+		}
 	},
-	"include": ["src", "libs", "pages/**/*.ts"]
+	"include": ["next-env.d.ts", "./**/*.ts", "./**/*.tsx"],
+	"exclude": ["node_modules"]
 }

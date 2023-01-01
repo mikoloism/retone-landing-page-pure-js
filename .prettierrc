@@ -1,8 +1,14 @@
 {
-	"tabWidth": 4,
-	"useTabs": true,
-	"quoteProps": "as-needed",
-	"singleQuote": false,
-	"printWidth": 100,
-	"embeddedLanguageFormatting": "auto"
+    "arrowParens": "always",
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "htmlWhitespaceSensitivity": "css",
+    "jsxSingleQuote": false,
+    "quoteProps": "as-needed",
+    "semi": true,
+    "singleAttributePerLine": true,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "es5",
+    "useTabs": true
 }
