@@ -22,29 +22,26 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-public/assets/explode.mp4
-public/assets/old-retone.mp4
-public/assets/retone.mp4
-public/assets/tagline.mp4
-public/assets/images/BG1.png
-public/assets/images/D11.png
-public/assets/images/D21.png
-public/assets/images/D31.png
-public/assets/images/D41.png
-public/assets/images/explode.png
-public/assets/images/retone-HERO.png
-public/assets/images/story.jpg
-public/assets/loading-complete.mp4
-public/assets/loading-loop.mp4
-public/assets/loading.mp4
-public/assets/images/retone-loop-full.png
-public/assets/images/retone-loop.png
-public/assets/images/tagline.jpg
-public/assets/images/tagline.png
-public/assets/old-tagline.mp4
-public/assets/tagline-2.mp4
-public/assets/images/tagline-1.jpg
-public/assets/images/tagline-1.png
-cerere/
-styles/utils/_mixins.scss
-src/linked.ts
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+
