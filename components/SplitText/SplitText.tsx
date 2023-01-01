@@ -9,18 +9,18 @@ export class SplitText extends Component<Props, State> {
 		return (
 			<>
 				{Children.toArray(
-					this.props.text.split(' ').map(this.mapToCharacter)
+					this.props.text.split(' ').map(this.mapToWord)
 				)}
 			</>
 		);
 	}
 
-	public mapToCharacter(character: string): JSX.Element {
+	public mapToWord(word: string): JSX.Element {
 		return (
 			<span
 				className="word"
 				aria-hidden="true">
-				<span className="word__inner">{character}</span>
+				<span className="word__inner">{word}</span>
 			</span>
 		);
 	}
