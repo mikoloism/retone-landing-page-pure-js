@@ -97,18 +97,14 @@ export class PageCarousel {
 
 		if (([Key.ArrowUp, Key.PageUp] as string[]).indexOf(key) != 0) {
 			this.direction.setStartPoint(new Point(0, 0));
-
-			// FIXME : update +1 to another correct;
-			this.direction.setEndPoint(new Point(0, 1));
+			this.direction.setEndPoint(new Point(0, -1));
 			this.swipe();
 			return;
 		}
 
 		if (([Key.ArrowDown, Key.PageDown] as string[]).indexOf(key) != 0) {
 			this.direction.setStartPoint(new Point(0, 0));
-
-			// FIXME : update -1 to another correct;
-			this.direction.setEndPoint(new Point(0, -1));
+			this.direction.setEndPoint(new Point(0, 1));
 			this.swipe();
 			return;
 		}
