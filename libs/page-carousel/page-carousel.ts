@@ -26,6 +26,7 @@ export class PageCarousel {
 	public attachEvents(): void {
 		if (typeof window == undefined) return;
 
+		window.addEventListener('keyup', this._handleKeyUp.bind(this), false);
 		window.addEventListener(
 			'touchstart',
 			this._handleTouchStart.bind(this),
@@ -68,6 +69,32 @@ export class PageCarousel {
 		this.swipe();
 	}
 
+	private _handleKeyUp(event: KeyboardEvent): void {
+		const key: string = String(event.key || event.code).toLowerCase();
+
+		if (([Key.ArrowUp, Key.PageUp] as string[]).indexOf(key) != 0) {
+			console.log('hi');
+			this.direction.setStartPoint(new Point(0, 0));
+
+			// FIXME : update +1 to another correct;
+			this.direction.setEndPoint(new Point(0, 1));
+			this.swipe();
+			return;
+		}
+
+		if (([Key.ArrowDown, Key.PageDown] as string[]).indexOf(key) != 0) {
+			console.log('hi');
+			this.direction.setStartPoint(new Point(0, 0));
+
+			// FIXME : update -1 to another correct;
+			this.direction.setEndPoint(new Point(0, -1));
+			this.swipe();
+			return;
+		}
+
+		return;
+	}
+
 	private swipe(): void {
 		this.direction.compute();
 
@@ -77,4 +104,11 @@ export class PageCarousel {
 			this.animations.prev();
 		}
 	}
+}
+
+const enum Key {
+	ArrowUp = 'arrowup',
+	ArrowDown = 'arrowdown',
+	PageUp = 'pageup',
+	PageDown = 'pagedown',
 }
