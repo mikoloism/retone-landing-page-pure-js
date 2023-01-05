@@ -52,16 +52,16 @@ export namespace Direction {
 	export function compute(startPoint: Point, endPoint: Point): Direct {
 		const angle: number = new Angle(startPoint, endPoint).toDegree();
 
-		let directionTo: Direct =
+		let directionTo: Direction.Direct =
 			angle < -135
-				? Direct.Left
+				? Direction.Direct.Left
 				: angle < -45
-				? Direct.Up
+				? Direction.Direct.Up
 				: angle < 45
-				? Direct.Right
+				? Direction.Direct.Right
 				: angle < 135
-				? Direct.Down
-				: Direct.Left;
+				? Direction.Direct.Down
+				: Direction.Direct.Left;
 
 		return directionTo;
 	}
@@ -119,7 +119,7 @@ class Angle {
 	public toDegree(): number {
 		if (this.unit === Angle.Degree) return this.value;
 
-		this.value = (this.value / 180) * Math.PI;
+		this.value = (this.value * 180) / Math.PI;
 		this.unit = Angle.Degree;
 		return this.value;
 	}
