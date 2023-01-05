@@ -1,7 +1,7 @@
 import { Footer } from '@/components/Footer';
-import PageCarousel from '@/components/PageCarousel';
 import * as Section from '@/components/Section';
 import { Header, Sidebar } from '@/components/index';
+import { PageCarousel } from '@/libs/page-carousel';
 
 export default function LandingPage() {
 	return (
