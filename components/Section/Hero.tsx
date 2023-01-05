@@ -9,6 +9,7 @@ export function HeroComponent() {
 					<SplitText>return home.</SplitText>
 				</Hero.Title>
 			</Hero.Header>
+			<Hero.BackgroundVideo src="/assets/retone.mp4" />
 		</Hero.Wrapper>
 	);
 }

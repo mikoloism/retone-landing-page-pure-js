@@ -65,6 +65,14 @@ export namespace Hero {
 		row-gap: 1rem;
 		margin-bottom: 1.09375rem;
 	`;
+
+	export const BackgroundVideo = styled.video.attrs(() => ({
+		autoPlay: true,
+		playsInline: true,
+		preload: 'auto',
+		muted: true,
+		loop: true,
+	}))``;
 }
 
 export namespace Cover {
