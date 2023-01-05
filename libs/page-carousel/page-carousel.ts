@@ -96,7 +96,6 @@ export class PageCarousel {
 		const key: string = String(event.code).toLowerCase();
 
 		if (([Key.ArrowUp, Key.PageUp] as string[]).indexOf(key) != 0) {
-			console.log('hi');
 			this.direction.setStartPoint(new Point(0, 0));
 
 			// FIXME : update +1 to another correct;
@@ -106,7 +105,6 @@ export class PageCarousel {
 		}
 
 		if (([Key.ArrowDown, Key.PageDown] as string[]).indexOf(key) != 0) {
-			console.log('hi');
 			this.direction.setStartPoint(new Point(0, 0));
 
 			// FIXME : update -1 to another correct;
