@@ -93,7 +93,7 @@ export class PageCarousel {
 	}
 
 	private _handleKeyUp(event: KeyboardEvent): void {
-		const key: string = String(event.key || event.code).toLowerCase();
+		const key: string = String(event.code).toLowerCase();
 
 		if (([Key.ArrowUp, Key.PageUp] as string[]).indexOf(key) != 0) {
 			console.log('hi');
