@@ -13,11 +13,8 @@ export function ExplodeComponent() {
 				</Explode.SubTitle>
 			</Explode.Header>
 			<Explode.BackgroundVideo
-				poster="/assets/images/explode.png"
-				src="/assets/explode.mp4"
-				preload="preload"
-				playsInline
-				muted
+				poster="/assets/explode/poster.png"
+				src="/assets/explode/video.mp4"
 			/>
 		</Explode.Wrapper>
 	);

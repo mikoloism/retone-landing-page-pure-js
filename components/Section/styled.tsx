@@ -135,7 +135,11 @@ export namespace Explode {
 		line-height: 1.3;
 	`;
 
-	export const BackgroundVideo = styled.video`
+	export const BackgroundVideo = styled.video.attrs(() => ({
+		preload: 'preload',
+		playsInline: true,
+		muted: true,
+	}))`
 		position: absolute;
 		z-index: 1;
 	`;
