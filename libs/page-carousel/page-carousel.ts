@@ -44,7 +44,30 @@ export class PageCarousel {
 		);
 	}
 
-	public detachEvents(): void {}
+	public detachEvents(): void {
+		if (typeof window == undefined) return;
+
+		window.removeEventListener(
+			'keyup',
+			this._handleKeyUp.bind(this),
+			false
+		);
+		window.removeEventListener(
+			'touchstart',
+			this._handleTouchStart.bind(this),
+			false
+		);
+		window.removeEventListener(
+			'touchend',
+			this._handleTouchEnd.bind(this),
+			false
+		);
+		window.removeEventListener(
+			'wheel',
+			this._handleMouseWheel.bind(this),
+			false
+		);
+	}
 
 	private _handleMouseWheel(event: WheelEvent): void {
 		this.direction.setStartPoint(new Point(0, 0));
