@@ -24,7 +24,7 @@ export class PageCarousel {
 	}
 
 	public attachEvents(): void {
-		if (window == undefined) return;
+		if (typeof window == undefined) return;
 
 		window.addEventListener(
 			'touchstart',
