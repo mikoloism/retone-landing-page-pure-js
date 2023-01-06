@@ -13,7 +13,7 @@ export class PageCarousel {
 
 		// TODO : give constant from the argument of constructor from invoked
 		this.ANIMATION_DURATION = 500;
-		this.updateAnimation = props.stateUpdater;
+		this.updateAnimation = props.animationUpdater;
 
 		this.bound.call(this);
 	}
@@ -142,6 +142,6 @@ const enum Key {
 }
 
 type Props = {
-	stateUpdater: Function;
+	animationUpdater: Function;
 	animationList: string[];
 };
