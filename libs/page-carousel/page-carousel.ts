@@ -70,17 +70,15 @@ export class PageCarousel {
 		this.swipe();
 	}
 
-	private _handleKeyUp(event: KeyboardEvent): void {
-		const key: string = String(event.code).toLowerCase();
-
-		if (([Key.ArrowUp, Key.PageUp] as string[]).indexOf(key) != 0) {
+	private _handleKeyUp({ code }: KeyboardEvent): void {
+		if (code === Key.PageDown || code === Key.ArrowDown) {
 			this.direction.setStartPoint(new Point(0, 0));
 			this.direction.setEndPoint(new Point(0, -1));
 			this.swipe();
 			return;
 		}
 
-		if (([Key.ArrowDown, Key.PageDown] as string[]).indexOf(key) != 0) {
+		if (code === Key.PageUp || code === Key.ArrowUp) {
 			this.direction.setStartPoint(new Point(0, 0));
 			this.direction.setEndPoint(new Point(0, 1));
 			this.swipe();
@@ -137,10 +135,10 @@ export class PageCarousel {
 }
 
 const enum Key {
-	ArrowUp = 'arrowup',
-	ArrowDown = 'arrowdown',
-	PageUp = 'pageup',
-	PageDown = 'pagedown',
+	ArrowUp = 'ArrowUp',
+	ArrowDown = 'ArrowDown',
+	PageUp = 'PageUp',
+	PageDown = 'PageDown',
 }
 
 type Props = {
