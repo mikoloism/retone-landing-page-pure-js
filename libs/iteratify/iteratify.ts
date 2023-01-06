@@ -1,7 +1,7 @@
 export class Iterator<T> {
 	private constructor(private iterates: Array<T>) {}
 
-	private [Symbol.iterator](): Iterator.TReturn<T> {
+	private [Symbol.iterator](): Iterator.Iteratee<T> {
 		const { iterates } = this;
 		const minimum = 0;
 		const maximum = iterates.length - 1;
@@ -22,13 +22,13 @@ export class Iterator<T> {
 
 	public static createIterator<T = any>(
 		iterates: Array<T>
-	): Iterator.TReturn<T> {
+	): Iterator.Iteratee<T> {
 		const iterator = new Iterator<T>(iterates);
 		return iterator[Symbol.iterator]();
 	}
 }
 
 export namespace Iterator {
-	export type TReturn<T> = { next(): TResult<T>; prev(): TResult<T> };
+	export type Iteratee<T> = { next(): TResult<T>; prev(): TResult<T> };
 	export type TResult<T> = { value: T; done: boolean };
 }
