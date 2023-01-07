@@ -84,15 +84,13 @@ export class PageCarousel {
 			this.swipe();
 			return;
 		}
-
-		return;
 	}
 
 	private isPlaying: boolean = false;
 	private swipe(): void {
-		this.direction.compute();
-
 		if (this.isPlaying) return;
+
+		this.direction.compute();
 
 		if (this.direction.is(Direction.Direct.Up)) {
 			this.playAnimation(this.animations.next());
