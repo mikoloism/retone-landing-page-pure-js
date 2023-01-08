@@ -1,6 +1,7 @@
+import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
 import { Tagline } from './styled';
 
-export function TaglineComponent() {
+export function TaglineComponent(_props: Props): JSX.Element {
 	return (
 		<Tagline.Wrapper>
 			<Tagline.Video
@@ -11,3 +12,5 @@ export function TaglineComponent() {
 		</Tagline.Wrapper>
 	);
 }
+
+type Props = PropsWithIntersection;

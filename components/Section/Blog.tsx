@@ -1,16 +1,19 @@
+import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
 import { SplitText } from '../SplitText';
 import { Blog } from './styled';
 
-export function BlogComponent() {
+export function BlogComponent(props: Props): JSX.Element {
+	const { ref, entry } = props.intersection!;
+
 	return (
-		<Blog.Wrapper>
+		<Blog.Wrapper ref={ref}>
 			<Blog.Header>
 				<Blog.Title>
-					<SplitText>Blog</SplitText>
+					<SplitText play={entry?.isIntersecting}>Blog</SplitText>
 				</Blog.Title>
 
 				<Blog.SubTitle>
-					<SplitText>
+					<SplitText play={entry?.isIntersecting}>
 						Best Door In The World !!!Best Door In The World !!!
 					</SplitText>
 				</Blog.SubTitle>
@@ -18,3 +21,5 @@ export function BlogComponent() {
 		</Blog.Wrapper>
 	);
 }
+
+type Props = PropsWithIntersection;

@@ -1,15 +1,22 @@
+import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
 import { SplitText } from '../SplitText';
 import { Cover } from './styled';
 
-export function CoverComponent() {
+export function CoverComponent(props: Props): JSX.Element {
+	const { ref, entry } = props.intersection!;
+
 	return (
-		<Cover.Wrapper>
+		<Cover.Wrapper ref={ref}>
 			<Cover.Header>
 				<Cover.Title>
-					<SplitText>retone HERO</SplitText>
+					<SplitText play={entry?.isIntersecting}>
+						retone HERO
+					</SplitText>
 				</Cover.Title>
 				<Cover.SubTitle>
-					<SplitText>Super Security Door</SplitText>
+					<SplitText play={entry?.isIntersecting}>
+						Super Security Door
+					</SplitText>
 				</Cover.SubTitle>
 			</Cover.Header>
 			<Cover.BackgroundImage
@@ -19,3 +26,5 @@ export function CoverComponent() {
 		</Cover.Wrapper>
 	);
 }
+
+type Props = PropsWithIntersection;

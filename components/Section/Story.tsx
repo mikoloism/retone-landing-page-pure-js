@@ -1,16 +1,21 @@
+import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
 import { SplitText } from '../SplitText';
 import { Story } from './styled';
 
-export function StoryComponent() {
+export function StoryComponent(props: Props): JSX.Element {
+	const { ref, entry } = props.intersection!;
+
 	return (
-		<Story.Wrapper>
+		<Story.Wrapper ref={ref}>
 			<Story.BackgroundColor />
 			<Story.Header>
 				<Story.Title>
-					<SplitText>retone HERO</SplitText>
+					<SplitText play={entry?.isIntersecting}>
+						retone HERO
+					</SplitText>
 				</Story.Title>
 				<Story.SubTitle>
-					<SplitText>Story</SplitText>
+					<SplitText play={entry?.isIntersecting}>Story</SplitText>
 				</Story.SubTitle>
 			</Story.Header>
 			<Story.BackgroundImage
@@ -20,3 +25,5 @@ export function StoryComponent() {
 		</Story.Wrapper>
 	);
 }
+
+type Props = PropsWithIntersection;

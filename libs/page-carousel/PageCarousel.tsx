@@ -1,22 +1,30 @@
 import classnames from 'classnames';
 import { Variants, motion } from 'framer-motion';
 import React from 'react';
+import Context, { Handler } from './context';
 import { PageCarousel } from './page-carousel';
 import styled from './page-carousel.module.scss';
-import Context, { Handler } from './context';
 
 export class PageCarouselComponent extends React.Component<Props, State> {
 	private readonly pageCarousel: PageCarousel;
 	public static contextType = Context;
+	private readonly animations: Array<string>;
 
 	public constructor(props: Props) {
 		super(props);
+
+		this.animations = this.getKeysFromVariants(props.variants);
+
 		this.pageCarousel = new PageCarousel({
 			animationUpdater: this.updateAnimation.bind(this),
-			animationList: props.animationList,
+			animationList: this.animations,
 		});
 
-		this.state = { currentAnimation: props.animationList[0] };
+		this.state = { currentAnimation: this.animations[0] };
+	}
+
+	private getKeysFromVariants(variants: Variants): Array<string> {
+		return Object.keys(variants);
 	}
 
 	private updateAnimation(currentAnimation: string) {
@@ -33,7 +41,7 @@ export class PageCarouselComponent extends React.Component<Props, State> {
 
 	private readonly MOTION_PROPS = {
 		initial: { transform: 'translateY(-0vh)' },
-		transition: { duration: 0.4 },
+		transition: { duration: 0.7 },
 	};
 
 	public render(): JSX.Element {
@@ -57,7 +65,6 @@ export class PageCarouselComponent extends React.Component<Props, State> {
 
 type Props = React.PropsWithChildren<{
 	className?: string;
-	animationList: Array<string>;
 	variants: Variants;
 }>;
 

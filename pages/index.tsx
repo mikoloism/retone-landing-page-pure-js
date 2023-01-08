@@ -1,7 +1,9 @@
 import { Footer } from '@/components/Footer';
 import * as Section from '@/components/Section';
 import { PageCarousel } from '@/libs/page-carousel';
+import { useIntersection } from '@/libs/use-intersection/use-intersection';
 import { Variant } from 'framer-motion';
+import React from 'react';
 import styled from 'styled-components';
 
 const App = styled.div`
@@ -21,34 +23,48 @@ const variants: Record<string, Variant> = {
 	blog: { transform: 'translateY(-600vh)' },
 };
 
-const sectionList: string[] = [
-	'hero',
-	'cover',
-	'explode',
-	'tagline',
-	'solutions',
-	'story',
-	'blog',
-];
-
 export default function LandingPage() {
+	const containerRef = React.useRef<HTMLDivElement>(null);
+
+	const $hero = useIntersection({
+		root: containerRef.current,
+		threshold: 1,
+	});
+	const $cover = useIntersection({
+		root: containerRef.current,
+		threshold: 1,
+	});
+	const $explode = useIntersection({
+		root: containerRef.current,
+		threshold: 1,
+	});
+	const $tagline = useIntersection({
+		root: containerRef.current,
+		threshold: 1,
+	});
+	const $solutions = useIntersection({
+		root: containerRef.current,
+		threshold: 1,
+	});
+	const $story = useIntersection({
+		root: containerRef.current,
+		threshold: 1,
+	});
+	const $blog = useIntersection({ root: containerRef.current, threshold: 1 });
+
 	return (
-		<>
-			<App>
-				<PageCarousel
-					variants={variants}
-					animationList={sectionList}>
-					<Section.Hero />
-					<Section.Cover />
-					<Section.Explode />
-					<Section.Tagline />
-					<Section.Solutions />
-					<Section.Story />
-					<Section.Blog />
-					<Footer />
-				</PageCarousel>
-			</App>
-		</>
+		<App ref={containerRef}>
+			<PageCarousel variants={variants}>
+				<Section.Hero intersection={$hero} />
+				<Section.Cover intersection={$cover} />
+				<Section.Explode intersection={$explode} />
+				<Section.Tagline intersection={$tagline} />
+				<Section.Solutions intersection={$solutions} />
+				<Section.Story intersection={$story} />
+				<Section.Blog intersection={$blog} />
+				<Footer />
+			</PageCarousel>
+		</App>
 	);
 }
 
