@@ -12,14 +12,13 @@ const App = styled.div`
 `;
 
 const variants: Record<string, Variant> = {
-	startup: { opacity: 1 },
 	hero: { transform: 'translateY(-0vh)' },
 	cover: { transform: 'translateY(-100vh)' },
 	explode: { transform: 'translateY(-200vh)' },
 	tagline: { transform: 'translateY(-300vh)' },
 	solutions: { transform: 'translateY(-400vh)' },
 	story: { transform: 'translateY(-500vh)' },
-	blog: { transform: 'translateY(-700vh)' },
+	blog: { transform: 'translateY(-600vh)' },
 };
 
 const sectionList: string[] = [
