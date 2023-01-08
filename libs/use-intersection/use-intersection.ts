@@ -2,7 +2,7 @@ import React from 'react';
 
 export function useIntersection<T extends HTMLElement = any>(
 	options?: ConstructorParameters<typeof IntersectionObserver>[1]
-) {
+): IntersectionResult<T> {
 	const [entry, setEntry] = React.useState<IntersectionObserverEntry | null>(
 		null
 	);
@@ -33,3 +33,12 @@ export function useIntersection<T extends HTMLElement = any>(
 
 	return { ref, entry };
 }
+
+type IntersectionResult<T extends HTMLElement = any> = {
+	ref: (element: T | null) => void;
+	entry: IntersectionObserverEntry | null;
+};
+
+export type PropsWithIntersection<T extends HTMLElement = any> = {
+	intersection?: IntersectionResult<T>;
+};
