@@ -88,7 +88,7 @@ export class PageCarousel {
 
 	private isPlaying: boolean = false;
 	private swipe(): void {
-		if (this.isPlaying) return;
+		if (!this.isEnabled() || this.isPlaying) return;
 
 		this.direction.compute();
 

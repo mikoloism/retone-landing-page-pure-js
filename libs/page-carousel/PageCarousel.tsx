@@ -3,9 +3,11 @@ import { Variants, motion } from 'framer-motion';
 import React from 'react';
 import { PageCarousel } from './page-carousel';
 import styled from './page-carousel.module.scss';
+import Context, { Handler } from './context';
 
 export class PageCarouselComponent extends React.Component<Props, State> {
 	private readonly pageCarousel: PageCarousel;
+	public static contextType = Context;
 
 	public constructor(props: Props) {
 		super(props);
@@ -36,6 +38,10 @@ export class PageCarouselComponent extends React.Component<Props, State> {
 
 	public render(): JSX.Element {
 		const className = classnames(styled.pc_wrapper, this.props.className);
+		const context: Handler = this.context as any;
+
+		if (context.isEnabled()) PageCarousel.enable();
+		else PageCarousel.disable();
 
 		return (
 			<motion.div
