@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const App = styled.div`
 	width: 100%;
 	height: 100vh;
-	max-height: 98vh;
+	max-height: 99.9999vh;
 	overflow: hidden;
 `;
 
