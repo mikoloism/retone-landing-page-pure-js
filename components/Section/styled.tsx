@@ -89,15 +89,18 @@ export namespace Cover {
 		place-items: center;
 
 		color: black;
+		z-index: 2;
 	`;
 
 	export const Title = styled.h2`
+		font-size: 8rem;
 		font-size: viewSize(8);
 		line-height: 1.3;
 	`;
 
 	export const SubTitle = styled.p`
 		display: block;
+		font-size: 5.4rem;
 		/* font-size: viewSize(5.4); */
 		line-height: 1.3;
 	`;
@@ -122,16 +125,19 @@ export namespace Explode {
 		place-items: center;
 
 		color: black;
+		z-index: 2;
 	`;
 
 	export const Title = styled.h2`
+		font-size: 8rem;
 		font-size: viewSize(8);
 		line-height: 1.3;
 	`;
 
 	export const SubTitle = styled.p`
 		display: block;
-		/* font-size: viewSize(5.4); */
+		font-size: 5rem;
+		font-size: viewSize(5.4);
 		line-height: 1.3;
 	`;
 
@@ -213,8 +219,8 @@ export namespace Story {
 
 	export const Title = styled.h2`
 		color: white;
+		font-size: 6rem;
 		font-size: viewSize(6);
-
 		font-size: viewSize(8);
 		line-height: 1.3;
 	`;
@@ -222,6 +228,7 @@ export namespace Story {
 	export const SubTitle = styled.p`
 		text-align: center;
 		display: block;
+		font-size: 5.4rem;
 		font-size: viewSize(5.4);
 		line-height: 1.3;
 	`;
@@ -243,6 +250,7 @@ export namespace Story {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+		z-index: 1;
 	`;
 }
 
