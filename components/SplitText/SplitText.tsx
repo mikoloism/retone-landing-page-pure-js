@@ -1,32 +1,43 @@
-import React, { Children, Component } from 'react';
+import React from 'react';
 import Word from './styled';
+import { useAnimation } from 'framer-motion';
 
-export class SplitText extends Component<Props, State> {
-	public constructor(props: Props) {
-		super(props);
-	}
+export function SplitText(props: Props): JSX.Element {
+	const controls = useAnimation();
 
-	public render(): JSX.Element | undefined {
-		if (typeof this.props.children === 'string') {
-			return (
-				<React.Fragment>
-					{Children.toArray(
-						this.props.children.split(' ').map(this.mapToWord)
-					)}
-				</React.Fragment>
-			);
-		}
-	}
+	if (typeof props.children !== 'string') return <></>;
 
-	public mapToWord(word: string): JSX.Element {
-		return (
-			<Word.Wrapper>
-				<Word.Inner>{word}</Word.Inner>
-			</Word.Wrapper>
-		);
-	}
+	const words = props.children.split(' ')!;
+
+	controls.start('initial');
+	if (!!props.play) controls.start('visible');
+
+	return (
+		<React.Fragment>
+			{React.Children.toArray(
+				words.map((word: string, index: number) => {
+					return (
+						<Word.Outer>
+							<Word.Inner
+								initial="initial"
+								animate={controls}
+								variants={{
+									initial: { y: '100%' },
+									visible: { y: 0 },
+								}}
+								transition={{
+									duration: 0.4,
+									ease: 'easeInOut',
+								}}>
+								{word}
+								{index !== words.length - 1 ? '\u00A0' : ''}
+							</Word.Inner>
+						</Word.Outer>
+					);
+				})
+			)}
+		</React.Fragment>
+	);
 }
 
-type Props = React.PropsWithChildren<{}>;
-
-type State = {};
+type Props = React.PropsWithChildren<{ play?: boolean }>;

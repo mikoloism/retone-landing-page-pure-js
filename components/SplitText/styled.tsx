@@ -1,20 +1,15 @@
-import classnames from 'classnames';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 namespace Word {
-	export const Wrapper = styled.span.attrs((props) => ({
-		className: classnames('word', props.className),
-	}))`
+	export const Outer = styled.span`
 		display: inline-block;
 		overflow: hidden;
 	`;
 
-	export const Inner = styled.span.attrs((props) => ({
-		className: classnames('word__inner', props.className),
-	}))`
+	export const Inner = styled(motion.span)`
 		display: inline-block;
-		transform: translateY(100%);
-		transition: 0.7s ease all;
+		will-change: transform;
 	`;
 }
 
