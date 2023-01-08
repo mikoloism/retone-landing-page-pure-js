@@ -59,11 +59,19 @@ export namespace Hero {
 
 	export const Title = styled.h1`
 		display: flex;
-		flex-wrap: wrap;
-		/* height: viewSize(12); */
+		flex-direction: column;
+		font-size: 8rem;
 		color: white;
 		row-gap: 1rem;
 		margin-bottom: 1.09375rem;
+	`;
+
+	export const Line1 = styled.span`
+		display: block;
+	`;
+
+	export const Line2 = styled.span`
+		display: block;
 	`;
 
 	export const BackgroundVideo = styled.video.attrs(() => ({
