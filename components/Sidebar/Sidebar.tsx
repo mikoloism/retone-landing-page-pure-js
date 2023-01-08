@@ -1,13 +1,21 @@
 import classnames from 'classnames';
-import { Children, Component } from 'react';
-import styles from './sidebar.module.scss';
+import { Variants, motion } from 'framer-motion';
 import Link from 'next/link';
+import React from 'react';
+import Context, { Handler, Status } from './context';
+import styles from './sidebar.module.scss';
 
-export class SidebarComponent extends Component<Props, State> {
+const variants: Variants = {
+	[Status.Hidden]: { translateX: '100vw' },
+	[Status.Visible]: { translateX: '0vw' },
+};
+
+export class SidebarComponent extends React.Component<Props, State> {
+	public static contextType = Context;
 	public constructor(props: Props) {
 		super(props);
 
-		this.state = { isOpen: props?.isOpen ?? false };
+		this.state = {};
 	}
 
 	private readonly navigationItems: Array<NavigationItemType> = [
@@ -22,9 +30,15 @@ export class SidebarComponent extends Component<Props, State> {
 	];
 
 	public render(): JSX.Element {
+		const sidebar: Handler = this.context as any;
+
 		return (
-			<aside className={styles['sidebar']}>
-				{/* TODO : replace by <button> */}
+			<motion.aside
+				initial={Status.Hidden}
+				animate={sidebar.getStatus()}
+				variants={variants}
+				transition={{ duration: 1, ease: 'easeInOut' }}
+				className={styles['sidebar']}>
 				<div className={styles['sidebar__close']}></div>
 
 				<div className={styles['sidebar__inner']}>
@@ -36,7 +50,7 @@ export class SidebarComponent extends Component<Props, State> {
 							styles['navigation']
 						)}>
 						<ul className={styles['navigation__list']}>
-							{Children.toArray(
+							{React.Children.toArray(
 								this.navigationItems.map(
 									(item: NavigationItemType) => (
 										<NavigationItem {...item} />
@@ -46,20 +60,21 @@ export class SidebarComponent extends Component<Props, State> {
 						</ul>
 					</nav>
 				</div>
-			</aside>
+			</motion.aside>
 		);
 	}
 }
 
-type Props = { isOpen?: boolean /* default = undefined(false) */ };
+type Props = {};
 
-type State = { isOpen: boolean };
+type State = {};
 
 function NavigationItem(props: NavigationItemType): JSX.Element {
 	return (
 		<li className={styles.navigation__item}>
 			<Link
 				href={props.href}
+				passHref
 				className={styles.navigation__link}>
 				<span className={styles.navigation__text}>{props.label}</span>
 			</Link>
