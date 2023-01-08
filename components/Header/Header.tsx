@@ -19,41 +19,41 @@ const styled: Record<string, string> = {
 const variants: Record<string, Variants> = {
 	line1: {
 		whenOpen: {
-			x1: ['2', '2'],
-			y1: ['4', '16', '30'],
-			x2: ['30', '30', '30'],
-			y2: ['4', '16', '2'],
+			x1: [2, 2, 2],
+			y1: [4, 16, 30],
+			x2: [30, 30, 30],
+			y2: [4, 16, 2],
 		},
 
 		whenClose: {
-			x1: ['2', '2', '2'],
-			y1: ['30', '16', '4'],
-			x2: ['30', '30', '30'],
-			y2: ['2', '16', '4'],
+			x1: [2, 2, 2],
+			y1: [30, 16, 4],
+			x2: [30, 30, 30],
+			y2: [2, 16, 4],
 		},
 	},
 
 	line2: {
 		whenOpen: {
-			opacity: [1, 0],
+			opacity: [1, 1, 0],
 		},
 		whenClose: {
-			opacity: [0, 1],
+			opacity: [0, 0, 1],
 		},
 	},
 
 	line3: {
 		whenOpen: {
-			x1: ['2', '2', '2'],
-			y1: ['28', '16', '2'],
-			x2: ['30', '30', '30'],
-			y2: ['28', '16', '30'],
+			x1: [2, 2, 2],
+			y1: [28, 16, 2],
+			x2: [30, 30, 30],
+			y2: [28, 16, 30],
 		},
 		whenClose: {
-			x1: ['2', '2', '2'],
-			y1: ['2', '16', '28'],
-			x2: ['30', '30', '30'],
-			y2: ['30', '16', '28'],
+			x1: [2, 2, 2],
+			y1: [2, 16, 28],
+			x2: [30, 30, 30],
+			y2: [30, 16, 28],
 		},
 	},
 };
@@ -86,7 +86,7 @@ export const HeaderComponent = React.memo(function HeaderComponent(
 					animate={sidebar.isVisible() ? 'whenOpen' : 'whenClose'}
 					variants={variants.line1}
 					transition={{
-						duration: 2,
+						duration: 1,
 						ease: 'easeInOut',
 					}}></motion.line>
 
@@ -98,7 +98,7 @@ export const HeaderComponent = React.memo(function HeaderComponent(
 					animate={sidebar.isVisible() ? 'whenOpen' : 'whenClose'}
 					variants={variants.line2}
 					transition={{
-						duration: 0.1,
+						duration: 0.5,
 						ease: 'easeInOut',
 					}}></motion.line>
 
@@ -110,7 +110,7 @@ export const HeaderComponent = React.memo(function HeaderComponent(
 					animate={sidebar.isVisible() ? 'whenOpen' : 'whenClose'}
 					variants={variants.line3}
 					transition={{
-						duration: 2,
+						duration: 1,
 						ease: 'easeInOut',
 					}}></motion.line>
 			</Hamburger>
