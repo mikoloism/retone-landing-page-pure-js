@@ -1,6 +1,5 @@
 import { Footer } from '@/components/Footer';
 import * as Section from '@/components/Section';
-import { Header, Sidebar } from '@/components/index';
 import { PageCarousel } from '@/libs/page-carousel';
 import { Variant } from 'framer-motion';
 import styled from 'styled-components';
@@ -36,9 +35,6 @@ const sectionList: string[] = [
 export default function LandingPage() {
 	return (
 		<>
-			<Header isOverlay={false} />
-			<Sidebar isOpen={false} />
-
 			<App>
 				<PageCarousel
 					variants={variants}
