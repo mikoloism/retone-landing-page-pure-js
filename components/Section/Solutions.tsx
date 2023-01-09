@@ -1,6 +1,7 @@
 import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
+import styled from 'styled-components';
 import { SplitText } from '../SplitText';
-import { Solutions } from './styled';
+import { TextSection } from './styled';
 
 export function SolutionsComponent(props: Props) {
 	const { ref, entry } = props.intersection!;
@@ -25,3 +26,31 @@ export function SolutionsComponent(props: Props) {
 }
 
 type Props = PropsWithIntersection;
+
+namespace Solutions {
+	export const Wrapper = styled(TextSection)``;
+
+	export const Header = styled.header`
+		display: flex;
+		min-width: 250px;
+		width: 100%;
+		padding: 0 10%;
+
+		flex-direction: column;
+		flex-wrap: wrap;
+
+		place-items: flex-start;
+		justify-content: center;
+		row-gap: 1rem;
+
+		line-height: 1.35;
+	`;
+
+	export const Title = styled.h2`
+		font-size: viewSize(3.3);
+	`;
+
+	export const SubTitle = styled.p`
+		font-size: viewSize(6);
+	`;
+}

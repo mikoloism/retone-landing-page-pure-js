@@ -1,5 +1,6 @@
 import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
-import { Tagline } from './styled';
+import styled from 'styled-components';
+import { MediaSection } from './styled';
 
 export function TaglineComponent(_props: Props): JSX.Element {
 	return (
@@ -14,3 +15,20 @@ export function TaglineComponent(_props: Props): JSX.Element {
 }
 
 type Props = PropsWithIntersection;
+
+namespace Tagline {
+	export const Video = styled.video`
+		position: absolute;
+		z-index: 1;
+	`;
+
+	export const Wrapper = styled(MediaSection)`
+		& ${Tagline.Video} {
+			/* width: viewWidth(100); */
+			/* height: viewHeight(100); */
+			width: 100vw;
+			height: 100vh;
+			object-fit: cover;
+		}
+	`;
+}
