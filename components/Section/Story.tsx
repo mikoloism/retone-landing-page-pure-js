@@ -37,21 +37,17 @@ namespace Story {
 		min-width: 250px;
 		width: 100%;
 		padding: 0 10%;
-
 		flex-direction: column;
 		flex-wrap: wrap;
-
 		place-items: center;
 		justify-content: center;
 		row-gap: 1rem;
-
 		line-height: 1.35;
-
+		color: white;
 		z-index: 5;
 	`;
 
 	export const Title = styled.h2`
-		color: white;
 		font-size: 6rem;
 		font-size: viewSize(6);
 		font-size: viewSize(8);
