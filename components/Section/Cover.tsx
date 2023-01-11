@@ -1,13 +1,30 @@
 import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
+import { Variants, motion } from 'framer-motion';
+import React from 'react';
 import styled from 'styled-components';
 import { SplitText } from '../SplitText';
 import { MediaSection } from './styled';
+
+const variants: Variants = {
+	initial: {
+		opacity: 0,
+	},
+	animate: {
+		opacity: 0.8,
+	},
+};
 
 export function CoverComponent(props: Props): JSX.Element {
 	const { ref, entry } = props.intersection!;
 
 	return (
 		<Cover.Wrapper ref={ref}>
+			<Cover.BackgroundColor
+				initial="initial"
+				animate={entry?.isIntersecting ? 'animate' : 'initial'}
+				variants={variants}
+			/>
+
 			<Cover.Header>
 				<Cover.Title>
 					<SplitText play={entry?.isIntersecting}>
@@ -20,6 +37,7 @@ export function CoverComponent(props: Props): JSX.Element {
 					</SplitText>
 				</Cover.SubTitle>
 			</Cover.Header>
+
 			<Cover.BackgroundImage
 				src="/assets/images/retone-HERO.png"
 				alt="retone | model hero"
@@ -43,8 +61,8 @@ namespace Cover {
 		place-content: center;
 		place-items: center;
 
-		color: black;
-		z-index: 2;
+		color: white;
+		z-index: 3;
 	`;
 
 	export const Title = styled.h2`
@@ -63,5 +81,19 @@ namespace Cover {
 	export const BackgroundImage = styled.img`
 		position: absolute;
 		z-index: 1;
+	`;
+
+	export const BackgroundColor = styled(motion.div)`
+		width: 100%;
+		min-height: 100%;
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #000;
+
+		z-index: 2;
 	`;
 }
