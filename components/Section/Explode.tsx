@@ -41,7 +41,7 @@ namespace Explode {
 		place-content: center;
 		place-items: center;
 
-		color: black;
+		color: white;
 		z-index: 2;
 	`;
 
