@@ -1,40 +1,54 @@
+@import url('/vendors/fonts/helvetica/helvetica-2.css');
+
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: Helvetica, sans-serif;
 }
 
 html,
 body,
 #root,
 #__next {
-  position: relative;
-  width: 100vw;
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-  overflow: auto;
-  overflow-x: hidden;
+	position: relative;
+	width: 100vw;
+	min-height: 100vh;
+	padding: 0;
+	margin: 0;
+	overflow: auto;
+	overflow-x: hidden;
 
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  place-items: center;
-  place-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	place-items: center;
+	place-content: center;
 
-  background: white;
-  color: black;
+	background: white;
+	color: black;
 }
 
 html,
 body {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 #root,
 #__next {
-  flex-direction: row;
-  max-height: 100vh;
-  place-content: flex-start;
-  scroll-behavior: smooth;
+	flex-direction: row;
+	max-height: 100vh;
+	place-content: flex-start;
+	scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	padding: 0;
+	margin: 0;
 }
