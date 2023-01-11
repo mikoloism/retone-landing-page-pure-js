@@ -2,7 +2,7 @@ import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection'
 import styled from 'styled-components';
 import { MediaSection } from './styled';
 
-export function HeroComponent(props: Props): JSX.Element {
+export function HeroComponent(_props: Props): JSX.Element {
 	return (
 		<Hero.Wrapper>
 			<Hero.Header>
@@ -23,17 +23,17 @@ namespace Hero {
 
 	export const Header = styled.header`
 		display: flex;
-
 		flex-direction: column;
 		place-content: flex-end;
 		place-items: flex-start;
 		padding: 1.09375rem;
-
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		width: viewWidth(100);
+		width: 100%;
 		height: viewHeight(100);
+		height: 100%;
 		transform: translate(-50%, -50%);
 		overflow: hidden;
 		z-index: 7;
