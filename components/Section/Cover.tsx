@@ -2,7 +2,7 @@ import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection'
 import { Variants, motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { CallToAction } from '../CallToAction';
+import { CallToAction, useCallToAction } from '../CallToAction';
 import { SplitText } from '../SplitText';
 import { MediaSection } from './styled';
 
@@ -17,13 +17,7 @@ const variants: Variants = {
 
 export function CoverComponent(props: Props): JSX.Element {
 	const { ref, entry } = props.intersection!;
-	const [isShown, setShown] = React.useState<boolean>(false);
-
-	const toggleShown = React.useCallback(() => setShown(!isShown), []);
-
-	React.useEffect(() => {
-		setShown(false);
-	}, [entry?.isIntersecting]);
+	const ctaProps = useCallToAction({ isMounted: entry?.isIntersecting });
 
 	return (
 		<Cover.Wrapper ref={ref}>
@@ -45,10 +39,7 @@ export function CoverComponent(props: Props): JSX.Element {
 					</SplitText>
 				</Cover.SubTitle>
 
-				<CallToAction
-					isMounted={entry?.isIntersecting}
-					toggleShown={toggleShown}
-					isShown={isShown}>
+				<CallToAction {...ctaProps}>
 					<SplitText play={entry?.isIntersecting}>DISCOVER</SplitText>
 				</CallToAction>
 			</Cover.Header>

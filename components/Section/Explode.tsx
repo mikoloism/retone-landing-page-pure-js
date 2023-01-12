@@ -1,10 +1,12 @@
 import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
 import styled from 'styled-components';
+import { CallToAction, useCallToAction } from '../CallToAction';
 import { SplitText } from '../SplitText';
 import { MediaSection } from './styled';
 
 export function ExplodeComponent(props: Props): JSX.Element {
 	const { ref, entry } = props.intersection!;
+	const ctaProps = useCallToAction({ isMounted: entry?.isIntersecting });
 
 	return (
 		<Explode.Wrapper ref={ref}>
@@ -17,6 +19,10 @@ export function ExplodeComponent(props: Props): JSX.Element {
 				<Explode.SubTitle>
 					<SplitText play={entry?.isIntersecting}>Anatomy</SplitText>
 				</Explode.SubTitle>
+
+				<CallToAction {...ctaProps}>
+					<SplitText play={entry?.isIntersecting}>DISCOVER</SplitText>
+				</CallToAction>
 			</Explode.Header>
 			<Explode.BackgroundVideo
 				poster="/assets/explode/poster.png"
