@@ -1,4 +1,4 @@
-import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
+import { PropsWithIntersection } from '@/libs/use-intersection';
 import { Variants, motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
@@ -7,12 +7,8 @@ import { SplitText } from '../SplitText';
 import { MediaSection } from './styled';
 
 const variants: Variants = {
-	initial: {
-		opacity: 0,
-	},
-	animate: {
-		opacity: 0.8,
-	},
+	initial: { opacity: 0 },
+	animate: { opacity: 0.8 },
 };
 
 export function CoverComponent(props: Props): JSX.Element {

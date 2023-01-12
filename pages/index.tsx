@@ -1,7 +1,7 @@
 import { Footer } from '@/components/Footer';
 import * as Section from '@/components/Section';
 import { PageCarousel } from '@/libs/page-carousel';
-import { useIntersection } from '@/libs/use-intersection/use-intersection';
+import { useIntersection } from '@/libs/use-intersection';
 import { Variant } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';

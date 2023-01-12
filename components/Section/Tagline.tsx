@@ -1,6 +1,6 @@
 import { useContext as usePageCarouselContext } from '@/libs/page-carousel';
 import { useFullscreen } from '@/libs/use-fullscreen';
-import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
+import { PropsWithIntersection } from '@/libs/use-intersection';
 import React from 'react';
 import styled from 'styled-components';
 import { MediaSection } from './styled';

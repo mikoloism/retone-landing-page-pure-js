@@ -1,4 +1,4 @@
-import { PropsWithIntersection } from '@/libs/use-intersection/use-intersection';
+import { PropsWithIntersection } from '@/libs/use-intersection';
 import styled from 'styled-components';
 import { SplitText } from '../SplitText';
 import { TextSection } from './styled';
